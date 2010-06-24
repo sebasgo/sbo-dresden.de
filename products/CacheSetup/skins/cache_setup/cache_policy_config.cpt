@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="plone">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_content"
+    tal:define="cstool nocall:portal/portal_cache_settings;
+                portal_type context/portal_type;
+                policy cstool/getDisplayPolicy;
+                config python:modules['Products.CacheSetup.config'];
+                plone25 python:config.PLONE25 or '';
+                create python:context.checkCreationFlag() and portal_type != config.TOOL_TYPE;">
+
+    <div class="documentEditable" tal:attributes="id python:plone25 and 'content' or ''">
+
+    <ul metal:use-macro="here/cache_tool_config/macros/cache_tabs"></ul> 
+
+    <div metal:use-macro="here/global_contentviews/macros/content_actions">
+      The content bar
+    </div>
+
+    <div class="documentContent" tal:attributes="id python:plone25 and '' or 'content'">
+    <a name="documentContent"></a>
+
+    <div class="configlet">
+
+    <div metal:use-macro="here/global_statusmessage/macros/portal_message" />
+
+    <tal:folders condition="python:portal_type == config.TOOL_TYPE">
+        <tal:def define="folder_macros here/old_folder_contents/macros|here/folder_contents/macros;
+                         batch python:context.getUncataloguedFolderContents(batch=True);
+                         actions python:here.getFolderButtons(actions);
+                         view_title string:Cache Policies;
+                         full_view python:False;">
+          <div metal:use-macro="folder_macros/contents">
+
+          <metal:header_slot metal:fill-slot="listingheader">
+          <th class="nosort">&nbsp;ID&nbsp;</th>
+          <th class="nosort"
+              >&nbsp;<tal:modified i18n:translate="listingheader_modified"
+              >Modified</tal:modified>&nbsp;</th>
+          <th class="nosort"
+              >&nbsp;<tal:order i18n:translate="listingheader_order"
+              >Order</tal:order>&nbsp;</th>
+          </metal:header_slot>
+
+          <metal:item_slot metal:fill-slot="item_display">
+          <td tal:content="item_id"></td>
+          <td tal:content="python:toLocalizedTime(item_modified, long_format=1)"
+              tal:attributes="class item_wf_state_class">08/19/2001 03:01 AM
+          </td>
+          <td tal:define="pps python:modules['Products.PythonScripts.standard'];
+                          quoted_item_id python:pps.url_quote(item_id)"
+              tal:condition="python:isOrderable and canModifyFolderContent and not preSorted">
+          <a href=""
+             title="Move item up"
+             i18n:attributes="title title_move_item_up;"
+             tal:attributes="href string:$here_url/cache_folder_position?position=up&amp;id=$quoted_item_id&amp;template_id=${template_id}">
+              <img tal:replace="structure arrowUp" />
+          </a>
+              &nbsp;
+          <a href=""
+             title="Move item down"
+             i18n:attributes="title title_move_item_down;"
+             tal:attributes="href string:$here_url/cache_folder_position?position=down&amp;id=$quoted_item_id&amp;template_id=${template_id}">
+              <img tal:replace="structure arrowDown" />
+          </a>
+          </td>
+          </metal:item_slot>
+
+         </div>
+
+        </tal:def>
+    </tal:folders>
+
+    <tal:folderItems condition="python:portal_type == config.POLICY_TYPE">
+        <div metal:use-macro="here/cache_setup_items_config/macros/cache-items"></div>
+    </tal:folderItems>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

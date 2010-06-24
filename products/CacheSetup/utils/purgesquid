@@ -1,0 +1,46 @@
+PATH=/usr/bin:/sbin:/bin:/usr/sbin
+export PATH
+
+# determine the name of the squid binary
+[ -f /usr/sbin/squid ] && SQUID=squid
+[ -z "$SQUID" ] && exit 0
+
+# determine which one is the cache_swap directory
+CACHE_SWAP=`sed -e 's/#.*//g' /etc/squid/squid.conf | \
+	grep cache_dir |  awk '{ print $3 }'`
+[ -z "$CACHE_SWAP" ] && CACHE_SWAP=/var/spool/squid
+
+echo $CACHE_SWAP
+echo $SQUID
+
+echo -n  $"Stopping $SQUID: "
+$SQUID -k check >> /var/log/squid/squid.out 2>&1
+RETVAL=$?
+
+if [ $RETVAL -eq 0 ] ; then
+	$SQUID -k shutdown &
+    	rm -f /var/lock/subsys/$SQUID
+	timeout=0
+ 	while : ; do
+		[ -f /var/run/squid.pid ] || break
+		if [ $timeout -ge $SQUID_SHUTDOWN_TIMEOUT ]; then
+		    echo
+		    return 1
+		fi
+		sleep 2 && echo -n "." 
+		timeout=$((timeout+2))
+    	done
+        echo "Stopped"
+	#echo_success
+	echo 
+else
+        echo "Not running"
+    	#echo_failure
+	echo
+fi
+#    return $RETVAL
+
+echo "Purging the cache"
+echo "" > $CACHE_SWAP/swap.state
+echo "Restarting squid"
+/etc/rc.d/init.d/squid start

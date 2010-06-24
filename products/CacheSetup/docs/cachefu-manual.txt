@@ -1,0 +1,8 @@
+
+A placeholder for the manual in progress.
+
+The latest published version of the CacheFu manual can be found at
+"http://plone.org/products/cachefu":http://plone.org/products/cachefu
+
+(more docs, some a bit out-of-date, can be found in the /CacheSetup/docs directory)
+

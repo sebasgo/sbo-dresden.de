@@ -1,0 +1,11 @@
+[default]
+title = Manage Page Cache
+
+[validators]
+validators=
+
+[actions]
+action.success=traverse_to:string:page_cache_setup
+action.success..setup=traverse_to:string:page_cache_setup
+action.success..purge=traverse_to:string:page_cache_purge
+action.failure=traverse_to:string:page_cache_config

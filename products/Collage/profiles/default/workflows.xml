@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+  
+  <bindings>
+    <type type_id="CollageRow">
+      <bound-workflow workflow_id=""/>
+    </type>
+    <type type_id="CollageColumn">
+      <bound-workflow workflow_id=""/>
+    </type>
+    <type type_id="CollageAlias">
+      <bound-workflow workflow_id=""/>
+    </type>
+  </bindings>
+  
+</object>

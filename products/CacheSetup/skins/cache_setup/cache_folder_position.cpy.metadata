@@ -1,0 +1,6 @@
+[default]
+title = Order items
+
+[actions]
+action.failure=traverse_to:string:cache_policy_config
+action.success=redirect_to:string:cache_policy_config

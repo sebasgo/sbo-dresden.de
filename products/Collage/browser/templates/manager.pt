@@ -1,0 +1,7 @@
+<div tal:condition="options/viewlets" class="collage-header">
+  <tal:viewlets repeat="viewlet options/viewlets"
+		replace="structure viewlet/render" />
+
+  <div class="visualClear"><!-- nothing here --></div>
+
+</div>

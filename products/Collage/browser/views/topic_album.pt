@@ -1,0 +1,106 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+
+<tal:topic define="plone_view here/@@plone;
+		   toLocalizedTime nocall: plone_view/toLocalizedTime;
+		   isAnon view/isAnon;
+		   mtool view/mtool;
+		   portal_url view/portal_url;
+		   normalizeString view/normalizeString;
+		   site_properties view/site_properties">
+
+  <h2 metal:define-macro="title"
+      tal:define="view context/@@collage_kss_helper"
+      tal:attributes="id string:${view/getUniqueIdentifier}-title;
+		      class python: view.getKssClasses('title')"
+      tal:condition="here/Title">
+    <span metal:define-slot="inside" 
+          tal:replace="here/Title">title</span>
+  </h2>
+  
+  <p metal:define-macro="description"
+     tal:define="view context/@@collage_kss_helper"
+     tal:attributes="id string:${view/getUniqueIdentifier}-description;
+		     class python: view.getKssClasses('description')"
+     tal:condition="here/Description">
+    <span metal:define-slot="inside" 
+          tal:replace="here/Description">description</span>
+  </p>
+
+  <tal:macros define="view context/@@collage_kss_helper/getKssView;
+		      getKssClasses python: view.getKssClasses;
+		      templateId string:atct_topic_view">
+    
+    <tal:albumsimages
+       tal:define="result python:here.atctListAlbum(images=1, folders=1, subimages=0, others=1);
+                   images result/images;
+                   albums result/folders;
+                   otherContents result/others;
+                   Batch python:modules['Products.CMFPlone'].Batch;
+                   b_start python:request.get('b_start', 0);
+                   batch python:Batch(images, 12, int(b_start), orphan=1)"
+       tal:condition="python:albums or images">
+      
+      <tal:images tal:condition="batch" tal:repeat="image batch">
+	<div class="photoAlbumEntry">
+          <a tal:define="id python:int(b_start)+int(repeat['image'].number()-1)"
+             tal:attributes="href string:${image/absolute_url}/view;
+                             title image/Description">
+            <span class="photoAlbumEntryWrapper">
+              <img src="" alt="" tal:replace="structure python:image.tag(scale='thumb', title=image.Description())" />
+            </span>
+            <span class="photoAlbumEntryTitle" tal:content="image/pretty_title_or_id">
+              Title
+            </span>
+          </a>
+	</div>
+      </tal:images>
+      
+      <div class="photoAlbum" tal:condition="albums">
+	<tal:albums tal:repeat="album albums">
+          <div class="photoAlbumEntry photoAlbumFolder"
+               tal:define="image_brains_in_album python:album.atctListAlbum(subimages=1)['subimages'];
+                           number_of_images python:len(image_brains_in_album);
+                           random python:modules['random'];
+                           random_image python:number_of_images and random.choice(image_brains_in_album).getObject() or None">
+            <a tal:attributes="href album/getURL;
+                               title album/Description">
+              <span class="photoAlbumEntryWrapper">
+		<img src="" alt=""
+                     tal:condition="number_of_images"
+                     tal:replace="structure python:random_image.tag(scale='thumb', title=album.Description)" />
+              </span>
+              <span class="photoAlbumEntryTitle">
+		<tal:title content="album/pretty_title_or_id">Title</tal:title>
+		(<tal:number content="number_of_images" />)
+              </span>
+            </a>
+          </div>
+	</tal:albums>
+      </div>
+      
+      <div class="visualClear"><!-- --></div>
+      
+      <p class="discreet"
+	 i18n:domain="atcontenttypes"
+	 i18n:translate="text_no_albums_uploaded"
+	 tal:condition="python:not (albums or images)">
+	No albums or photos uploaded yet.
+      </p>
+      
+      <div tal:condition="python:albums or images"
+           metal:use-macro="here/batch_macros/macros/navigation" />
+      
+      <tal:listing condition="otherContents"
+                   define="folderContents otherContents">
+	<metal:listing metal:use-macro="here/folder_listing/macros/listing">
+          <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+	</metal:listing>
+      </tal:listing>
+      
+    </tal:albumsimages>
+    
+    <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />
+
+  </tal:macros>
+
+</tal:topic>

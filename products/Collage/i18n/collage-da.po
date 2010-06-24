@@ -1,0 +1,144 @@
+# Malthe Borch <mborch@gmail.com>, 2007.
+# Jacob Vestergaard <jacobv@headnet.dk>
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-06-28 13:40+0000\n"
+"Last-Translator: Jacob Vestergaard <jacobv@headnet.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: da\n"
+"Language-Name: Danish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collage\n"
+
+#: ./browser/browser.py:90
+msgid "Column inserted."
+msgstr "Kolonne indsat"
+
+#: ./browser/browser.py:80
+msgid "Row added."
+msgstr "Række tilføjet"
+
+#: ./browser/browser.py:37
+msgid "View changed."
+msgstr "Visning ændret"
+
+#. Default: "Add row"
+#: ./skins/Collage/collage_view.pt:51
+msgid "button_add_collagerow"
+msgstr "Tilføj række"
+
+#. Default: "Choose an existing item to insert. The item will be inserted as an alias (by reference). Use dropdown to filter on type."
+#: ./browser/viewlets/insert-existing-item.pt:16
+msgid "help_insert_existing_items"
+msgstr "Vælg et eksisterende indholdsobjekt, du vil indsætte. Objektet vil blive indsat som et alias. Vælg rullemenu for at filtrere efter type."
+
+#. Default: "Choose a layout for this object."
+#: ./browser/viewlets/layout.pt:17
+msgid "help_select_layout"
+msgstr "Vælg et layout for dette objekt"
+
+#. Default: "insert existing item"
+#: ./browser/viewlets/insert-existing-item.pt:11
+msgid "label_insert_existing_item"
+msgstr "Indsæt eksisterende objekt"
+
+#. Default: "Loading..."
+#: ./browser/viewlets/insert-existing-item.pt:25
+msgid "label_loading"
+msgstr "Henter..."
+
+#. Default: "Move down"
+#: ./browser/viewlets/modify_order_vertical.pt:10
+msgid "label_move_down"
+msgstr "Flyt ned"
+
+#. Default: "Move left"
+#: ./browser/viewlets/modify_order_horizontal.pt:10
+msgid "label_move_left"
+msgstr "Flyt til venstre"
+
+#. Default: "Move right"
+#: ./browser/viewlets/modify_order_horizontal.pt:16
+msgid "label_move_right"
+msgstr "Flyt til højre"
+
+#. Default: "Move up"
+#: ./browser/viewlets/modify_order_vertical.pt:16
+msgid "label_move_up"
+msgstr "Flyt op"
+
+#. Default: "This Collage-object does not have any items yet. Add items using the drop-down menu to have them appear here."
+#: ./skins/Collage/collage_view.pt:44
+msgid "label_no_items_added"
+msgstr "Denne kollage er tom."
+
+#. Default: "select layout"
+#: ./browser/viewlets/layout.pt:12
+msgid "label_select_layout"
+msgstr "Vælg layout"
+
+#. Default: "split"
+#: ./browser/viewlets/split-column.pt:9
+msgid "label_split_column"
+msgstr "Opdel"
+
+#. Default "(alias)"
+#: ./browser/viewlets/actions.pt:19
+msgid "label_aliased"
+msgstr "(alias)"
+
+#. Default "Insert new item"
+#: ./browser/viewlets/insert-new-item.pt:13
+msgid "label_insert_new_item"
+msgstr "Indsæt nyt objekt"
+
+#. Default "Select a content-type to insert."
+#: ./browser/viewlets/insert-new-item.pt:18
+msgid "help_insert_new_item"
+msgstr "Vælg en indholdstype, der skal oprettes."
+
+msgid "label_alias_target"
+msgstr "Vælg alias"
+
+msgid "label_optional_row_title"
+msgstr "Overskrift"
+
+msgid "help_optional_row_title"
+msgstr "Hvis du ønsker en overskrift til denne række, kan du skrive den her."
+
+msgid "label_optional_column_title"
+msgstr "Overskrift"
+
+msgid "help_optional_column_title"
+msgstr "Hvis du ønsker en overskrift til denne kolonne, kan du skrive den her."
+
+msgid "label_show_title"
+msgstr "Vis overskrift"
+
+msgid "label_show_description"
+msgstr "Vis beskrivelse"
+
+msgid "label_content_type"
+msgstr "Indholdstype"
+
+msgid "label_all_content_types"
+msgstr "Alle"
+
+msgid "Automatic"
+msgstr "Automatisk"
+
+msgid "Large left"
+msgstr "Stor venstre"
+
+msgid "Large right"
+msgstr "Stor højre"
+
+msgid "Standard"
+msgstr "Almindelig"
+
+msgid "Featured"
+msgstr "Fremhævet"

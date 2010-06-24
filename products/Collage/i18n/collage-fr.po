@@ -1,0 +1,149 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"PO-Revision-Date: 2007-12-14 16:01+0100\n"
+"Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
+"Language-Team: EDF\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: fr\n"
+"Language-Name: Français\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collage\n"
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr"
+
+
+#: ./browser/browser.py:90
+msgid "Column inserted."
+msgstr "Colonne insérée."
+
+#: ./browser/browser.py:80
+msgid "Row added."
+msgstr "Ligne ajoutée."
+
+#: ./browser/browser.py:37
+msgid "View changed."
+msgstr "Vue modifiée."
+
+#. Default: "Add row"
+#: ./skins/Collage/collage_view.pt:51
+msgid "button_add_collagerow"
+msgstr "Ajouter une ligne"
+
+#. Default: "Choose an existing item to insert. The item will be inserted as an alias (by reference). Use dropdown to filter on type."
+#: ./browser/viewlets/insert-existing-item.pt:16
+msgid "help_insert_existing_items"
+msgstr "Choisissez un élément existant à insérer. Il sera inséré en temps qu'alias (par référence). Utilisez le menu déroulant pour filtrer sur les types de contenu et/ou le champ texte pour affiner la recherche. Tapez la touche [Entrée] pour lancer la recherche."
+
+#. Default: "Choose a layout for this object."
+#: ./browser/viewlets/layout.pt:17
+msgid "help_select_layout"
+msgstr "Choisissez un modèle d'affichage pour cet élément."
+
+#. Default: "insert existing item"
+#: ./browser/viewlets/insert-existing-item.pt:11
+msgid "label_insert_existing_item"
+msgstr "Insérer un élément existant"
+
+#. Default: "Loading..."
+#: ./browser/viewlets/insert-existing-item.pt:25
+msgid "label_loading"
+msgstr "Chargement..."
+
+#. Default: "Move down"
+#: ./browser/viewlets/modify_order_vertical.pt:10
+msgid "label_move_down"
+msgstr "Descendre"
+
+#. Default: "Move left"
+#: ./browser/viewlets/modify_order_horizontal.pt:10
+msgid "label_move_left"
+msgstr "Déplacer à gauche"
+
+#. Default: "Move right"
+#: ./browser/viewlets/modify_order_horizontal.pt:16
+msgid "label_move_right"
+msgstr "Déplacer à droite"
+
+#. Default: "Move up"
+#: ./browser/viewlets/modify_order_vertical.pt:16
+msgid "label_move_up"
+msgstr "Monter"
+
+#. Default: "This Collage-object does not have any items yet. Add items using the drop-down menu to have them appear here."
+#: ./skins/Collage/collage_view.pt:44
+msgid "label_no_items_added"
+msgstr "Cette page est vide. Commencez par ajouter une ligne."
+
+#. Default: "select layout"
+#: ./browser/viewlets/layout.pt:12
+msgid "label_select_layout"
+msgstr "Sélectionnez un modèle"
+
+#. Default: "split"
+#: ./browser/viewlets/split-column.pt:9
+msgid "label_split_column"
+msgstr "Créer une colonne"
+
+#. Default "(alias)"
+#: ./browser/viewlets/actions.pt:19
+msgid "label_aliased"
+msgstr "(alias)"
+
+#. Default "Insert new item"
+#: ./browser/viewlets/insert-new-item.pt:13
+msgid "label_insert_new_item"
+msgstr "Insérer un nouvel élément"
+
+#. Default "Select a content-type to insert."
+#: ./browser/viewlets/insert-new-item.pt:18
+msgid "help_insert_new_item"
+msgstr "Sélectionnez un type de contenu à insérer."
+
+msgid "label_alias_target"
+msgstr "Elément référencé"
+
+msgid "label_optional_row_title"
+msgstr "Titre de la ligne"
+
+msgid "help_optional_row_title"
+msgstr "Un titre optionnel pour la ligne."
+
+msgid "label_optional_column_title"
+msgstr "Titre de la colonne"
+
+msgid "help_optional_column_title"
+msgstr "Un titre optionnel pour la colonne."
+
+msgid "label_show_title"
+msgstr "Afficher le titre"
+
+msgid "label_show_description"
+msgstr "Afficher la description"
+
+msgid "label_content_type"
+msgstr "Type de contenu"
+
+msgid "label_all_content_types"
+msgstr "Tous les types de contenu"
+
+msgid "Automatic"
+msgstr "Automatique"
+
+msgid "Large left"
+msgstr "Colonne gauche large"
+
+msgid "Large right"
+msgstr "Colonne droite large"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Featured"
+msgstr "Encart"
+
+msgid "Portlet"
+msgstr "Boîte"
+

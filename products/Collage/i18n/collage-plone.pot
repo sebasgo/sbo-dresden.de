@@ -1,0 +1,58 @@
+# Malthe Borch <mborch@gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-06-28 13:40+0000\n"
+"Last-Translator: Malthe Borch <mborch@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+# content-types
+
+msgid "Collage"
+msgstr ""
+
+msgid "desc_type_collage"
+msgstr "A structural container which can display its element in various layouts."
+
+msgid "Row"
+msgstr ""
+
+msgid "desc_type_collagerow"
+msgstr "A row which can contain page columns."
+
+msgid "Column"
+msgstr ""
+
+msgid "desc_type_collagecolumn"
+msgstr "A column which can contain content objects."
+
+msgid "Alias"
+msgstr ""
+
+msgid "desc_type_collagealias"
+msgstr "An object representing an alias for another object."
+
+msgid "Back to Collage"
+msgstr ""
+
+msgid "Manage page"
+msgstr ""
+
+msgid "msg_alias_inserted"
+msgstr "Alias has been inserted."
+
+msgid "msg_target_object_not_found"
+msgstr "Target item has not been found."
+
+msgid "msg_row_added"
+msgstr "Row has been added."
+
+msgid "msg_column_inserted"
+msgstr "Columns has been inserted."

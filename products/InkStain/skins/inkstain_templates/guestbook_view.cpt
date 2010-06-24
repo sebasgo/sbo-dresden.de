@@ -1,0 +1,210 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="inkstain">
+    
+  <tal metal:fill-slot="column_two_slot">
+    <tal:comment replace="nothing">
+      We disable right slots for better use of the space.
+    </tal:comment>
+  </tal>
+
+  <div metal:fill-slot="main"
+       id="inkstain-guestbook"
+       tal:define="errors options/state/getErrors;
+		   nb_msg context/objectCount;
+		   canDel context/canDelSignature">
+
+	<div tal:replace="structure provider:plone.abovecontenttitle" />
+	
+	<h1 class="documentFirstHeading">
+		<span metal:use-macro="python:context.widget('title', mode='view')" />
+	</h1>
+	
+	<div tal:replace="structure provider:plone.belowcontenttitle" />
+	
+	<div class="documentDescriptions">
+		<span metal:use-macro="python:context.widget('description', mode='view')" />
+	</div>
+
+    <div id="inkstain-guestbook-entry"
+	 tal:condition="context/canAddSignature">
+
+      <form action="."
+	    method="post"
+	    name="add_guestbook_message"
+	    tal:attributes="action template/getId">
+
+	<fieldset>
+	  <legend i18n:translate="legend_add_form">
+	    Add a message
+	  </legend>
+
+	  <div class="field"
+	       i18n:domain="inkstain"
+	       tal:define="error errors/name | nothing;
+			   name python:request.get('name', '')"
+	       tal:attributes="class python:test(error, 'field error', 'field')">
+
+	    <label i18n:translate="label_name">
+	      Fullname
+	    </label>
+	    <span class="fieldRequired"
+		  title="Required"
+		  i18n:translate="label_required">(Required)</span>
+	    <div tal:content="error" i18n:translate="">Validation error output</div>
+
+	    <input type="text" name="name" tal:attributes="value name" />
+	  </div>
+
+	  <div class="field"
+	       i18n:domain="inkstain"
+	       tal:define="error errors/email | nothing;
+			   email python:request.get('email', '')"
+	       tal:attributes="class python:test(error, 'field error', 'field')">
+
+	    <label i18n:translate="label_email">
+	      Email address
+	    </label>
+	    <span class="fieldRequired"
+		  title="Required"
+		  i18n:translate="label_required">(Required)</span>
+	    <div tal:content="error" i18n:translate="">Validation error output</div>
+
+	    <input type="text" name="email" tal:attributes="value email" />
+	  </div>
+
+	  <div class="field"
+	       i18n:domain="inkstain"
+	       tal:define="error errors/homepage | nothing;
+			   homepage python:request.get('homepage', '')"
+	       tal:attributes="class python:test(error, 'field error', 'field')">
+
+	    <label i18n:translate="label_homepage">
+	      Homepage address
+	    </label>
+	    <div tal:content="error" i18n:translate="">Validation error output</div>
+
+	    <input type="text" name="homepage" tal:attributes="value homepage" />
+	  </div>
+
+	  <div class="field"
+	       i18n:domain="inkstain"
+	       tal:define="error errors/message | nothing;
+			   message python:request.get('message', '')"
+	       tal:attributes="class python:test(error, 'field error', 'field')">
+
+	    <label i18n:translate="label_message">
+	      Message
+	    </label>
+	    <span class="fieldRequired"
+		  title="Required"
+		  i18n:translate="label_required">(Required)</span>
+	    <div class="formHelp" i18n:translate="help_body_text">
+	      The body text of your new message
+	    </div>
+	    <div tal:content="error" i18n:translate="">Validation error output</div>
+
+	    <textarea tal:content="message" name="message"></textarea>
+	  </div>
+
+	  <div class="field"
+	       i18n:domain="inkstain"
+	       tal:define="error errors/captcha | nothing;
+			   captcha context/getCaptcha;"
+	       tal:attributes="class python:test(error, 'field error', 'field')">
+
+	    <label i18n:translate="label_captcha">
+	      Captcha
+	    </label>
+	    <div class="discreet" i18n:translate="description_captcha">
+	      What is the letter #<tal:position content="python: captcha[1]" i18n:name="captcha_position" />
+	      of the word '<tal:position i18n:name="captcha_word" content="python: captcha[0]" />'
+	    </div>
+	    <div tal:content="error" i18n:translate="">Validation error output</div>
+
+	    <input type="hidden" name="captcha_key" tal:attributes="value python: captcha[2]" />
+	    <input type="text" name="captcha"/>
+	  </div>
+
+	  <div class="formControls">
+	    <input type="hidden" name="form.submitted" value="1" />
+
+	    <input class="context" 
+		   tabindex=""
+		   type="submit" 
+		   name="form.button.add"
+		   value="Submit"
+		   i18n:attributes="value label_submit"
+		   tal:attributes="tabindex tabindex/next;" /> 
+	  </div>
+
+	</fieldset>
+      </form>
+    </div>
+
+    <div id="inkstain-guestbook-main"
+	tal:define='batch context/getBatchedMessages'>
+
+      <tal:batch>
+	<div metal:use-macro="here/batch_macros/macros/navigation" />
+      </tal:batch>
+
+      <form method="post"
+	    name="del_guestbook_messages"
+	    action="delSignatures">
+	  <div class="inkstain-entry"
+	      tal:repeat='post batch'>
+	    <div tal:define="message post/readOutLoud">
+	      <span class="inkstain-entry-date discreet"
+		    tal:content="python:here.toLocalizedTime(post.date or here.CreationDate(), long_format=1)">
+		17-05-1982
+	      </span>
+	      <div class="inkstain-entry-name">
+		<input type="checkbox"
+		       tal:attributes="value post/getId"
+		       tal:condition="canDel"
+		       name="messages:list" />
+		<span tal:content="post/getId" /> &mdash;
+		<a tal:attributes="href string:mailto:${message/email}"
+		   tal:content="message/name">
+		  Delphine Ferrand
+		</a>
+	      </div>
+	      <div class="inkstain-entry-homepage"
+		   tal:condition="message/homepage">
+		<a tal:attributes="href message/homepage"
+		   tal:content="message/homepage">
+		  http://delphine.trollskog.com
+		</a>
+	      </div>
+	      <p class="inkstain-entry-message"
+		 tal:content="message/message">
+		A message
+	      </p>
+	    </div>
+	  </div>
+	<div class="formControls"
+	     tal:condition="python: canDel and nb_msg">
+	  <input type="hidden" name="form.submitted" value="1" />
+	  
+	  <input class="context destructive" 
+		 tabindex=""
+		 type="submit"
+		 name="form.button.del"
+		 value="Delete"
+		 i18n:attributes="value label_delete"
+		 tal:attributes="tabindex tabindex/next;" /> 
+	</div>
+      </form>
+      
+      <tal:batch>
+	<div metal:use-macro="here/batch_macros/macros/navigation" />
+      </tal:batch>
+
+    </div>
+	
+	<div tal:replace="structure provider:plone.belowcontentbody" />
+ 
+  </div>
+</html>

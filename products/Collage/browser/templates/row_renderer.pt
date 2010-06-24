@@ -1,0 +1,5 @@
+<div class="collage-column" tal:repeat="item view/getItems">
+  <div tal:attributes="class string:column-block block_${repeat/item/number}">
+    <tal:item replace="structure item" />
+  </div>
+</div>

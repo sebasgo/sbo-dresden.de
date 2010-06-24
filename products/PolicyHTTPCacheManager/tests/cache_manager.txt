@@ -1,0 +1,787 @@
+Policy HTTP Cache Manager
+=========================
+
+The idea behind the HTTP Cache Manager is that instead of having a
+hardcoded 'Expires' header being set and getting the 'Last-Modified'
+header wrong like the 'Accelerated HTTP Cache Manager', instead we do
+delegate down to the 'Caching Policy Manager' which is in charge of
+all policy.
+
+Let's test this with several different objects to make sure we behave
+accordingly here.
+
+  >>> from DateTime import DateTime
+  >>> from Products.CMFCore.utils import getToolByName
+
+Make sure the 'caching_policy_manager' exists:
+
+  >>> cpm = getToolByName(self.portal, 'caching_policy_manager', None)
+  >>> if cpm is None:
+  ...    adding = self.portal.manage_addProduct['CMFCore']
+  ...    adding.manage_addCachingPolicyManager()
+  ...    cpm = getToolByName(self.portal, 'caching_policy_manager')
+
+Create a Policy HTTP Cache Manager:
+
+  >>> adding = self.portal.manage_addProduct['PolicyHTTPCacheManager']
+  >>> adding.manage_addPolicyHTTPCacheManager('PolicyCache')
+
+Create a property on the portal root that is a date and can be
+acquired by the caching policy to ease our tests:
+
+  >>> def add_mod_date(ob, sec):
+  ...     setattr(ob, 'test_mod_date',
+  ...     DateTime('2001-01-01 00:00:%2d GMT' % sec))
+
+
+  >>> add_mod_date(self.portal, 0)
+
+Setup a very simple caching policy that we can verify to have been
+triggered later on:
+
+  >>> cpm.addPolicy(policy_id="test", predicate="python: True",
+  ...               mtime_func="content/test_mod_date", vary="",
+  ...               etag_func="", max_age_secs=42,
+  ...               s_max_age_secs=None, pre_check=None,
+  ...               post_check=None, last_modified=True,
+  ...               no_cache=False, no_store=False,
+  ...               must_revalidate=False,
+  ...               proxy_revalidate=False,
+  ...               no_transform=False, public=False,
+  ...               private=False, enable_304s=False)
+
+
+ZODB-Based View Tests
+---------------------
+
+Page Template Tests
++++++++++++++++++++
+
+Create a Page Template:
+
+  >>> adding = self.portal.manage_addProduct['PageTemplates']
+  >>> _ = adding.manage_addPageTemplate('test.pt',
+  ...      text="<tal:block replace='string:Foo' />")
+
+Make sure it's not assigned to any cache manager:
+
+  >>> pt = self.portal['test.pt']
+  >>> pt.ZCacheable_setManagerId(None)
+  >>> pt.ZCacheable_getCache()
+
+Publish the Page Template:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % pt.absolute_url(1))
+  HTTP/1.1 200 OK
+  Content-Length: 4
+  Content-Type: text/html; charset=...
+  <BLANKLINE>
+  Foo
+  <BLANKLINE>
+
+Now associate the Page Template with our PolicyCache:
+
+  >>> pt.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the Page Template to make sure
+`content` does not evaluate to the Page Template:
+
+  >>> add_mod_date(pt, 1)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % pt.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 4
+  Content-Type: text/html; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  Foo
+  <BLANKLINE>
+
+DTML Document Tests
++++++++++++++++++++
+
+Create a DTML Document:
+
+  >>> adding = self.portal.manage_addProduct['OFSP']
+  >>> _ = adding.manage_addDTMLDocument('test_document.dtml',
+  ...                                   file="Bar")
+
+Make sure it's not assigned to any cache manager:
+
+  >>> doc = self.portal['test_document.dtml']
+  >>> doc.ZCacheable_setManagerId(None)
+  >>> doc.ZCacheable_getCache()
+
+Publish the DTML Document:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % doc.absolute_url(1))
+  HTTP/1.1 200 OK
+  Content-Length: 3
+  Content-Type: text/plain; charset=...
+  <BLANKLINE>
+  Bar
+  <BLANKLINE>
+
+Now associate the DTML Document with our PolicyCache:
+
+  >>> doc.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the DTML Document to make sure
+`content` does not evaluate to it:
+
+  >>> add_mod_date(doc, 3)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % doc.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 3
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  Bar
+  <BLANKLINE>
+
+DTML Method Tests
++++++++++++++++++
+
+Create a DTML Method:
+
+  >>> adding = self.portal.manage_addProduct['OFSP']
+  >>> _ = adding.manage_addDTMLMethod('test_method.dtml',
+  ...                                   file="Bar")
+
+Make sure it's not assigned to any cache manager:
+
+  >>> meth = self.portal['test_method.dtml']
+  >>> meth.ZCacheable_setManagerId(None)
+  >>> meth.ZCacheable_getCache()
+
+Publish the DTML Method:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % meth.absolute_url(1))
+  HTTP/1.1 200 OK
+  Content-Length: 3
+  Content-Type: text/plain; charset=...
+  <BLANKLINE>
+  Bar
+  <BLANKLINE>
+
+Now associate the DTML Method with our PolicyCache:
+
+  >>> meth.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the DTML Method to make sure
+`content` does not evaluate to it:
+
+  >>> add_mod_date(meth, 3)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % meth.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 3
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  Bar
+  <BLANKLINE>
+
+ZODB-Based Content Tests
+------------------------
+
+OFS.Image Tests
++++++++++++++++
+
+Create a Image:
+
+  >>> adding = self.portal.manage_addProduct['OFSP']
+  >>> _ = adding.manage_addImage('test_image.png',
+  ...                            file="Image")
+
+Make sure it's not assigned to any cache manager:
+
+  >>> img = self.portal['test_image.png']
+  >>> img.ZCacheable_setManagerId(None)
+  >>> img.ZCacheable_getCache()
+
+Publish the Image. Note Image 'forces' a ``Last-Modified`` header:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % img.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Content-Length: 5
+  Content-Type: image/png
+  Last-Modified: ...
+  <BLANKLINE>
+  Image
+
+Now associate the Image with our PolicyCache:
+
+  >>> img.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the Image to make sure
+`content` *does* evaluate to it:
+
+  >>> add_mod_date(img, 4)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % img.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Cache-Control: max-age=42
+  Content-Length: 5
+  Content-Type: image/png
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:04 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  Image
+
+OFS.File Tests
+++++++++++++++
+
+Create a File:
+
+  >>> adding = self.portal.manage_addProduct['OFSP']
+  >>> _ = adding.manage_addFile('test_file.txt',
+  ...                            file="File")
+
+Make sure it's not assigned to any cache manager:
+
+  >>> fl = self.portal['test_file.txt']
+  >>> fl.ZCacheable_setManagerId(None)
+  >>> fl.ZCacheable_getCache()
+
+Publish the File. Note File 'forces' a ``Last-Modified`` header:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % fl.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Content-Length: 4
+  Content-Type: text/plain; charset=...
+  Last-Modified: ...
+  <BLANKLINE>
+  File
+
+Now associate the File with our PolicyCache:
+
+  >>> fl.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the File to make sure
+`content` *does* evaluate to it:
+
+  >>> add_mod_date(fl, 4)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % fl.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Cache-Control: max-age=42
+  Content-Length: 4
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:04 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  File
+
+CMF Content Tests
+-----------------
+
+Now let's try something mixed. A view is usually applied to CMF
+content, so we are actually testing here that the 'default view' for a
+content object gets it's caching headers set correctly.
+
+CMF Document Tests
+++++++++++++++++++
+
+Create a CMF Document:
+
+  >>> adding = self.portal.manage_addProduct['CMFDefault']
+  >>> _ = adding.addDocument('test_document.txt',
+  ...                        text="Document")
+
+  >>> cmf_doc = self.portal['test_document.txt']
+  >>> cmf_doc._setPortalTypeName('Document')
+
+Publish the CMF Document, actually publishes the 'default view' for
+the CMF Document.:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_doc.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: text/html; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Add a different modification date to the CMF Document to make sure
+`content` *does* evaluate to it:
+
+  >>> add_mod_date(cmf_doc, 6)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_doc.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: text/html; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:06 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+CMF News Item Tests
++++++++++++++++++++
+
+Create a CMF News Item:
+
+  >>> adding = self.portal.manage_addProduct['CMFDefault']
+  >>> _ = adding.addNewsItem('test_news.txt',
+  ...                        text="News Item")
+
+  >>> cmf_news = self.portal['test_news.txt']
+  >>> cmf_news._setPortalTypeName('News Item')
+
+Publish the CMF News Item, actually publishes the 'default view' for
+the CMF News Item.:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_news.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: text/html; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Add a different modification date to the CMF News Item to make sure
+`content` *does* evaluate to it:
+
+  >>> add_mod_date(cmf_news, 6)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_news.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: text/html; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:06 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+CMF File Tests
+++++++++++++++
+
+Create a CMF File:
+
+  >>> adding = self.portal.manage_addProduct['CMFDefault']
+  >>> _ = adding.addFile('test_cmf_file.txt',
+  ...                    file="File")
+
+  >>> cmf_file = self.portal['test_cmf_file.txt']
+  >>> cmf_file._setPortalTypeName('File')
+
+Publish the CMF File, actually publishes the 'default view' for the
+CMF File, which works just like a normal File.  Starting with CMF 2.x,
+old CMF Files and Images are by default associated with the
+'Accelerated HTTP Cached Manager' (instead of with nothing). So we get
+some cache headers even before associating with our PolicyCache:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_file.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Cache-Control: max-age=42
+  Content-Length: 4
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  File
+
+Now associate the CMF File with our PolicyCache. This can be only done
+with CMF File and CMF Image:
+
+  >>> cmf_file.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the CMF File to make sure
+`content` *does* evaluate to it:
+
+  >>> add_mod_date(cmf_file, 6)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_file.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Cache-Control: max-age=42
+  Content-Length: 4
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:06 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  File
+
+CMF Image Tests
++++++++++++++++
+
+Create a CMF Image:
+
+  >>> adding = self.portal.manage_addProduct['CMFDefault']
+  >>> _ = adding.addImage('test_cmf_image.png',
+  ...                    file="Image")
+
+  >>> cmf_image = self.portal['test_cmf_image.png']
+  >>> cmf_image._setPortalTypeName('Image')
+
+Publish the CMF Image, actually publishes the 'default view' for
+the CMF Image, which works just like a normal Image.  Starting with CMF 2.x
+any caching policies previously registered with the site are automatically
+applied to CMF Files and Images in their respective 'index_html', so we get
+the cache headers even before associating with our PolicyCache:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_image.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Cache-Control: max-age=42
+  Content-Length: 5
+  Content-Type: image/png
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  Image
+
+Now associate the CMF Image with our PolicyCache. This can be only done
+with CMF Image and CMF Image:
+
+  >>> cmf_image.ZCacheable_setManagerId('PolicyCache')
+
+Add a different modification date to the CMF Image to make sure
+`content` *does* evaluate to it:
+
+  >>> add_mod_date(cmf_image, 6)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % cmf_image.absolute_url(1))
+  HTTP/1.1 200 OK
+  Accept-Ranges: bytes
+  Cache-Control: max-age=42
+  Content-Length: 5
+  Content-Type: image/png
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:06 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  Image
+
+Filesystem-Based View Tests
+---------------------------
+
+Setup a Filesystem Directory View for testing FSPageTemplate and
+FSDTMLMethod:
+
+  >>> from Products.CMFCore.tests.base.testcase import _prefix
+  >>> from Products.CMFCore.DirectoryView import registerDirectory
+  >>> from Products.CMFCore.DirectoryView import addDirectoryViews
+  >>> registerDirectory('fake_skins', _prefix)
+  >>> addDirectoryViews(self.portal, 'fake_skins', _prefix)
+
+Filesystem Page Template Tests
+++++++++++++++++++++++++++++++
+
+Get a FSPageTemplate from the Directory View and make sure it's not
+associated with any Cache Manager:
+
+  >>> pt = self.portal.fake_skin['testPT']
+  >>> pt.ZCacheable_setManagerId(None)
+  >>> pt.ZCacheable_getCache()
+
+Publish the FSPageTemplate, note that even though it's not associated
+with any Cache Manager, it calls `_setCacheHeaders` on it's own and
+that's why the headers get set:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % pt.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 0
+  Content-Type: text/html
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+
+Now associate the Page Template with our PolicyCache:
+
+  >>> pt.ZCacheable_setManagerId('PolicyCache')
+
+No difference:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % pt.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 0
+  Content-Type: text/html
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+
+Add a different modification date to the Page Template to make sure
+`content` does not evaluate to the Page Template:
+
+  >>> add_mod_date(pt, 3)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % pt.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 0
+  Content-Type: text/html
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+
+Filesystem DTML Method Tests
+++++++++++++++++++++++++++++++
+
+Get a FSDTMLMethod from the Directory View and make sure it's not
+associated with any Cache Manager:
+
+  >>> meth = self.portal.fake_skin['test_dtml']
+  >>> meth.ZCacheable_setManagerId(None)
+  >>> meth.ZCacheable_getCache()
+
+Publish the FSDTMLMethod. It will forcibly call `_setCacheHeaders`
+even though it's not associated with a Cache Manager when called
+``TTW`` like this:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % meth.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 22
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  This is a dtml method
+  <BLANKLINE>
+
+Now associate the FSDTMLMethod with our PolicyCache:
+
+  >>> meth.ZCacheable_setManagerId('PolicyCache')
+
+No difference:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % meth.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 22
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  This is a dtml method
+  <BLANKLINE>
+
+Add a different modification date to the FSDTMLMethod to make sure
+`content` does not evaluate to the FSDTMLMethod:
+
+  >>> add_mod_date(meth, 3)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % meth.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: 22
+  Content-Type: text/plain; charset=...
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  This is a dtml method
+  <BLANKLINE>
+
+Filesystem Image Tests
+++++++++++++++++++++++
+
+Get a FSImage from the Directory View and make sure it's not
+associated with any Cache Manager:
+
+  >>> image = self.portal.fake_skin['test_image.gif']
+  >>> image.ZCacheable_setManagerId(None)
+  >>> image.ZCacheable_getCache()
+
+Publish the FSImage. It will forcibly call `_setCacheHeaders`
+even though it's not associated with a Cache Manager:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % image.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: image/gif
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Now associate the FSImage with our PolicyCache:
+
+  >>> image.ZCacheable_setManagerId('PolicyCache')
+
+No difference:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % image.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: image/gif
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Add a different modification date to the FSImage to make sure
+`content` *does* evaluate to the FSImage:
+
+  >>> add_mod_date(image, 8)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % image.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: image/gif
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:08 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Filesystem File Tests
+++++++++++++++++++++++
+
+Get a FSFile from the Directory View and make sure it's not
+associated with any Cache Manager:
+
+  >>> fl = self.portal.fake_skin['test_file.swf']
+  >>> fl.ZCacheable_setManagerId(None)
+  >>> fl.ZCacheable_getCache()
+
+Publish the FSFile. It will forcibly call `_setCacheHeaders`
+even though it's not associated with a Cache Manager:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % fl.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: application/x-shockwave-flash
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Now associate the FSFile with our PolicyCache:
+
+  >>> fl.ZCacheable_setManagerId('PolicyCache')
+
+No difference:
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % fl.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: application/x-shockwave-flash
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:00 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...
+
+Add a different modification date to the FSFile to make sure
+`content` *does* evaluate to the FSFile:
+
+  >>> add_mod_date(fl, 8)
+
+  >>> print http(r"""
+  ... GET /%s/ HTTP/1.1
+  ... """ % fl.absolute_url(1))
+  HTTP/1.1 200 OK
+  Cache-Control: max-age=42
+  Content-Length: ...
+  Content-Type: application/x-shockwave-flash
+  Expires: ...
+  Last-Modified: Mon, 01 Jan 2001 00:00:08 GMT
+  X-Cache-Headers-Set-By: CachingPolicyManager: /cmf/caching_policy_manager
+  <BLANKLINE>
+  ...

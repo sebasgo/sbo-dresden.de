@@ -1,0 +1,13 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     i18n:domain="collage"
+     tal:omit-tag="">
+
+  <a tal:attributes="href string:${here/absolute_url}/split-column">
+    <div class="split-column-icon"><!-- nothing here --></div>
+    <span i18n:translate="label_split_column"
+	  class="column-split">split</span>
+  </a>
+
+</div>

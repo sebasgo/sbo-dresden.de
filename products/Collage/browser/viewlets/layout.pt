@@ -1,0 +1,40 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     i18n:domain="collage"
+     tal:omit-tag="">
+  
+  <tal:layouts define="layouts view/getLayouts"
+	       condition="python: len(layouts) > 1">
+    <div class="expandable-section">
+      <a href="#" class="expandable-label">
+	<div class="expandable-icon"><!-- nothing here --></div>
+	<span i18n:translate="label_select_layout"
+	      class="row-create">select layout</span>
+      </a>
+      
+      <div class="expandable-content">
+	<p i18n:translate="help_select_layout"
+	   class="discreet">Choose a layout for this object.</p>
+	
+	<tal:layouts repeat="layout layouts">
+	  <a class="layout"
+	     tal:define="value layout/id;
+			 display layout/name;
+			 obj view/getImmediateObject"
+             tal:attributes="href string:${obj/absolute_url}/set-content-layout?layout=$value;
+                             title display"
+             i18n:attributes="title">
+	    <span i18n:translate=""
+	          tal:attributes="class python: layout['active'] and 'active' or 'inactive'"
+		  tal:content="display">
+	      Layout name
+	    </span>
+	  </a>
+	</tal:layouts>
+	
+	<div class="visualClear"><!-- nothing here --></div>
+      </div>
+    </div>
+  </tal:layouts>
+</div>

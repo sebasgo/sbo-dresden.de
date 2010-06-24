@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <bindings>
+  <type type_id="CacheTool"/>
+  <type type_id="ContentCacheRule"/>
+  <type type_id="HeaderSet"/>
+  <type type_id="HeaderSetFolder"/>
+  <type type_id="PolicyHTTPCacheManagerCacheRule"/>
+  <type type_id="RuleFolder"/>
+  <type type_id="TemplateCacheRule"/>
+ </bindings>
+</object>

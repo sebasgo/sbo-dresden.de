@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+  <object name="Collage" 
+          meta_type="Filesystem Directory View"
+          directory="Collage/skins/Collage"/>
+  <skin-path name="*">
+    <layer name="Collage"/>
+  </skin-path>
+</object>

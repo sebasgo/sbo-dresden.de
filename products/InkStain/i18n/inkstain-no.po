@@ -1,0 +1,92 @@
+# Translation of inkstain-de.po to Norwegian
+
+msgid ""
+msgstr ""
+"Project-Id-Version: inkstain-no\n"
+"PO-Creating-Date: 2006-10-17 14:25+0200\n"
+"Last-Translator: Odd-R. Hogstad <oddr@her-e-me.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: no\n"
+"Language-Name: Norsk\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: inkstain\n"
+"X-Is-Fallback-For: nb nn\n"
+
+
+msgid  "main_guestbook_title"
+msgstr "Gjesteboken for $guestbook_title"
+
+msgid  "label_up_to_parent"
+msgstr "Gå til $parent"
+
+msgid  "legend_add_form"
+msgstr "Legg inn en melding"
+
+msgid  "label_required"
+msgstr "(påkrevd)"
+
+msgid  "label_name"
+msgstr "Navn"
+
+msgid  "label_email"
+msgstr "E-post"
+
+msgid  "label_homepage"
+msgstr "Hjemmeside"
+
+msgid  "label_message"
+msgstr "Melding"
+
+msgid  "label_submit"
+msgstr "Legg inn"
+
+msgid  "number_of_messages"
+msgstr "Antall $object_count "
+
+msgid  "label_delete"
+msgstr "Slett"
+
+msgid  "message_recorded"
+msgstr "Melding lagt til"
+
+msgid  "messages_deleted"
+msgstr "Melding er slettet"
+
+msgid  "messages_notdeleted"
+msgstr "Melding ikke slettet"
+
+msgid  "label_per_page"
+msgstr "Meldinger per side"
+
+msgid  "description_per_page"
+msgstr "Antall medlinger per side"
+
+msgid  "homepage_bad_input"
+msgstr "Syntax på hjemmeside er ikke korrekt"
+
+msgid  "email_bad_input"
+msgstr "Syntax på e-post er ikke korrekt"
+
+msgid  "input_required"
+msgstr "Feltet er påkrevd"
+
+msgid  "help_body_text"
+msgstr "Innlegg"
+
+msgid  "This is not a valid email address"
+msgstr "Dette er ikke en gyldig e-post adresse"
+
+msgid  "This is not a valid http address"
+msgstr "Dette er ikke en gyldig e-post adresse"
+
+msgid  "This field is required, please provide some information."
+msgstr "Dette feltet er påkrevd, vennligst legg inn informasjon"
+
+msgid  "description_captcha"
+msgstr "Hva er bokstav nummer #${captcha_position} i ordet '${captcha_word}'"
+
+msgid  "This is the wrong answer."
+msgstr "Feil svar"

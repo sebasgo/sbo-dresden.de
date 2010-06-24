@@ -1,0 +1,59 @@
+2006-05-24 Sidnei da Silva <sidnei@enfoldsystems.com>
+
+   - Try hard at removing 'portal_skins' prefix when modifying skin
+     resources.
+   - Avoid joining duplicate paths.
+
+2006-05-01 Hanno Schlichting <plone@hannosch.info>
+
+   - Changed permission imports for CMF > 1.5 compatibility.
+
+2005-11-21 Sidnei da Silva <sidnei@enfoldsystems.com>
+
+   - Refactor here and there
+   - Add a queue for processing PURGE requests at the end of
+     transaction
+   - Merge improvements from CacheFu copy of SquidTool
+
+2005-11-01 Robert Rottermann <robert at redcor.ch>
+
+   - removed timeoutsocket.py and replaced it by using
+     pythons native timeout support.
+     this affects _pruneUrl
+
+2005-05-09 Neil Kandalgaonkar <neilk at enfoldsystems.com>
+
+   - Changes for compatibility with Enfold Enterprise Server, a
+     proxy cache with features similar to Squid. Our changes will
+     probably eventually be merged with the main release.
+
+2005-03-01 Simon Eisenmann <simon at struktur.de>
+
+   - All squid urls have to be the relative path and _not_ the full url
+     cause of virtual hosting situations. Reverted the changes from Pan
+     which made the tool using absolute urls.
+
+   - Fixed tons of typos.
+
+   - Added german translation.
+
+2004-09-23 Pan Junyong <panjy at zopechina.com>
+
+   - I found PURGE wasn't always work. After a look at squid's client.c,
+     I found we should use HTTP/1.0, and use the full url when put request.
+
+     So I change the squid urls to squid hosts. And prune url should be
+     the full absolute url, but not the relative path.
+
+   - Don't use getObject, use getURL instead, which is more light weight
+
+2004-09-20 Pan Junyong <panjy at zopechina.com>
+
+   - Add i18n.
+   - Add skin for plone.
+   - Refine the prune logic.
+
+2003-12-09 Simon Eisenmann <simon at struktur.de>
+
+   - Initial public release.
+

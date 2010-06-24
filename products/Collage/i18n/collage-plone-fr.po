@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-06-28 13:40+0000\n"
+"PO-Revision-Date: 2007-11-16 17:20+0100\n"
+"Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
+"Language-Team: EDF\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: fr\n"
+"Language-Name: Français\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
+
+msgid "Alias"
+msgstr "Alias"
+
+msgid "Back to Collage"
+msgstr "Retour à la page"
+
+# content-types
+msgid "Collage"
+msgstr "Page"
+
+msgid "Column"
+msgstr "Colonne"
+
+msgid "Manage page"
+msgstr "Composer"
+
+msgid "Row"
+msgstr "Ligne"
+
+msgid "desc_type_collage"
+msgstr "Un élément permettant de composer une page affichant des contenus sous différentes formes."
+
+msgid "desc_type_collagealias"
+msgstr "Un élément référençant un autre."
+
+msgid "desc_type_collagecolumn"
+msgstr "Une colonne contenant plusieurs éléments."
+
+msgid "desc_type_collagerow"
+msgstr "Une ligne contenant plusieurs colonnes."
+
+msgid "msg_alias_inserted"
+msgstr "L'alias a été créé."
+
+msgid "msg_target_object_not_found"
+msgstr "L'élement cible n'a pas été trouvé."
+
+msgid "msg_row_added"
+msgstr "La ligne a été ajoutée."
+
+msgid "msg_column_inserted"
+msgstr "La colonne a été ajoutée."

@@ -1,0 +1,41 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+
+<div metal:define-macro="portlet">
+
+     <dl class="portlet" tal:define="kssview context/@@collage_kss_helper">
+	<dt class="portletHeader">
+           <span class="portletTopLeft"></span>
+           <span 
+                 tal:attributes="id string:${kssview/getUniqueIdentifier}-title;
+		                 class python: kssview.getKssClasses('title')"
+                 tal:condition="here/Title">
+               <span metal:define-slot="inside" tal:replace="here/Title">title</span>
+           </span>
+           <span class="portletTopRight"></span>
+        </dt>
+
+        <dd class="portletItem odd">
+          <img class="collage-image"
+	       tal:attributes="alt here/title_or_id;
+		               src string:${here/absolute_url}/image_preview" />
+
+          <div metal:define-macro="description"
+	     tal:define="view context/@@collage_kss_helper"
+	     tal:attributes="id string:${view/getUniqueIdentifier}-description;
+		   class python: 'discreet' + view.getKssClasses('description')"
+	     tal:condition="here/Description">
+	     <span metal:define-slot="inside" 
+	     tal:replace="here/Description">description</span>
+	  </div>
+        </dd>
+        <dd class="portletFooter">
+           <span class="portletBottomLeft"></span>
+	   <span class="discreet">
+	   <span tal:replace="python:context.toLocalizedTime(context.Date(), long_format=1)">Date</span>
+           <tal:rights tal:condition="context/Rights">- <span tal:replace="context/Rights">Rights</span></tal:rights>
+           </span>
+           <span class="portletBottomRight"></span>
+        </dd>
+     </dl>
+</div>
+

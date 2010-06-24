@@ -1,0 +1,37 @@
+
+[August 15, 2007 - archived for future reference - newbery]
+___________________________________________________________
+
+
+** I NEED HELP ON THIS STUFF!! **
+
+Stuff to do before 1.0 release
+------------------------------
+[In order of decreasing priority]
+
+* DOCUMENTATION!!
+
+* Make conditional GET handling deal properly with force-GETs
+
+* Need a new class of cache rule that just takes a predicate
+   as a selector.  We then should add one of these at the end 
+   of the rule set that sets the private flag for all content 
+   when people are authenticated - Cookie Crumbler normally does 
+   this but it is overly zealous so the feature has been disabled
+
+* Need some functional tests for page cache manager (there are 
+   already some in in CacheSetup)
+
+Please keep in mind the rules:
+------------------------------
+
+** You MUST run the unit tests before checking anything in.
+
+** Unless you are checking in a unit test that demonstrates a bug,
+   all unit tests must run before you do a check-in.
+
+** If you add a new feature, you should add a unit test that
+   exercises it.
+
+** If you fix a bug, you should add a unit test that fails without
+   your fix and passes with your fix.

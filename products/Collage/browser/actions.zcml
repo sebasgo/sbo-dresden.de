@@ -1,0 +1,52 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:page
+     name="set-content-layout"
+     attribute="setDynamicView"
+     for="*"
+     permission="cmf.ModifyPortalContent"
+     class=".actions.ActionsView"
+     />
+  
+  <browser:page
+     name="insert-row"
+     attribute="insertRow"
+     for="Products.Collage.interfaces.ICollage"
+     permission="cmf.ModifyPortalContent"
+     class=".actions.ActionsView"
+     />  
+  
+  <browser:page
+     name="reorder-object"
+     attribute="reorderObjects"
+     for="zope.app.container.interfaces.IContainer"
+     permission="cmf.ModifyPortalContent"
+     class=".actions.ActionsView"
+     />
+  
+  <browser:page
+     name="insert-alias"
+     attribute="insertAlias"
+     for="Products.Collage.interfaces.ICollageColumn"
+     permission="cmf.ModifyPortalContent"
+     class=".actions.ActionsView"
+     />
+  
+  <browser:page
+     name="split-column"
+     attribute="splitColumn"
+     for="Products.Collage.interfaces.ICollageColumn"
+     permission="cmf.ModifyPortalContent"
+     class=".actions.ActionsView"
+     />
+
+  <browser:page
+     name="delete-object"
+     attribute="deleteObject"
+     for="*"
+     permission="cmf.ModifyPortalContent"
+     class=".actions.ActionsView"
+     />
+  
+</configure>

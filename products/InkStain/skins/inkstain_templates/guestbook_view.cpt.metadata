@@ -1,0 +1,8 @@
+[default]
+title=Add guestbook message
+
+[validators]
+validators..add=validate_signature_addform
+
+[actions]
+action.success..add=traverse_to:string:signature_addscript

@@ -1,0 +1,48 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     i18n:domain="collage"
+     tal:omit-tag="">
+
+  <div tal:omit-tag=""
+       tal:define="test view/test;
+		   view_actions view/getViewActions">
+    
+    <span class="row-type"
+	  tal:condition="view/isAlias"
+	  i18n:translate="label_aliased">(alias)</span>
+    
+
+
+    <tal:delete-or-remove define="obj view/getImmediateObject">
+      <a class="action"
+	 tal:condition="view/isAlias"
+	 tal:attributes="href string:${obj/absolute_url}/delete-object">
+	<span i18n:translate="label_remove" i18n:domain="plone">Remove</span>
+      </a>
+      
+      <a class="action"
+	 tal:condition="not: view/isAlias"
+	 tal:attributes="href string:${obj/absolute_url}/delete-object">
+	<span i18n:translate="label_delete" i18n:domain="plone">Delete</span>
+      </a>
+    </tal:delete-or-remove>
+    
+    <tal:actions repeat="action view_actions">
+      <a tal:condition="python: action['id'] not in ['folderContents', 'metadata', 'local_roles', 'revisitCollage', 'portlets']"
+	 tal:define="selected action/selected|nothing;"
+	 tal:attributes="id string:contentview-${action/id};
+			 class python:'action '+test(selected, 'selected', 'plain');
+			 href action/url">
+	<span i18n:domain="plone"
+	      i18n:translate=""
+	      tal:content="action/title">
+	  View name
+	</span>
+      </a>
+    </tal:actions>
+  </div>
+
+  <br />
+
+</div>

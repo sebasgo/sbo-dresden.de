@@ -1,0 +1,145 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"PO-Revision-Date: 2007-12-14 16:01+0100\n"
+"Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
+"Language-Team: EDF\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collage\n"
+"X-Is-Fallback-For: en-au en-bz en-ca en-ie en-jm en-nz en-ph en-za en-tt en-gb en-us en-zw\n"
+
+
+#: ./browser/browser.py:90
+msgid "Column inserted."
+msgstr "Column inserted."
+
+#: ./browser/browser.py:80
+msgid "Row added."
+msgstr "Row added."
+
+#: ./browser/browser.py:37
+msgid "View changed."
+msgstr "View changed."
+
+#. Default: "Add row"
+#: ./skins/Collage/collage_view.pt:51
+msgid "button_add_collagerow"
+msgstr "Add row"
+
+#. Default: "Choose an existing item to insert. The item will be inserted as an alias (by reference). Use dropdown to filter on type."
+#: ./browser/viewlets/insert-existing-item.pt:16
+msgid "help_insert_existing_items"
+msgstr "Choose an existing item to insert. The item will be inserted as an alias (by reference). Use dropdown to filter on type and/or text field to restrict search. Hit the [Enter] touch to submit your search."
+
+#. Default: "Choose a layout for this object."
+#: ./browser/viewlets/layout.pt:17
+msgid "help_select_layout"
+msgstr "Choose a layout for this item."
+
+#. Default: "insert existing item"
+#: ./browser/viewlets/insert-existing-item.pt:11
+msgid "label_insert_existing_item"
+msgstr "Insert existing item"
+
+#. Default: "Loading..."
+#: ./browser/viewlets/insert-existing-item.pt:25
+msgid "label_loading"
+msgstr "Loading..."
+
+#. Default: "Move down"
+#: ./browser/viewlets/modify_order_vertical.pt:10
+msgid "label_move_down"
+msgstr "Move down"
+
+#. Default: "Move left"
+#: ./browser/viewlets/modify_order_horizontal.pt:10
+msgid "label_move_left"
+msgstr "Move left"
+
+#. Default: "Move right"
+#: ./browser/viewlets/modify_order_horizontal.pt:16
+msgid "label_move_right"
+msgstr "Move right"
+
+#. Default: "Move up"
+#: ./browser/viewlets/modify_order_vertical.pt:16
+msgid "label_move_up"
+msgstr "Move up"
+
+#. Default: "This Collage-object does not have any items yet. Add items using the drop-down menu to have them appear here."
+#: ./skins/Collage/collage_view.pt:44
+msgid "label_no_items_added"
+msgstr "This Collage does not have any items yet. Begin by adding a row."
+
+#. Default: "select layout"
+#: ./browser/viewlets/layout.pt:12
+msgid "label_select_layout"
+msgstr "Select layout"
+
+#. Default: "split"
+#: ./browser/viewlets/split-column.pt:9
+msgid "label_split_column"
+msgstr "Add column"
+
+#. Default "(alias)"
+#: ./browser/viewlets/actions.pt:19
+msgid "label_aliased"
+msgstr "(alias)"
+
+#. Default "Insert new item"
+#: ./browser/viewlets/insert-new-item.pt:13
+msgid "label_insert_new_item"
+msgstr "Insert new item"
+
+#. Default "Select a content-type to insert."
+#: ./browser/viewlets/insert-new-item.pt:18
+msgid "help_insert_new_item"
+msgstr "Select a content-type to insert."
+
+msgid "label_alias_target"
+msgstr "Referenced item"
+
+msgid "label_optional_row_title"
+msgstr "Row title"
+
+msgid "help_optional_row_title"
+msgstr "Optionnal row title"
+
+msgid "label_optional_column_title"
+msgstr "Column title"
+
+msgid "help_optional_column_title"
+msgstr "Optionnal column title"
+
+msgid "label_show_title"
+msgstr "Show title"
+
+msgid "label_show_description"
+msgstr "Show description"
+
+msgid "label_content_type"
+msgstr "Content type"
+
+msgid "label_all_content_types"
+msgstr "All content types"
+
+msgid "Automatic"
+msgstr "Automatic"
+
+msgid "Large left"
+msgstr "Left column large"
+
+msgid "Large right"
+msgstr "Right column large"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Featured"
+msgstr "Featured"

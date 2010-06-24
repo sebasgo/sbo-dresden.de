@@ -1,0 +1,23 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five">
+
+  <five:deprecatedManageAddDelete
+      class=".content.cache_tool.CacheTool"/>
+  <five:deprecatedManageAddDelete
+      class=".content.policy_folder.CachePolicy"/>
+  <five:deprecatedManageAddDelete
+      class=".content.rule_folder.RuleFolder"/>
+  <five:deprecatedManageAddDelete
+      class=".content.header_set_folder.HeaderSetFolder"/>
+  <five:deprecatedManageAddDelete
+      class=".content.header_set.HeaderSet"/>
+  <five:deprecatedManageAddDelete
+      class=".content.template_cache_rule.TemplateCacheRule"/>
+  <five:deprecatedManageAddDelete
+      class=".content.phcm_cache_rule.PolicyHTTPCacheManagerCacheRule"/>
+  <five:deprecatedManageAddDelete
+      class=".content.content_cache_rule.ContentCacheRule"/>
+
+   <include package=".exportimport"/> 
+</configure>

@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+  <h1 i18n:translate="purge_squid">Purge Squid</h1>
+  <form tal:attributes="action python:context.absolute_url()"
+        method="post">
+
+    <p>Purge all content associated with HTTPCache</p>
+    <input type="submit" class="context" name="purge_all" value="Purge All Associated Content" />
+
+    <h2>Purge specific objects</h2>
+    <fieldset>
+      <legend>Associated objects</legend>
+      <tal:content tal:define="associated_content python:context.HTTPCache.ZCacheManager_locate(1, 1)"
+                 tal:repeat="content_info associated_content">
+        <input type="checkbox" name="paths:list" value="content_info/path" />
+        <image tal:attributes="src content_info/icon" />
+        <span tal:content="content_info/path" />
+        (<span tal:content="content_info/title" />)<br />
+      </tal:content>
+      <input type="submit" class="context" name="purge_selected" value="Purge Selected Content" />
+    </fieldset>
+
+    
+  </form>
+</div>
+
+</body>
+</html>
