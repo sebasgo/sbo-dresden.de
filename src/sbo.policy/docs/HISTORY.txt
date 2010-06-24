@@ -1,0 +1,9 @@
+Changelog for sbo.policy
+
+    (name of developer listed in brackets)
+
+sbo.policy - 0.1 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+

@@ -1,0 +1,35 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sbo.theme">
+
+    <!-- 'SBO Theme' Zope 3 skin layer -->
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="SBO Theme"
+        />
+
+    <!-- Resource directory for stylesheets -->
+    <browser:resourceDirectory
+        name="sbo.theme.stylesheets"
+        directory="stylesheets"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <!-- Resource directory for images -->
+    <browser:resourceDirectory
+        name="sbo.theme.images"
+        directory="images"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <browser:viewlet
+        name="sbo.footer"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        layer=".interfaces.IThemeSpecific"
+        template="templates/footer.pt"
+        permission="zope2.View"
+        />
+  
+</configure>

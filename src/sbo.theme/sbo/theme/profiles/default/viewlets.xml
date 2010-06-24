@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<object>
+
+    <order manager="plone.portalheader" skinname="SBO Theme"
+           based-on="Plone Default">
+        <viewlet name="plone.skip_links" />
+        <viewlet name="plone.site_actions" />
+        <viewlet name="plone.logo" />
+        <viewlet name="plone.personal_bar" />
+        <viewlet name="plone.app.i18n.locales.languageselector" />
+    </order>
+
+    <hidden manager="plone.portalheader" skinname="SBO Theme">
+        <viewlet name="plone.searchbox" />
+        <viewlet name="plone.global_sections" />
+    </hidden>
+
+    <order manager="plone.portalfooter" skinname="SBO Theme"
+           based-on="Plone Default">
+        <viewlet name="sbo.footer" />
+    </order>
+
+    <hidden manager="plone.portalfooter" skinname="SBO Theme">
+        <viewlet name="plone.footer" />
+        <viewlet name="plone.colophon" />
+    </hidden>
+
+</object>

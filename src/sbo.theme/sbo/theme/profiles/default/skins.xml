@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="SBO Theme">
+
+ <object name="sbo_theme_custom_images"
+    meta_type="Filesystem Directory View"
+    directory="sbo.theme:skins/sbo_theme_custom_images"/>
+ <object name="sbo_theme_custom_templates"
+    meta_type="Filesystem Directory View"
+    directory="sbo.theme:skins/sbo_theme_custom_templates"/>
+ <object name="sbo_theme_styles"
+    meta_type="Filesystem Directory View"
+    directory="sbo.theme:skins/sbo_theme_styles"/>
+
+ <skin-path name="SBO Theme" based-on="Plone Default">
+  <layer name="sbo_theme_custom_images"
+     insert-after="custom"/>
+  <layer name="sbo_theme_custom_templates"
+     insert-after="sbo_theme_custom_images"/>
+  <layer name="sbo_theme_styles"
+     insert-after="sbo_theme_custom_templates"/>
+ </skin-path>
+
+</object>

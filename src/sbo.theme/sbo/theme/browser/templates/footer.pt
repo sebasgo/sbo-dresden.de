@@ -1,0 +1,24 @@
+<div id="portal-footer" metal:define-macro="portal_footer"
+i18n:domain="sbo.theme">
+
+<table id="portal-footer-table">
+  <tr>
+  <td id="portal-footer-left">
+   Copyright 2007 Sinfonisches Blasorchester Dresden
+  </td>
+  <td id="portal-footer-right" i18n:domain="plone">
+   <span id="portal-footer-colophon">
+   <a href="http://plone.org"
+      class="colophonIcon colophonIconPlone"
+      title="This Plone site was built using Plone CMS, the Open Source Content
+Management System. Click for more information."
+      i18n:attributes="title title_built_with_plone;"
+      i18n:translate="label_powered_by_plone">
+      Powered by Plone CMS, the Open Source Content Management System
+   </a>
+   </span>
+ </td>
+ </tr>
+</table>
+
+</div>
