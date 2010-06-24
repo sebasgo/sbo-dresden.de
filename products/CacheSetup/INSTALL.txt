@@ -1,0 +1,55 @@
+
+CacheFu 1.1 Installation:
+
+Note: CacheFu has been tested with Plone 2.5.3 and Plone 3.0.
+Probably also works with Plone 2.5, 2.5.1, and 2.5.2 but no 
+extensive testing has been performed on those versions.
+
+_________________________________________
+
+If you're new to CacheFu: * Copy CacheSetup, PageCacheManager, PolicyHTTPCacheManager, 
+   CMFSquidTool to your Products directory
+
+ * Restart Zope
+
+ * Install the CacheFu product in the quickinstaller
+
+ * Configure using the configlet
+
+ * Be sure to read the README.txt about setting up squid_________________________________________
+
+If you're upgrading from 1.0, 1.0.1, 1.0.2, or 1.0.3 
+and wish to retain the current configuration: * Copy CacheSetup, PageCacheManager, PolicyHTTPCacheManager,
+   CMFSquidTool to your Products directory
+
+ * Restart Zope
+
+ * Click on the reinstall link next to the CacheSetup product
+   in the quickinstaller.
+
+ * Configure using the configlet
+
+ * Note: A reinstall keeps your old configuration in a 
+   Cache Policy named "Old Cache Policy"._________________________________________
+
+If you're upgrading from an older version: * Uninstall your existing CacheSetup via the quickinstaller
+
+ * Copy CacheSetup, PageCacheManager, PolicyHTTPCacheManager, 
+   CMFSquidTool to your Products directory
+
+ * Restart Zope
+
+ * Install the CacheFu product in the quickinstaller
+
+ * Configure using the configlet
+
+_________________________________________
+
+Squid and Varnish config files can be found in the 'config' directory.
+
+There is also a Varnish buildout recipe under development at:
+http://pypi.python.org/pypi/plone.recipe.varnish
+
+More instructions about CacheFu and Squid/Varnish installation
+and configuration can be found at:  http://plone.org/products/cachefu
+

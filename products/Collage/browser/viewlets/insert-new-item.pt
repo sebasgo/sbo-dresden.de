@@ -1,0 +1,38 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     i18n:domain="collage"
+     tal:omit-tag="">
+  
+  <div class="expandable-section">
+    <a href="#" class="expandable-label">
+      <div class="expandable-icon"><!-- nothing here --></div>
+      <span i18n:translate="label_insert_new_item"
+	    class="row-create">Insert new item</span>
+    </a>
+    
+    <div class="expandable-content">
+      <p i18n:translate="help_insert_new_item"
+	 class="discreet">Select a content-type to insert.</p>
+
+      <ul i18n:domain="plone"
+	  tal:define="normalizeString view/normalizeString;
+		      types view/getAddableTypes"
+	  class="collage-content-menu" tal:condition="types">
+	<tal:types repeat="ctype types">
+	  <li class="visualIcon"
+	      tal:define="Title ctype/title; Id ctype/id; Description ctype/description">
+	    <a href="#"
+	       i18n:attributes="title"
+	       tal:attributes="href string:${here/absolute_url}/createObject?type_name=${Id};
+			       title Description">
+	      <img tal:attributes="src ctype/icon" />
+	      <span tal:replace="Title">Portal type</span>
+	    </a>
+	  </li>
+	</tal:types>
+      </ul>
+      <div class="visualClear"><!-- nothing here --></div>
+    </div>
+  </div>
+</div>

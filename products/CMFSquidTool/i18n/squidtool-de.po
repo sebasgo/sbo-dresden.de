@@ -1,0 +1,46 @@
+# translation of squidtool-de.po to Deutsch
+# Simon Eisenmann <longsleep@struktur.de>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: squidtool-de\n"
+"POT-Creation-Date: Sept 20 14:55 2004\n"
+"PO-Revision-Date: 2005-03-01 14:37+0100\n"
+"Last-Translator: Simon Eisenmann <longsleep@struktur.de>\n"
+"Language-Team: Deutsch <it@struktur.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/translation_files/extract.py\n"
+"Language-code: de\n"
+"Language-name: deutsch\n"
+"Preferred-encodings: utf-8\n"
+"Domain: squidtool\n"
+"X-Generator: KBabel 1.3.1\n"
+
+msgid "heading_squid"
+msgstr "Squid Cache leeren"
+
+msgid "description_squid"
+msgstr "Dieses tool wird benutzt um Dokumente aus dem Squid cache automatisch, bei Änderung zu entfernen."
+
+msgid "heading_squid_urls"
+msgstr "URLs des Portals durch Squid"
+
+msgid "description_squid_urls"
+msgstr "Geben Sie hier die Serveradressen aller Squid Caches ein, welche für jeden <strong>PRUNE</strong> Request kontaktiert werden sollen. Tragen Sie die komplette URL der Squid Server ein, einen pro Zeile. Z.B.: 'http://www.beispiel.de'. Diese Adresse wird den relativen URLs für jedes dokument vorangestellt. Das bedeutet, die hier eingetragenen URLs sind die des Portals wie als würde es durch Squid abgerufen. Vergessen Sie nicht http:// Ihren URLs voranzustellen."
+
+msgid "heading_prune_url"
+msgstr "Einzelne URL leeren"
+
+msgid "description_prune_url"
+msgstr "Geben Sie eine einzelne URL eine, welche <em>jetzt</em> explizit vom Cache geleert werden soll. Sie müssen die relative URL eingeben. Zum Beispiel 'einordner/nocheinordner/meinedatei.pdf'. Diese URL wird an jede der oben konfigurierten Squid URLs angehägt."
+
+msgid "Go!"
+msgstr "Start!"
+
+msgid "heading_prune_all"
+msgstr "Alle Dokumente vom Cache leeren"
+
+msgid "description_prune_all"
+msgstr "Klicken Sie auf den Knopf unten, um alle Dokumente die sich im <em>portal_catalog</em> befinden vom Cache zu leeren. <strong>Dies kann einige Zeit dauern.</strong>"
+

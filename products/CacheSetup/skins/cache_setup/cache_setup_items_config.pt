@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      i18n:domain="plone">
+
+<metal:cache-items-macro 
+      define-macro="cache-items"
+      tal:define="errors options/state/getErrors | nothing;
+                  Iterator python:modules['Products.Archetypes'].IndexIterator;
+                  schematas here/Schemata;
+                  allow_tabbing python: False;
+                  fieldsets python:[key for key in schematas.keys() if (key != 'metadata') and (schematas[key].editableFields(here, visible_only=True))];
+                  default_fieldset python:(not schematas or schematas.has_key('default')) and 'default' or fieldsets[0];
+                  fieldset request/fieldset|options/fieldset|default_fieldset;
+                  fields python:schematas[fieldset].editableFields(here);
+                  fti python:here.portal_types.getTypeInfo(here);
+                  create python:context.checkCreationFlag();">
+
+        <h1 i18n:translate="heading_add_item" class="documentFirstHeading"
+            tal:condition="create">
+          Add
+          <span i18n:name="itemtype">
+            <span i18n:translate=""
+                  tal:content="fti/title_or_id"
+                  tal:omit-tag="">Item type</span>
+          </span>
+        </h1>
+        <h1 i18n:translate="heading_edit_item" class="documentFirstHeading"
+            tal:condition="python: not create">
+          Edit
+          <span i18n:name="itemtype">
+             <span i18n:translate=""
+                   tal:content="fti/title_or_id"
+                   tal:omit-tag="">Item type</span>
+          </span>
+        </h1>
+
+        <a href=""
+               class="link-parent"
+               tal:define="parent_url python:here.navigationParent(here);
+                           template python:(portal_type == config.POLICY_TYPE) and '/cache_policy_config' or '';"
+               tal:condition="parent_url"
+               tal:attributes="href string: ${parent_url}${template}"
+               i18n:translate="go_to_parent_url">
+                Up one level
+        </a>
+
+
+        <div metal:use-macro="here/edit_macros/macros/body"></div>
+
+</metal:cache-items-macro>
+</html>

@@ -1,0 +1,23 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     i18n:domain="collage"
+     tal:omit-tag="">
+
+  <span class="collage-navigation"
+	tal:define="obj view/getImmediateObject">
+    <a class="collage-js-down"
+       tal:attributes="href string:${obj/aq_parent/absolute_url}/reorder-object?position=down&id=${obj/getId}">
+      <img alt="Move down"
+	   i18n:attributes="alt label_move_down"
+	   tal:attributes="src string:${view/portal_url}/arrowDown.gif">
+    </a>
+    <a class="collage-js-up"
+       tal:attributes="href string:${obj/aq_parent/absolute_url}/reorder-object?position=up&id=${obj/getId}">
+      <img alt="Move up"
+	   i18n:attributes="alt label_move_up"
+	   tal:attributes="src string:${view/portal_url}/arrowUp.gif">
+    </a>
+  </span>
+
+</div>

@@ -1,0 +1,81 @@
+<div tal:replace="structure here/manage_page_header"/>
+<div tal:replace="structure here/manage_tabs"/>
+
+<tal:block tal:omit-tag="" i18n:domain="squidtool">
+
+  <h2 i18n:translate="heading_squid_urls">Cache URLs</h2>
+  <form action="manage_setSquidSettings"
+        tal:attributes="action python:here.absolute_url()+'/manage_setSquidSettings'"
+        method="POST">
+
+    <p i18n:translate="description_squid_urls">
+      Give the server addresses for all caches which should be
+      contacted for each <strong>PURGE</strong>. Put the full URL of
+      your squid servers here, one per line. Eg:
+      'http://www.example.com'. This info will be put in front of the
+      document URLs which are relative to the portal object. So this
+      means that the URLs you enter here are the portal's URLs through
+      the server. Don't forget the <em>http://</em> or
+      <em>https://</em> prefix as it is mandatory and all spaces and other
+      special characters should already be quoted.</p>
+    <p>
+      <textarea name="urls" rows="10" cols="50"
+                tal:content="here/getSquidURLs">
+      </textarea>
+    </p>
+
+    <p><strong i18n:translate="heading_urls_to_purge_expr">
+      URLs to purge
+    </strong></p>
+    <p i18n:translate="description_urls_to_purge_expr">
+      Enter an expression for computing the URLs to purge when an
+      object is changed.  The expression should return a list of
+      relative URLs.  If the expression is left blank,
+      portal_url.getRelativeUrl(object) will be used.
+    </p>
+    <p>
+      <input type="text" name="url_expression"
+             tal:attributes="value here/getUrlExpression" size="60" />
+    </p>
+
+    <input type="submit" i18n:domain="plone"
+           i18n:attributes="value" value="Save" />
+
+  </form>
+
+  <form action="manage_pruneUrl"
+        tal:attributes="action python:here.absolute_url()+'/manage_pruneUrl'"
+        method="POST">
+
+    <h2 i18n:translate="heading_purge_url">Purge URL</h2>
+    <p i18n:translate="description_prune_url">
+      Enter a URL which should be PURGEed <em>now</em>. You have to
+      give the relative URL relative to your websites root URL. Eg:
+      'somefolder/anotherfolder/somefile'. This fragment is added to
+      each of the URLs defined above and should <em>not</em> be quoted (ie,
+      spaces in the URL should included rather than represented as %20, for
+      example)
+    </p>
+    <p>
+      <input type="text" name="url" size="50" />
+    </p>
+
+    <input type=submit i18n:attributes="value" value="Go!" />
+  </form>
+
+  <form action="manage_pruneAll"
+        tal:attributes="action python:here.absolute_url()+'/manage_pruneAll'"
+        method="POST">
+    <h2 i18n:translate="heading_prune_all">Purge all indexed objects</h2>
+    <p i18n:translate="description_purge_all">
+      Press the button below to purge all objects indexed in the portal
+      catalog. <em>This may take some time.</em>
+    </p>
+
+    <input type=submit i18n:attributes="value" value="Go!" />
+
+  </form>
+
+</tal:block>
+
+<div tal:replace="structure here/manage_page_footer"/>

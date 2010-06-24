@@ -1,0 +1,4 @@
+In no particular order:
+
+  Sidnei da Silva <sidnei at awkly dot org>
+    Initial Idea and Implementation

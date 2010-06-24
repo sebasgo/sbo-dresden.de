@@ -1,0 +1,97 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:page
+     name="manage_collage"
+     for="Products.Collage.content.Collage"
+     class=".collage.CollageView"
+     attribute="render_manage_view"
+     permission="cmf.ModifyPortalContent"
+     />
+  
+  <browser:viewletManager
+     name="collage.ContentManager"
+     provides="Products.Collage.interfaces.IContentMenu"
+     class=".manager.ContentViewletManager"
+     template="templates/manager.pt"
+     permission="zope.Public"
+     />  
+  
+  <browser:page
+     name="renderer"
+     for="Products.Collage.interfaces.ICollage"
+     permission="zope.Public"
+     class=".renderer.SimpleContainerRenderer"
+     template="templates/collage_renderer.pt"
+     />
+  
+  <browser:page
+     name="renderer"
+     for="Products.Collage.interfaces.ICollageRow"
+     permission="zope.Public"
+     class=".renderer.SimpleContainerRenderer"
+     template="templates/row_renderer.pt"
+     />
+  
+  <browser:page
+     name="renderer"
+     for="Products.Collage.interfaces.ICollageColumn"
+     permission="zope.Public"
+     class=".renderer.SimpleContainerRenderer"
+     template="templates/column_renderer.pt"
+     />
+  
+  <browser:page
+     name="existing-items-form"
+     for="Products.Collage.interfaces.ICollageColumn"
+     permission="cmf.ModifyPortalContent"
+     class=".column.ExistingItemsView"
+     template="templates/existing_items_form.pt"
+     />
+  
+  <browser:page
+     name="collage"
+     for="Products.Collage.interfaces.ICollage"
+     permission="zope.Public"
+     class=".collage.CollageView"
+     allowed_interface=".collage.ICollageView"
+     />
+  
+  <browser:page
+     name="collage_helper"
+     for="*"
+     permission="zope.Public"
+     class=".helper.CollageHelper"
+     allowed_interface=".helper.ICollageHelper"
+     />
+
+  <browser:page
+     name="collage_kss_helper"
+     for="*"
+     permission="zope.Public"
+     class=".kss.KSSHelper"
+     allowed_interface=".kss.IKSSHelper"
+     />
+  
+  <browser:page
+     name="kss_collage_macro_proxy"
+     for="*"
+     permission="zope.Public"
+     class=".kss.CollageMacrosView"
+     />
+ 
+  <browser:page
+     name="kss_field_decorator_dummy_view" 
+     for="*"
+     permission="zope.Public"
+     class=".kss.DummyFieldsView"
+     allowed_attributes="getKssUIDClass getKssClassesInlineEditable getKssClasses"
+     />
+     
+  <include file="views.zcml" />
+
+  <include file="viewlets.zcml" />
+
+  <include file="actions.zcml" />
+  
+</configure>

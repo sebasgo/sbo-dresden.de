@@ -1,0 +1,5 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+   
+<h2 tal:content="here/title_or_id">
+  Title or id
+</h2>

@@ -1,0 +1,38 @@
+Collage developer documentation
+===============================
+
+The Collage product was built to be easily customizable.
+
+Content views
+-------------
+
+New content views can be added by registering a browser view with
+a browser:page-directive. Examples of this can be found in
+
+  ./browser/views.zcml
+
+A view for a standard document can be registered as follows:
+  
+  <browser:page
+     name="my-view"
+     for="Products.ATContentTypes.content.document.ATDocument"
+     permission="zope.Public"
+     template="my-view-template.pt"
+     class=".document.MyDocumentView"
+     layer="Products.Collage.interfaces.ICollageBrowserLayer"
+     />
+
+To display a human-readable title, we associate the view with the
+following class, placed in a file document.py:
+
+  from Products.Five.browser import BrowserView
+
+  class MyDocumentView(BrowserView):
+      title = u'My view'
+
+
+Content controls
+----------------
+
+Content controls are registered as viewlets. See ./browser/viewlets.zcml
+for examples.

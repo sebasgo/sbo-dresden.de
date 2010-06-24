@@ -1,0 +1,143 @@
+# Roland Fasching <rof@sterngasse.at>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-08-13 13:40+0000\n"
+"Last-Translator: Roland Fasching <rof@sterngasse.at>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: German\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collage\n"
+
+#: ./browser/browser.py:90
+msgid "Column inserted."
+msgstr "Spalte hinzugefügt"
+
+#: ./browser/browser.py:80
+msgid "Row added."
+msgstr "Zeile hinzugefügt"
+
+#: ./browser/browser.py:37
+msgid "View changed."
+msgstr "Ansicht wurde verändert"
+
+#. Default: "Add row"
+#: ./skins/Collage/collage_view.pt:51
+msgid "button_add_collagerow"
+msgstr "Zeile hinzufügen"
+
+#. Default: "Choose an existing item to insert. The item will be inserted as an alias (by reference). Use dropdown to filter on type."
+#: ./browser/viewlets/insert-existing-item.pt:16
+msgid "help_insert_existing_items"
+msgstr "Wählen Sie einen vorhandenen Artikel um ihn hinzuzufügen. Der Artikel wird als Alias eingefügt (Über Referenzierung) . Wählen Sie die Auswahlbox um Artikeltypen zu filtern."
+
+#. Default: "Choose a layout for this object."
+#: ./browser/viewlets/layout.pt:17
+msgid "help_select_layout"
+msgstr "Wählen Sie eine Ansicht für diesen Artikel"
+
+#. Default: "insert existing item"
+#: ./browser/viewlets/insert-existing-item.pt:11
+msgid "label_insert_existing_item"
+msgstr "Vorhandenen Artikel hinzufügen"
+
+#. Default: "Loading..."
+#: ./browser/viewlets/insert-existing-item.pt:25
+msgid "label_loading"
+msgstr "Laden..."
+
+#. Default: "Move down"
+#: ./browser/viewlets/modify_order_vertical.pt:10
+msgid "label_move_down"
+msgstr "Runter schieben"
+
+#. Default: "Move left"
+#: ./browser/viewlets/modify_order_horizontal.pt:10
+msgid "label_move_left"
+msgstr "Nach links schieben"
+
+#. Default: "Move right"
+#: ./browser/viewlets/modify_order_horizontal.pt:16
+msgid "label_move_right"
+msgstr "Nach rechts schieben"
+
+#. Default: "Move up"
+#: ./browser/viewlets/modify_order_vertical.pt:16
+msgid "label_move_up"
+msgstr "Hinauf schieben"
+
+#. Default: "This Collage-object does not have any items yet. Add items using the drop-down menu to have them appear here."
+#: ./skins/Collage/collage_view.pt:44
+msgid "label_no_items_added"
+msgstr "Diese Collage hat keine Artikel."
+
+#. Default: "select layout"
+#: ./browser/viewlets/layout.pt:12
+msgid "label_select_layout"
+msgstr "Ansicht"
+
+#. Default: "split"
+#: ./browser/viewlets/split-column.pt:9
+msgid "label_split_column"
+msgstr "Spalten"
+
+#. Default "(alias)"
+#: ./browser/viewlets/actions.pt:19
+msgid "label_aliased"
+msgstr "(alias)"
+
+#. Default "Insert new item"
+#: ./browser/viewlets/insert-new-item.pt:13
+msgid "label_insert_new_item"
+msgstr "Neuen Artikel Hinzufügen"
+
+#. Default "Select a content-type to insert."
+#: ./browser/viewlets/insert-new-item.pt:18
+msgid "help_insert_new_item"
+msgstr "Wählen Sie einen Artikeltyp um ihn hinzuzufügen."
+
+msgid "label_alias_target"
+msgstr "Ziel"
+
+msgid "label_optional_row_title"
+msgstr "Titel"
+
+msgid "help_optional_row_title"
+msgstr "Optional können Sie hier einen Titel für die Zeile eingeben."
+
+msgid "label_optional_column_title"
+msgstr "Titel"
+
+msgid "help_optional_column_title"
+msgstr "Optional können Sie hier einen Titel für die Spalten eingeben."
+
+msgid "label_show_title"
+msgstr "Titel anzeigen"
+
+msgid "label_show_description"
+msgstr "Beschreibung anzeigen"
+
+msgid "label_content_type"
+msgstr "Artikeltypen"
+
+msgid "label_all_content_types"
+msgstr "Alle"
+
+msgid "Automatic"
+msgstr "Automatisch"
+
+msgid "Large left"
+msgstr "Viel Platz links"
+
+msgid "Large right"
+msgstr "Viel Platz rechts"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Featured"
+msgstr "Hervorgehoben"

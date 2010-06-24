@@ -1,0 +1,194 @@
+A cachefu with less monkeypatching
+==================================
+
+Current patching in cachefu
+---------------------------
+
+Currently, cachefu does a lot of monkeypatching. This is a list of the
+files in which monkeypatching takes place:
+
+CacheSetup/patch.py -
+  OFS.Image/File are patched so that they're associated with the
+  PolicyHTTPCacheManager to get control over old-style files and
+  images.
+
+  A ``.modified()`` method is patched into old-style files and images
+  and into filesystem files and images to support asking them about a
+  last modification date.
+
+  The catalog is patched: ``moveObjectsByDelta()``,
+  ``uncatalog_object()`` and ``catalog_object()``. All now call a
+  method that purges squid (except for uncatalog_object) so that the
+  object in squid gets purged whenever it changes. "Changes" in this
+  case is defined as "when the catalog changes". It was a good way to
+  detect it for older plones, but at the moment not everything is
+  detected this way. IObjectModified event to the resque?
+
+  The squid purge method also increments a counter (also for
+  uncatalog_object) inside the cache tool: this is used as a sort
+  last-modified-date for the catalog. This counter is used quite a lot
+  by cachefu to keep everything updated, especially for logged in
+  users.
+
+  ResourceRegistries' ``cookResources()`` is patched so that
+  abovementioned catalog counter gets incremented everything something
+  changes inside ResourceRegistries.
+
+  ``manage_changePermissions()``, ``manage_permission()``,
+  ``manage_acquiredPermissions()`` and ``manage_role()`` are patched
+  to increment a counter every time the relationship between
+  permissions and roles change. This counter can then be used to
+  determine freshness.
+
+CacheSetup/patch_cmf.py - 
+  ``FSPageTemplate`` gets patched so that the filesystem (=skin
+  directory) template doesn't get rendered if a "304 not modified" can
+  be returned. Rendering the template is expensive and it isn't needed
+  if a 304 can be returned. Secondly, cache headers are set after the
+  page template has been rendered.
+
+  The pagetemplate rendering mechanism, ``TALInterpreter``, is patched
+  likewise. 304 interruption and cache heading setting.
+
+CacheSetup/patch_interpreter.py -
+  This is a patch to enable macro caching. It looks like it only works
+  with plone 2.5 (not 3.0) at the moment because of the import of the
+  TAL.TALInterpreter, which isn't available anymore in plone 3.0's
+  zope version.
+
+  Many of the people at the sprint didn't seem to like macro caching,
+  so it might be best to just ignore it for the time being. In that
+  case the patch can stay, but will only be useful for 2.5.
+  
+  Note: We've indeed removed it in trunk (i.e. for 3.0) on the PIKtipi 
+  Sprint (tomster, fschulze)
+
+CacheSetup/patch_utils.py -
+  Actually, this is just a utility class that provides some handy
+  methods for patching files.
+
+CMFSquidTool/patch.py -
+  Just a utility class for patching. What's the possibility for
+  merging it with above one?
+
+CMFSquidTool/queue.py -
+  ``reindexObject()`` and ``unindexObject()`` of CMFCatalogAware and
+  CatalogMultiplex are patched to put objects in the squid purge
+  queue. Didn't ``CacheSetup/patch.py`` already to that? Might be a
+  chance for some serious code cleanup here.
+
+CMFSquidTool/threadinglocal.py -
+  No cachefu-specific patching. It is basically a copy of 2.4.3
+  ``threading.local`` library. Didn't plone 2.5 basically require a
+  python 2.4? In that case, this module might be entirely
+  unnecessary. Ah, no. Plone 2.5 runs with zope 2.8 also, which runs
+  on 2.3.5.
+
+
+More research: response headers and pagecache storing
+-----------------------------------------------------
+
+Ehm, what about setting the response headers for something else than
+templates? And grabbing a nice fresh rendered content object for the
+pagecache? I expected that to need some patching, too. Haven't seen it
+till now, so more grepping is in order, especially for ``response``,
+as that is where headers get set.
+
+CacheSetup/cmf_utils.py -
+  ``_setCacheHeaders()`` sets the cache headers according to cachefu's
+  wishes. ``_checkConditionalGET()`` checks if a 304 should be send.
+
+  This file doesn't do any patching, though. It gets used by
+  ``patch_cmf.py``.
+
+PageCacheManager/PageCache.py -
+  ``ZCache_get()`` and ``ZCache_set()`` retrieve or store pagecache
+  items and set the headers (``X-pagecache``) accordingly. Hm, I
+  almost forgot: items can be associated with cache managers. That's
+  another angle to explore. Apparently cache managers automatically
+  tie in at the start and finish of the process when associated with
+  the content object that is being served.
+
+  Looking at a wiki page where they discussed zope3's cache manager
+  revealed that Tres Seaver had a strong preference for completely
+  separating the caching of results (like in a cache manager) and the
+  setting of headers. Those ought to be different products. Jim Fulton
+  agreed. I also tend to agree :-)
+
+  An almost logical result of this thinking is to look at the
+  replacement cache managers offered by zope3 instead of at the
+  existing zope2 cache managers as used nowadays by cachefu.
+
+  Lovely systems made a viewcache_ for zope3 during the 2007
+  snowsprint. That one caches zope3 views. What is left to do is a
+  cache for regular skin templates (pagecache could handle that for
+  the time being, perhaps) and for python scripts. Well, python
+  scripts are something separate: separate RAMcaches per script as per
+  the instructions in the "speeding up zope" talk at the 2006 plone
+  conf.
+
+.. _viewcache: http://www.lovelysystems.com/batlogg/2007/03/30/the-decathlon-of-computer-science/
+
+PolicyHTTPCacheManager/PolicyHTTPCacheManager.py -
+
+  This cache isn't meant to cache anything (sic). The goal is to be
+  able to set headers just before the response gets returned.
+
+
+Conclusions/todo
+----------------
+
+* Figure out if the patching of OFS.Image/File is still necessary (to
+  associate them with the PolicyHTTPCacheManager). Does zope3 offer
+  something here? Does zope 2.8+ already do this?
+
+* Figure out if the IObjectmodified event covers all the cases that
+  are now taken care of by the catalog patches. If so, replace those
+  patches with an event subscriber that does the same thing. Real easy
+  task, probably.
+
+* Does a change in ResourceRegistries also fires such an event? Then
+  the resourceregistries patch can also go the way of the dodo.
+
+* Changing the permissions, the roles or the mapping between them:
+  does this fire a specific event? Try to do away with the related
+  patch, then. First, however, figure out where cachefu uses the
+  related counter.
+
+* ``patch_cmf.py`` patches page templates so that 304 get handled and
+  response headers get set: isn't that something that can be handled
+  with a cache manaager? A cache manager seems to tie in at the
+  correct locations. This might make the difference between the
+  setting of headers and caching less clear. Hey, I'm even thinking
+  about subclassing cachemanagers... I got an email by wiggy about an
+  idea he and optilude had: a set of subscribers that can be iterated
+  over instead of a one-choice-only event handler.
+
+* Macro caching. Remove it? I'm leaning in that direction. With
+  lovely.viewcache, views can be cached. And views can also be
+  viewlets: individual pieces of a page. At least for plone 3.0
+  that'll be a huge help. I do think that lovely.viewcache could use
+  some cachefu UI love: it should be easy to choose certain views and
+  identify the cache keys for them. For this, some of the macro code
+  might come in real handy.
+
+  Note: We've indeed removed it in trunk (i.e. for 3.0) on the PIKtipi 
+  Sprint (tomster, fschulze)
+
+* Figure out if ``CMFSquidTool/queue.py`` really duplicates what
+  ``CacheSetup/patch.py`` does: catalog patching. Probably both can
+  shed their mortal coil because an IObjectModified event handler is
+  the way to go. Yeah, code removal!
+
+* Figure out if python 2.3.5 includes the treading.local library. If
+  so, ``CMFSquidTool/threadinglocal.py`` can be cleaned out.
+
+* Investigate zope3's cache managers. What does lovely.viewcache do?
+  Are viewcaches a handy way to tie into the publishing process or is
+  it a dirty hack to use a cachemanager not to cache something but
+  just to evaluate 304 matching and response header setting?
+
+* Can the PolicyHTTPCacheManager be replaced with something
+  zope3-like?
+
+

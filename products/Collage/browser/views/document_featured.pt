@@ -1,0 +1,38 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+
+<div class="featured-document">
+
+  <h2 metal:define-macro="title"
+      tal:define="view context/@@collage_kss_helper"
+      tal:attributes="id string:${view/getUniqueIdentifier}-title;
+		      class python: view.getKssClasses('title')"
+      tal:condition="here/Title">
+    <span metal:define-slot="inside" 
+          tal:replace="here/Title">title</span>
+  </h2>
+  
+  <p>
+    <span metal:define-macro="description"
+          tal:define="view context/@@collage_kss_helper"
+          tal:attributes="id string:${view/getUniqueIdentifier}-description;
+		          class python: view.getKssClasses('description')"
+          tal:condition="here/Description">
+      <span metal:define-slot="inside" 
+            tal:replace="here/Description">description</span>
+    </span>
+  </p>
+  
+  <div metal:define-macro="text"
+       tal:define="view context/@@collage_kss_helper;
+		   text python: here.CookedBody(stx_level=2)"
+       tal:attributes="id string:${view/getUniqueIdentifier}-text;
+		       class python: here.Format() in
+		       ['text/structured', 'text/x-rst'] and 'stx' or 'plain' +
+		       view.getKssClasses('text')"
+       tal:condition="text"
+       class="stx">
+    <span metal:define-slot="inside" 
+          tal:replace="structure text">text</span>
+  </div>
+  
+</div>

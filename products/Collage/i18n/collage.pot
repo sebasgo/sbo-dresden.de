@@ -1,0 +1,146 @@
+# Malthe Borch <mborch@gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-06-28 13:40+0000\n"
+"Last-Translator: Malthe Borch <mborch@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collage\n"
+
+#: ./browser/browser.py:90
+msgid "Column inserted."
+msgstr ""
+
+#: ./browser/browser.py:80
+msgid "Row added."
+msgstr ""
+
+#: ./browser/browser.py:37
+msgid "View changed."
+msgstr ""
+
+#. Default: "Add row"
+#: ./skins/Collage/collage_view.pt:51
+msgid "button_add_collagerow"
+msgstr ""
+
+#. Default: "Choose an existing item to insert. The item will be inserted as an alias (by reference). Use dropdown to filter on type."
+#: ./browser/viewlets/insert-existing-item.pt:16
+msgid "help_insert_existing_items"
+msgstr ""
+
+#. Default: "Choose a layout for this object."
+#: ./browser/viewlets/layout.pt:17
+msgid "help_select_layout"
+msgstr ""
+
+#. Default: "insert existing item"
+#: ./browser/viewlets/insert-existing-item.pt:11
+msgid "label_insert_existing_item"
+msgstr ""
+
+#. Default: "Loading..."
+#: ./browser/viewlets/insert-existing-item.pt:25
+msgid "label_loading"
+msgstr ""
+
+#. Default: "Move down"
+#: ./browser/viewlets/modify_order_vertical.pt:10
+msgid "label_move_down"
+msgstr ""
+
+#. Default: "Move left"
+#: ./browser/viewlets/modify_order_horizontal.pt:10
+msgid "label_move_left"
+msgstr ""
+
+#. Default: "Move right"
+#: ./browser/viewlets/modify_order_horizontal.pt:16
+msgid "label_move_right"
+msgstr ""
+
+#. Default: "Move up"
+#: ./browser/viewlets/modify_order_vertical.pt:16
+msgid "label_move_up"
+msgstr ""
+
+#. Default: "This Collage-object does not have any items yet. Add items using the drop-down menu to have them appear here."
+#: ./skins/Collage/collage_view.pt:44
+msgid "label_no_items_added"
+msgstr ""
+
+#. Default: "select layout"
+#: ./browser/viewlets/layout.pt:12
+msgid "label_select_layout"
+msgstr ""
+
+#. Default: "split"
+#: ./browser/viewlets/split-column.pt:9
+msgid "label_split_column"
+msgstr ""
+
+#. Default "(alias)"
+#: ./browser/viewlets/actions.pt:19
+msgid "label_aliased"
+msgstr ""
+
+#. Default "Insert new item"
+#: ./browser/viewlets/insert-new-item.pt:13
+msgid "label_insert_new_item"
+msgstr ""
+
+#. Default "Select a content-type to insert."
+#: ./browser/viewlets/insert-new-item.pt:18
+msgid "help_insert_new_item"
+msgstr ""
+
+msgid "label_alias_target"
+msgstr ""
+
+msgid "label_optional_row_title"
+msgstr ""
+
+msgid "help_optional_row_title"
+msgstr ""
+
+msgid "label_optional_column_title"
+msgstr ""
+
+msgid "help_optional_column_title"
+msgstr ""
+
+msgid "label_show_title"
+msgstr ""
+
+msgid "label_show_description"
+msgstr ""
+
+msgid "label_content_type"
+msgstr ""
+
+msgid "label_all_content_types"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Large left"
+msgstr ""
+
+msgid "Large right"
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "Featured"
+msgstr ""
+
+msgid "Portlet"
+msgstr ""

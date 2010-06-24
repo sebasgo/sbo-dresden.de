@@ -1,0 +1,33 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+
+<div metal:define-macro="portlet">
+
+     <dl class="portlet" tal:define="kssview context/@@collage_kss_helper">
+	<dt class="portletHeader">
+           <span class="portletTopLeft"></span>
+           <span 
+                 tal:attributes="id string:${kssview/getUniqueIdentifier}-title;
+		                 class python: kssview.getKssClasses('title')"
+                 tal:condition="here/Title">
+               <span metal:define-slot="inside" tal:replace="here/Title">title</span>
+           </span>
+           <span class="portletTopRight"></span>
+        </dt>
+
+        <dd class="portletItem odd">
+	  <p metal:define-macro="description"
+   	     tal:attributes="id string:${kssview/getUniqueIdentifier}-description;
+		   class python: kssview.getKssClasses('description')"
+   	     tal:condition="here/Description">
+  	     <span metal:define-slot="inside" tal:replace="here/Description">description</span>
+	  </p>
+          <span i18n:domain="plone" i18n:translate="link_address">The link address is:</span>
+             <a href="#" tal:attributes="href here/remote_url" tal:content="here/remote_url">remote url</a>
+        </dd>
+        <dd class="portletFooter">
+           <span class="portletBottomLeft"></span>
+	   <span class="discreet" tal:content="python:context.toLocalizedTime(context.Date(), long_format=1)">Date</span>
+           <span class="portletBottomRight"></span>
+        </dd>
+     </dl>
+</div>

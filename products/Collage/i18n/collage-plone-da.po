@@ -1,0 +1,61 @@
+# Malthe Borch <mborch@gmail.com>, 2007.
+# Jacob Vestergaard <jacobv@headnet.dk>
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-06-28 13:40+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Jacob Vestergaard <jacobv@headnet.dk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: da\n"
+"Language-Name: Danish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+msgid "Alias"
+msgstr "Alias"
+
+msgid "Back to Collage"
+msgstr "Tilbage til kollagen"
+
+# content-types
+msgid "Collage"
+msgstr "Kollage"
+
+msgid "Column"
+msgstr "Kolonne"
+
+msgid "Manage page"
+msgstr "Opbygning"
+
+msgid "Row"
+msgstr "Række"
+
+msgid "desc_type_collage"
+msgstr ""
+
+msgid "desc_type_collagealias"
+msgstr ""
+
+msgid "desc_type_collagecolumn"
+msgstr ""
+
+msgid "desc_type_collagerow"
+msgstr ""
+
+msgid "msg_alias_inserted"
+msgstr ""
+
+msgid "msg_column_inserted"
+msgstr ""
+
+msgid "msg_row_added"
+msgstr ""
+
+msgid "msg_target_object_not_found"
+msgstr ""
+

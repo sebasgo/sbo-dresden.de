@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collage">
+
+  <genericsetup:registerProfile
+      name="Collage"
+      title="Collage"
+      directory="profiles/default"
+      description="Extension profile for Collage."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

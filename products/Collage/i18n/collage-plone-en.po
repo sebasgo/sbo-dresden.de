@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage\n"
+"POT-Creation-Date: 2007-06-28 13:40+0000\n"
+"PO-Revision-Date: 2007-11-16 18:03+0100\n"
+"Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
+"Language-Team: EDF\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"X-Is-Fallback-For: en-au en-bz en-ca en-ie en-jm en-nz en-ph en-za en-tt en-gb en-us en-zw\n"
+
+msgid "Alias"
+msgstr "Alias"
+
+msgid "Back to Collage"
+msgstr "Back to Collage"
+
+# content-types
+msgid "Collage"
+msgstr "Collage"
+
+msgid "Column"
+msgstr "Column"
+
+msgid "Manage page"
+msgstr "Compose"
+
+msgid "Row"
+msgstr "Row"
+
+msgid "desc_type_collage"
+msgstr "A structural container which can display its element in various layouts."
+
+msgid "desc_type_collagealias"
+msgstr "An item referencing another one."
+
+msgid "desc_type_collagecolumn"
+msgstr "A column which can contain content items and aliases."
+
+msgid "desc_type_collagerow"
+msgstr "A row which can contain page columns."
+
+msgid "msg_alias_inserted"
+msgstr "Alias has been inserted."
+
+msgid "msg_target_object_not_found"
+msgstr "Target item has not been found."
+
+msgid "msg_row_added"
+msgstr "Row has been added."
+
+msgid "msg_column_inserted"
+msgstr "Columns has been inserted."

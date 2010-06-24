@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<object name="Collage"
+   meta_type="Factory-based Type Information with dynamic views"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="plone">
+
+ <property name="title">Collage</property>
+ <property
+    name="description">desc_type_collage</property>
+ <property name="content_icon">collage_icon.gif</property>
+ <property name="content_meta_type">Collage</property>
+ <property name="product">Collage</property>
+ <property name="factory">addCollage</property>
+ <property name="immediate_view">collage_view</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types">
+   <element value="CollageRow"/>
+ </property>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">collage_view</property>
+ <property name="view_methods" purge="False">
+  <element value="collage_view"/>
+ </property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="atct_edit"/>
+ <alias from="index.html" to="(dynamic view)"/>
+ <alias from="properties" to="base_metadata"/>
+ <alias from="sharing" to="folder_localrole_form"/>
+ <alias from="view" to="(selected layout)"/>
+ <alias from="compose_page" to="manage_collage"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${folder_url}/" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Manage page" action_id="compose_page" category="object" condition_expr=""
+    url_expr="string:${object_url}/compose_page" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="Properties" action_id="metadata" category="object"
+    condition_expr="object/@@collage/isPlone2" url_expr="string:${object_url}/properties"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="References" action_id="references" category="object"
+    condition_expr="object/archetype_tool/has_graphviz"
+    url_expr="string:${object_url}/reference_graph" visible="True">
+  <permission value="Modify portal content"/>
+  <permission value="Review portal content"/>
+ </action>
+ <action title="Folder Listing" action_id="folderlisting" category="folder"
+    condition_expr="object/isPrincipiaFolderish"
+    url_expr="string:${folder_url}/view" visible="False">
+  <permission value="View"/>
+ </action>
+ <action title="Sharing" action_id="local_roles" category="object"
+    condition_expr="object/@@collage/isPlone2" url_expr="string:${object_url}/sharing" visible="True">
+  <permission value="Manage properties"/>
+ </action>
+ <action title="State" action_id="content_status_history"
+    category="object_tabs"
+    condition_expr="python:object and portal.portal_workflow.getTransitionsFor(object, object.getParentNode())"
+    url_expr="string:$object_url/content_status_history" visible="False">
+  <permission value="View"/>
+ </action>
+ <action title="External Edit" action_id="external_edit" category="object"
+    condition_expr="" url_expr="string:$object_url/external_edit"
+    visible="False">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

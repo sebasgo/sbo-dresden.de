@@ -1,0 +1,927 @@
+
+[August 15, 2007 - archived for future reference - newbery]
+___________________________________________________________
+
+
+NOTE: This documentation is not yet finished. It's included here as it
+may be useful in its current state; it is likely to be finished and
+checked by around April 10, 2006.  - Joel Burton
+
+
+==================================================
+What People Need to Know About CacheFu By Audience
+==================================================
+
+CacheFu is a set of technologies meant to allow Plone sites to perform
+significantly faster, while still showing content and navigation that is
+up-to-date with the changes being made by content editors.
+
+It does this by combining several existing products and adding a lot
+of configuration controls. With few or no changes, most sites will experience
+significant performance increases, and, with tuning, many sites can
+experience even more significant increases.
+
+--------------------------
+An Introduction to Caching
+--------------------------
+
+A smart program like Plone will always be a bit slow. This isn't an
+oversight on the part of the developers, but is a side-effect of all
+the work that Plone does for you when it gets a request for a page.
+
+Imaging a user requesting a page, ``/newsitems-project-a``, from your
+site. Plone has to:
+
+- Check if this user is logged in, and, if so, if their login credentials
+  are good (remember, the web is a "stateless" protocol--each request for
+  a page or an image is essentially a separate thing, and must be considered
+  and checked independently).
+
+- Find the object in the object database.
+
+- Check that the user has rights to that object (and to everything else
+  mentioned here, like the skins, scripts, etc.)
+
+- "Skin" the image by applying page templates to it.
+
+- Perform any logic required (for example, the portlet on the right that
+  shows the calendar must search across all events to decide which ones
+  are in the current month, and show them on the calendar).
+
+- Add custom information about the user (user bar links, their name,
+  preferences, etc.)
+
+- Decide which JavaScript and CSS files to reference.
+
+- Create dynamic left-hand navigation, global section tabs across the top,
+  etc.
+
+- Figure out which portlets to show, and show them.
+
+- and more!
+
+This is a good thing--all this checking and dynamic stuff is what makes Plone
+rich and easy-to-use. However, it means that, out of the box, Plone can only
+serve a few web pages in a second on most servers. For lightly-trafficked
+sites, this may be acceptable, but for more popular sites, this means that
+users may have to wait a second or more to get back their page, making for a
+slow experience.
+
+One excellent solution to this is caching--having Zope/Plone and other programs
+work together to decide which parts of that workload don't need to be performed
+every time, and use the old results (for those that aren't used to the idea,
+a real-world cognate is your friends' phone numbers: you could look them up
+in the phone book *every time* before you call them, but, to make things
+more faster and more pleasant, you only do that if you know it changed or if
+you've forgotten what the number was).
+
+Done correctly, caching is a tremendous benefit--the site runs much better
+and no one notices anything different. Done incorrectly, users become 
+frustrated that things don't change as expected--they add a news item,
+and, moments later, they visit the folder where they added this, and
+the news item isn't shown in the contents listing. This is a "stale" result--
+the user experiencing something old.
+
+Sometimes, some degree of staleness is an acceptable trade-off. For example, on
+a site with a portlet that shows the weather, you probably don't want to
+contact the government weather server 600 times a minute to see if the weather
+forecast really changed. Instead, you compromise by checking only every 5
+minutes (or 5 hours or whatever); users can get slightly older weather reports,
+but it's a worthwhile trade-off for performance.
+
+Out of the box, CacheFu does *not* make these compromises for you,
+except in one or two very small areas. You can trust that it works
+hard to get you the most up-to-date content it can, even if it means
+your server might be doing a bit more work that is the possible
+low-point. For those who want more control, this document will help
+them understand how to turn those knobs. 
+
+---------------------------
+Where Things Can Get Cached
+---------------------------
+
+Essentially, there are three broad places web pages or parts of web
+pages can be cached:
+
+- **Inside Zope**. This data is cached inside Zope, meaning that Zope
+  still creates and serves the web page directly, but it may not have
+  to perform some time-consuming calculations every time. Generally,
+  inside-Zope caching has the least dramatic speed benefits, but when
+  content changes, it is easy for Zope/Plone to realize this and begin
+  serving new content.
+
+- **On a proxy server / caching appliance**. These type of programs
+  stand between the web browser and Zope. When the user, Jane,
+  requests a web page, her request actually goes to the proxy server.
+  This server decides whether or not to pester Zope to produce the page
+  or image. In many cases, the proxy server has this information already,
+  and serves it to Jane. This is much faster, since proxy servers tend
+  to be heavily optimized for this operation. In cases where the proxy
+  server can't serve the content directly to Jane, it will pass that
+  request to Zope. In some cases, the proxy server will be told that,
+  in the future, it can serve this directly, and it was cache this response,
+  and will handle it directly in the future.
+
+  Squid is a very popular, open source proxy server, and CacheFu is optimized
+  to work with Squid. Apache, while being a more general, very extensible
+  web server, can also handle caching. Apache does not have the features
+  that Squid has, though, for "purging"--getting rid of content that is
+  no longer as up-to-date as it could be. Therefore, Apache can be used
+  to proxy cache for certain things, but CacheFu will not be able to use
+  it to as much of an advantage as Squid.
+
+  It is advantageous, then, for medium- and large-traffic-sites to
+  use Squid. Smaller sites will get some benefit, too, but these
+  benefits may be less required, and may not justify the addition of a
+  new piece of software.
+
+- **In a web browser**. Almost all web browsers (and all the well-known,
+  popular ones, such as Internet Explorer, Firefox, and Safari) can cache
+  web pages and images themselves. When they do this, they are able to
+  respond themselves to repeated requests for that same image and page.
+  This is obvious incredibly fast--since the request and web response
+  doesn't even have to go across the network at all, and, in some cases,
+  neither Zope nor a proxy server will have any idea that there was even
+  a request for it.
+
+  The general challenge with browser-side caching is that there's no
+  mechanism to let every possible web browser know that they should let go
+  of those pages they've been holding onto (it's not feasible to try to send
+  out a purge request to everyone that visited your site, and practically
+  no browsers even support this feature, anyway). As such, the kind of content
+  that CacheFu caches this way will tend to be things that it knows the
+  browser can cache without any risk of that content becoming stale.
+
+In addition, there are four other common places where caching might happen
+in the Zope/Plone world:
+
+- **In a ZSQL method or in a database**. In cases where you have connected
+  Plone to a relational database, you can tell your ZSQLMethod (the component
+  of Plone that is an SQL request) to cache the result of that database
+  request. So, for instance, in an application that lists stock prices, you
+  could opt to only query the database once every 5 minutes, even if the
+  SQL method was called every second.
+
+  Similarly, some databases themselves have their own mechanisms for caching
+  requests and responses; Zope is not involved or even aware of these.
+
+- **In authentication against LDAP/Relational Databases/etc.**. Plone can
+  authenticate users against special storages for user data, most commonly
+  LDAP servers and relational databases. There are different add-on products
+  for these different kinds of servers.
+
+  These add-on products sometimes include features that cache the authentication
+  itself--that is, they don't try to memorize the result of getting a page,
+  or what an image looks like, but they cache the fact that "joelburton" *is*
+  a user of your system, that the password "jUnER0x!" is my password, and
+  that I am a Manager on your system. Rather than pestering the LDAP server
+  on _every_ request, the software caches this information, and trusts that I
+  haven't been fired in the last 5 minutes from your staff.
+
+- **ZODB caching**. The Zope Object Database (which normally holds all the
+  Plone content) itself caches those objects. In other words, when someone
+  requests to see the content item at ``/news-items/project-a``, the ZODB
+  will hold on to that for a few minutes, and, for further requests, will
+  just use the in-memory copy. This is just the "raw" object--not the result
+  of calling it, skinning it, or anything else. This kind of caching is
+  "transparent"; it is never stale, and is never a bad thing to have.
+
+- **ZEO caching**. ZEO is a technology for scaling large Plone sites across
+  multiple servers, by separating the object storage onto one server, and
+  the application server onto other(s) (though they can both be on the same
+  server, and other configurations are possible). ZEO itself will tell the
+  individual application servers that it's ok to cache requests for an object
+  (again, /news-item/project-a), so that, if that same Zope application server
+  needs it, it can use it's private copy. This caching is very similar to the
+  ZODB caching, above (it's essentially a networked copy of the same idea),
+  and has the same transparent, always-beneficial characteristics.
+
+None of these four types of caching are used or affected by CacheFu. The latter
+two are perfectly transparent and never affect anything. The first two are
+very application specific--they're turned on by programmers and site-builders
+specifically. CacheFu won't disable these or enable these itself, and the
+caching CacheFu provides will be *on top of* whatever benefits
+these provide.
+
+-----------------
+Primary Audiences
+-----------------
+
+CacheFu, and caching in general, can be quite complex--for those who want
+or need to understand this complexity. Rather than trying to teach everything
+to everybody, this section teaches the concepts for different audiences.
+People building sites in Plone need to know less than people who build
+complex products for others to use; people who deploy ordinary sites need
+to know less than people who deploy enormous sites with thousands of users
+or more.
+
+End Users
+=========
+
+End users of the site (the people who use the site, but don't create
+content or design the skins, etc.) need to know nothing about CacheFu,
+nor do they need to make any changes in their browsers. CacheFu already
+sends out the right commands (caching headers, as they're called) to
+say things like "don't cache this, even if the browser normally wants
+to cache things".
+
+.. tip::
+
+    With the standard install, there's only one case where users (only
+    anonymous users) might
+    see stale content. When a user is looking at a page (say, 
+    ``news-items/project-a``, Plone will normally show navigation on the
+    left-hand side that might include "sibling items"--other items in
+    the ``news-items`` folder. *If* you are using Squid, it will serve
+    cached pages to anonymous users, and the cached copy of ``project-a``
+    might show navigation that doesn't include the newly-created ``project-b``
+    news item. This only happens with anonymous users, and only when Squid
+    is involved (because CacheFu tries to cache things most aggressively in
+    these cases).
+
+    This case "times out" after an hour--even if nothing else changes,
+    CacheFu has told Squid to not serve ``project-a`` for more than an hour
+    without re-checking, and so it will, at the very latest, pick up the
+    new ``project-a`` page showing ``project-b`` in the left-hand navigation
+    within an hour.
+
+    If you can't tolerate this experience, you could reduce the window
+    of time to less than an hour, or, if you absolutely need 100% up-to-date
+    navigation for sibling items, you can turn off Squid caching for this case,
+    (covered later).
+
+For logged-in users, there are no stale content opportunities with the
+standard settings: non-anonymous users never have their content pages
+cached in Squid by CacheFu's default settings.
+
+Content Managers
+================
+
+For the people who edit content, there's nothing they need to know,
+except for the warning about stale sibling items in "End Users", above.
+The content managers themselves, won't experience this, but the users
+who use their content might.
+
+If a content creator sends a link to newly-created content, everyone will
+be able to get to it (assuming, of course, they have the right permission
+to do so). However, should a content manager send out a link to
+``news-items/project-a``, that page might not show the even-more-newly-created
+``project-b`` in the navigation for anonymous users, as described above.
+
+ZMI Customizers
+===============
+
+This audience makes up the bulk of people who build Plone sites and
+customize them. It includes people who do things like:
+
+- customize templates and CSS
+
+- write Python Scripts and use External Methods
+
+- make setting/configuration changes, like changing how the navigation
+  displays, etc.
+
+It's important for you to understand that you don't have to change *anything*
+to get many of the benefits of CacheFu, but, as you write new portlets,
+or skins, you may need to adjust the settings in the product to continue to
+not get stale pages.
+
+First, let's look at the general configuration for CacheFu.
+
+Cache Configuration Tool
+------------------------
+
+Most of the settings for CacheFu's technologies are set in the "Cache
+Configuration Tool"; found in `Site Setup -> Cache Configuration Tool`.
+
+This tool has five tabs:
+
+- "Cache configuration tool". This is where broad configurations to the
+  behavior are made.
+
+- "Caching rules". This tab allows you to determine what kind of caching
+  is chosen for different situations.
+
+- "Caching header sets". This tab allows you to decide exactly how
+  the caching rules get carried out.
+
+- "Page cache". This allows you to clear the in-memory storage of
+  some kinds of cached content.
+
+All of these are described below in more detail.
+
+Cache Configuration Tool Tab
+++++++++++++++++++++++++++++
+
+Cache configuration
+  CacheFu can be used on a site that is "Zope only". This means that no
+  proxy server (either Apache or Squid or anything else) is sitting in
+  front of Zope.
+
+  In this case, things can be cached in Zope, or in a web browser.
+
+  If, however, you put your Zope behind Apache (or any other non-Squid
+  caching proxy), CacheFu can send out headers to tell the
+  proxy server to cache JavaScript, CSS, etc.
+
+  If you're behind Squid, CacheFu can send out headers to cache those
+  things as well. Plus, since Squid support "purge requests" (to let
+  go of cached content and get it fresh), CacheFu can also send out
+  headers to tell Squid to cache many more pages, since it can selectively
+  clear those from Squid's cache as needed.
+
+  In some cases, your organization may want or need to use Apache
+  (as a very full-featured web server, it can do things that Squid can't,
+  and has dozens of add-on products). However, you may still want to
+  get the benefit of Squid. This is a case to use the "Zope behind
+  Squid behind Apache" setting: the public talks to your Apache server
+  (which might also handle things like PHP applications). Requests
+  for anything on the Plone site are delegated to Squid, which
+  can either respond itself or further delegate to the actual Zope/Plone
+  server.
+
+  If you are going to run with Squid, either by itself or behind Apache,
+  be sure to read the "Setup with
+  Squid" section, below, for important information on how to configure
+  Squid.
+
+  If you are going to run with Apache, you will need to have a few
+  settings in your httpd.conf virtual host block -- see below.
+
+  If you are running your Zope site by itself, there are no special
+  configurations required.
+
+Site Domains
+
+  In order for CacheFu to be able to tell Squid to purge a cached page,
+  CacheFu needs to know the domains that Squid might have that page under.
+
+  For example, if you're serving `www.example.com`, a cached page,
+  `about-us` could be at http://www.example.com/about-us. Depending on
+  your Squid (or Squid+Apache settings), people might also be able to
+  visit http://example.com/about-us (note the missing "www") and find the
+  same page.
+
+  CacheFu will need to tell Squid separately to purge both of those URLs;
+  while CacheFu understands that this is the same page, Squid has no idea
+  that these two pages are the same thing, and must be told separately.
+
+  Therefore, you'll want to list **all** of the domain names that your
+  site is reachable at. Be sure put the port number at the end, even for
+  port 80, and don't forget to include `https://example.com:443` and
+  `https://www.example.com:443` if you run on HTTPS, too.
+
+  Please note that port numbers here are *the ones that the public visits*,
+  not where your Zope instance is really speaking. Most Zope servers
+  serve content themselves on port 8080 (8282 is common on Mac OSX); however,
+  as far as Squid is concerned that content was asked for on port 80,
+  since that was the original request.
+
+  If you're not using Squid, you can keep this empty. Values entered here
+  are only meaningful if you chose "Squid" or "Squid behind apache" above.
+
+Squid URLs
+
+  If you're running Squid and Zope alone, Squid normally answers web 
+  requests from the outside world on port 80. Therefore, CacheFu knows
+  how to reach Squid (on port 80) to send purge requests. You can
+  leave this blank.
+
+  In some cases, you're not running Squid on port 80. Most likely this is
+  because you're running Squid behind Apache, and you run Apache on port 80 so
+  it is the first server to handle the request). In this case,
+  you need to tell CacheFu how to reach Squid to send purge requests.
+  Normally, this will be `http://127.0.0.1:3128`, the address and port number
+  to reach Squid on the local box.
+
+  If you are running Squid on a different box, or on a different port number,
+  you'll want to enter that instead. If you have several Squid instances,
+  you'll want to list *all* of them so that each purge request can be sent
+  to each one.
+
+Compression
+
+  Separate from caching, CacheFu can also compress web pages.
+
+  This compression is a standard part of the HTTP/web technologies: pages
+  can be sent compressed with "gzip compression", and most web browser can
+  receive the compressed page, uncompress them, and render them from the
+  user.
+
+  You can choose to "Never" do this, which is the safest option--you won't
+  have any browser incompatibility issues to worry about.
+
+  You can choose to "Always" do this. This is an **unusual choice, and
+  probably not correct**--some browsers can't deal with gzipped pages, and
+  always sending them will not allow people with these browsers to use your
+  site.
+
+  You can have CacheFu decide on a case-by-case basis depending on what
+  the web browser sent for the "Accept-Encoding" header. This header is
+  sent by web browsers to indicate what kind of content that can receive
+  back. If the browser indicated that it can receive gzipped content, this
+  will send it gzipped.
+
+  You can have CacheFu decide based on both the "Accept-Encoding" header
+  and the "User-Agent" header. "User agent" refers to which web browser
+  the browser says that is. If this option is selected, CacheFu looks both
+  to see if the web browser *says* if can handle gzipped content, and,
+  just to be safe, it checks that it is a browser that CacheFu knows can
+  do this successfully (some early versions of Netscape are buggy for
+  this!).  Checking the user agent comes at a high cost: squid will
+  need to cache separate versions of each of your pages for every
+  single browser / operating system combination, which will make cache
+  hits much less likely and will increase the disk space required by
+  squid by a factor of 20-100!  Using Accept-Encoding is the
+  recommended practice, since the buggy browsers are rarely in use.
+
+Vary Header
+
+  In order to not serve stale content, cache systems (either proxy caches
+  like Squid or in-browser caches) need to know more than just the URL
+  of the object. Returning a cached copy of `http://example.com/about-us`,
+  for example, might be wrong if the user prefers to speak Greek, and
+  the cached copy is the English version.
+
+  Therefore, in this field, you can list all of the values that are
+  understood by browser/cache proxies for "varying" these results.
+
+  For example, if the Vary header is just "Accept-Language", and a
+  request comes for `http://example.com/about-us`, your cache program
+  will cache it *while keeping track of the Accept-Language value it
+  received from the browser*. Then, when another request comes, it
+  will make sure to hand back the cached copy only if the
+  Accept-Language value for the new request is the same as the
+  old. Otherwise, it will cache this second copy, and hand that back
+  only for the same URL and Accept-Language header.
+
+  If your site has multilingual capabilities, you'll want "Accept-Language"
+  in here. This will make sure you don't return the English copy for the
+  Greek speaker.
+
+  If you don't have any multilingual content, and you don't even want
+  the standard Plone templates to be returned in other languages (which you
+  can prevent by removing PlacelessTranslationService from the products),
+  you should remove this. Keeping this value in would mean that your 
+  caching systems are keeping a separate copy of a page for Accept-Language=en
+  (English speakers) and a different copy for Accept-Language=gr (Greek
+  speakers) *even though* the pages themselves don't vary based on language.
+  Should you fail to remove this, you will use up more memory for caching
+  (and have an occasional request go to Zope that could have been answered
+  from caching) more often than is necessary.
+
+  If you allow compression (see above), you'll want to add "Accept-Encoding"
+  here. This will ensure that you don't consider a gzipped version of a page
+  and a non-gzipped-version to be the same thing. In other words, we'll 
+  cache two copies of each page: one for people who say that can accept gzip,
+  and others for those who can't.
+
+  If you have a multilingual site *and* allow gzipping, you'll want to
+  leave both in.
+
+Caching Rules
++++++++++++++
+
+Caching rules are part of the core concepts of CacheFu. They are a set
+of rules which are analyzed for each web request that gets to Zope,
+and, if the rule matches the request, the caching rule puts its
+behavior into effect.
+
+For example, if a web browser gets some CSS, and this request gets to
+Zope (i.e., it isn't answered by Squid or other places), the request
+goes through the rules here, in order (top to bottom) until it matches
+one rule. That rule that matches can do things like:
+
+- Cache the page in memory in the ZODB
+
+- Request that headers be sent out with the response. These headers
+  are interpreted by browsers and cache proxies to say things like
+  "keep this in your cache for 1 hour" or "never, ever cache this"
+  (for some details on headers, see the next section).
+
+Since we take the first rule that matches, only one can ever apply to
+any given request. If no rule matches, no particular action is taken,
+and the content is still rendered and returned normally.
+
+Let's walk through the rules that CacheFu ships with. Understanding
+them will help you understand what CacheFu does.
+
+HTTPCache
+  This cache is never matched (FIXME: not sure what this means?) out-of-the-box for CacheFu, but, if you
+  customize things, can be quite useful.
+
+  It is used if there are places where you have pages (or images, such
+  as your site's logo) that can be *entirely* cached and do not
+  require any invalidation. Consider a site with a page that _always_
+  looks the same, regardless of whether you're logged in or not, and
+  which doesn't need to be purged when any content changes. A good
+  example might be a page like that pops up with static help about your
+  site, and doesn't show content, rely on content, or change based on
+  your login status.  For this example, that page would be a Page
+  Template called `site-help`. 
+
+  To tell CacheFu that this page can be cached like this, you'd
+  need to associate it with the "HTTPCache" cache manager. For
+  example, we could go to our `site-help` template and, under the
+  Cache tab, associate it with the HTTPCache.
+
+  Traditionally, to do this in Zope, you'd be associating the
+  PageTemplate with a cache called "HTTPCache" which is an
+  "Accelerated HTTPCache Manager", and that manager sets the headers itself.
+  In CacheFu, however, HTTPCache doesn't do anything itself--it's
+  essentially a "marker" to indicate that a piece of content *can*
+  be cached like this, and therefore, it's picked up by this rule.
+
+  Since no content types are selected in the box below, all
+  types of content work can meet this rule (assuming, of course,
+  they're associated with the HTTPCache).
+
+  Several options aren't used here (& will be discussed where they
+  are used, later).
+
+  The two boxes for headings for anonymous users and headings for
+  authenticated users are the primary "outcomes" for rules, and this
+  is the case here: content that meets this rule is, by default,
+  matched to the cache-in-browser-for-24-hours rule, both for
+  anonymous and logged-in users. If you wanted to cache this stuff
+  just for 1 hour, you could change to the cache-in-browser-for-1-hour
+  rule. If you wanted a different possibility (say,
+  cache-in-browser-for-10-mins), you'd have to create this in
+  the caching header sets tab, described below.
+
+  The last choice, "Last-Modified Expression" is the expression that
+  will be used to decide when this content was last modified; this is
+  used so that CacheFu only caches it for 24 hours beyond that (or
+  one hour, or however long you chose).
+
+Content
+  This rule is used to cache displays of normal (non-folder,
+  non-image content), like a News Item.
+
+  By default, the normal Plone content types are cached by this; you
+  don't have to associate them with any cache manager, like we did
+  above.
+
+  The content types that are matched by this are selected in the
+  content types box. These are those content types that aren't
+  File or Image (those are handled separately) or folderish thing
+  (those are also handled separately).
+
+  Of course, we don't really want to cache the news item *itself*--
+  that's not sent to web browsers. Instead, we want to cache the
+  HTML view of a news item. 
+
+  The "Default view" box, when checked, means that this rule will be
+  in effect when a request is made for a skin object (Page Template,
+  Python Script, etc.) for the content types listed *if* that
+  skin object is the default view for that content type. So, for
+  example, it will catch::
+
+    http://news-items/project-a
+
+  and ::
+
+    http://news-items/project-a/newsitem_view
+
+  since ``newsitem_view`` is the default view for news items. It
+  won't catch ::
+
+    http://news-items/project-a/special_newsitem_view
+
+  Should you want to cache additional views, like
+  ``special_newsitem_view``, you should add that to the
+  "Templates" field, which is for the ids of additional skins
+  that should be cached.
+
+  "Cache Templates" in memory means that, in addition to whatever 
+  else kind of outcome we would have for things that match this
+  rule, we should cache the template results in memory. This helps so
+  that, even if you have no proxy cache, CacheFu can still work with
+  the in-memory cache.
+
+  Note that ::
+
+    http://news-item/project-a
+
+  and ::
+  
+    http://news-item/project-a?form_var=1
+
+  are different requests, and, as such, will be cached separately.
+  
+  "Cache Preventing Request Values" is used to specify those form
+  variables (or other things in the request object) that, if present,
+  should signal that this request should not be cached. By default,
+  "portal_status_message" is listed here, plus "statusmessages", which
+  is the name of the cookie that's getting used with recent 2.5 and
+  3.0 plone versions. "portal_status_message" is the request variable
+  used to hold the feedback messages (usually shown in bright orange,
+  at the top of pages). Since the same template can be shown with
+  dozens of these feedback messages ("Changes saved", "Content added",
+  "Email sent", etc.), it would be expensive to cache each copy
+  individually, and probably not that helpful, since not many people
+  would want to see the exact same page, anyway. Therefore, if there
+  is an status message being sent, CacheFu won't cache this page.
+
+  "Predicate" lets us add any arbitrary TALES expression as a further
+  check for whether this rule matches. A request would have a) be
+  skinning a content type listed in the content types, b) be for a
+  default view (if that's checked) *or* be an explicitly-named
+  template, c) not have a `portal_status_message` (or `statusmessages`
+  cookie) and d) pass this expression to match.
+
+  "Header Set for Anonymous Users" is set to have the proxy cache
+  (Squid, usually) receive the message to cache this for 1h. For
+  logged-in users, it's cached with an ETag, a
+  mechanism that allows it to be cached in ways that cause changes to
+  request a fresh copy.
+
+  .. tip:: ETags
+
+    ETags are a mechanism that is a HTTP/web standard for web browsers
+    and servers to pass around some information that represents "other
+    information" about a request. This information can include things
+    like: the kind of user that requested it, the date it was last
+    changed, etc.
+
+    So, if you request ::
+
+      http://news-items/project-a
+
+    the server might give this back to you with an ETag of ::
+
+      ETag: joelburton-2006/12/25-en
+
+    Which means that this request was for Joel Burton, the content
+    was modified on Christmas, 2006, and it was in English. The cache
+    program (be it in the browser of cache proxy) will store this ETag
+    along with the content. (Note: this isn't the exact format that
+    ETags appear in, but the concept is accurate).
+
+    Now, the browser wants to re-request this page from Zope, it will
+    get that old ETag and give it to the Zope. Zope will look at it
+    and compare it with the current ETag it would create. If they are
+    the same, Zope will return a HTTP response that "nothing has
+    changed, feel free to use your current copy". If they differ, it
+    will return the new page.
+
+    So, for example, if Joel re-visits http://news-items/project-a
+    when he is logged out, his browser will hand Zope the ETag it has
+    from his last visit, joelburton-2006/12/25-en.  Zope looks at the
+    logged in user (now Anonymous) and creates a new ETag::
+
+      ETag: anonymous-2006/12/25-en
+
+    (requested by Anonymous, content last modified on Christmas,
+    prefer it in English). Since this is different than the ETag that
+    the proxy cache submitted, Zope will return the content itself,
+    since anonymous users might need a different page (without Joel's
+    name, for instance, or with different things showing because of
+    security).
+
+    Squid cannot handle requests with ETags, since it has no way of
+    knowing who is logged in, when content was created, and so on, so
+    all of these requests get routed around squid.  
+
+  The "ETag Components" choice allows you to select what things should
+  make up the ETag; as you choose things here, if any of these things
+  changes, it would cause the ETag to change, and cause the page to be
+  recalculated.
+
+  The default settings are sane but cautious: it causes a
+  re-examination if there are changes to the user who requested the
+  page, the current skinpath (i.e.,, Plone Default, Plone Tableless, or
+  a custom skinpath), whether they want gzipped content or not,
+  and the time of the last catalog change.
+
+  The list is an interesting idea. If you edit a news item, of course,
+  we'd want CacheFu to stop returning the old copy of that news item
+  view.  However, if you edit the title of the folder that news item
+  was in, we'd *also* want CacheFu to stop returning the old copy of
+  that news item view, since the old title of the parent folder would
+  appear in the navigation portlet, breadcrumbs, etc.
+
+  By having the date/time of the last catalog change factor into the
+  ETag, *any* change to *any* object will cause CacheFu to
+  re-create the content pages. This guarantees fresh navigation,
+  but at the expense of re-creating things where staleness might have
+  never been an issue, or where it might have been acceptable.
+
+  This ETag setting is just for logged-in users; for anonymous users,
+  remember, the page is cached in the proxy for an hour regardless of
+  ETags, and, as such, any change to the site won't cause everything
+  to be unusable from cache.
+
+  If you don't care about this, and desire more performance, you could
+  opt to change the "Time of last catalog change" to "Context
+  modification time". This would mean that editing anything won't
+  invalidate all ETags, but it does mean that an old title for a
+  sibling might appear in the navigation tree or breadcrumbs, or such.
+  This can significantly speed up performance, and may be worth
+  considering.
+
+  In addition to the checkbox ETag choices, you also can indicate
+  which request values should be factored into the ETag. The default is
+  month, year, orig_query. This is used for the calendar portlet--you
+  might have changed nothing on the site since this page was requested
+  a while ago *but* this request is for a user who has clicked the
+  next-month button on the calendar, and, as such, needs a different
+  response: the same piece of content, but with the calendar portlet
+  showing the next month.
+
+  If you add other form variables to your view templates and changes
+  to these should cause the page to be cached differently, you should
+  add them here.
+
+  Note the difference between the "Cache Preventing Request Values",
+  above (which held "portal_status_message") and this. The
+  cache-preventing-values piece says that *if this value exists, don't
+  match the rule* (and therefore, don't send out the caching headers,
+  etc., for this rule). The "ETag request values" field says *you can
+  cache it if this value exists, but consider it a different request*.
+  
+  "ETag Timeout" is a failsafe for ETags. This is the number of
+  seconds that an ETag should ever last. At 3600 (the default here),
+  it means that *even if* the ETag comparison suggests nothing has
+  changed, that Zope should generate a new page anyway. It's good to
+  have this--this way, if you forget to have your caching predicated
+  on a certain value, you *still* won't hold onto stale content views
+  for more than one hour.
+
+  "ETag Expression" allows you calculate anything as an additional
+  ETag value.
+
+  "Purge Expression" is a script that can handle the purging in Squid
+  of content views once changed. You shouldn't have to edit this.
+
+Containers
+
+  This rule is used for folderish content types (Folder and Large
+  Plone Folder). It is similar to the Content rule.
+
+  The difference is that, for anonymous users, the Content rule caches
+  the view of the content object until the object changes, whereas,
+  that would provide too much stale content for views of folderish
+  objects. The view of a folder traditionally is a list of the child
+  objects, so when a folder gets a new document added to it, or has
+  one of its child documents edited, the view of the entire folder
+  needs to be changed.
+
+  It's difficult to decide if any child object was changed; instead,
+  CacheFu relies on the quick (but much more general) rule of: has
+  any object in the entire catalog been changed? If so, the view for
+  a Folderish object must be regenerated.
+
+  Therefore, these are never cached in Squid or Apache (it would be
+  difficult to purge every possible view of every folderish content
+  item on every catalog change!) and are cached in Zope, using the
+  same ETag strategy as for the Content rule, above. Essentially,
+  both anonymous and logged-in users who view container views are 
+  treated the same as logged-in users viewing content with the
+  Content rule.
+
+Templates
+
+  This rule is for "templates"--skin objects like Page Templates
+  that are not presenting a piece of content, and are not forms.
+  A good example is the "accessibility-info" template that comes with
+  Plone; this isn't content, is not a form, but is a page that
+  could be cached until it changes.
+
+  The "templates" field is a list of those templates that match
+  this rule. As you add new templates that could be matched by the
+  rule, you can list them here.
+
+  These are cached with ETags, using the same strategy as for Content
+  and Containers rules, above.
+
+  Similar to the Container rule strategy, the cache is cleared for
+  these every time the catalog changes. Almost all template rely
+  on the main template, which relies on a dozen other templates, and
+  it would be very difficult to track all of these dependencies.
+  Therefore, any change to anything in Zope might affect what these
+  template should show, and, as such, clears them.
+
+  This is safe and conservative. Some sites may decide that it is
+  acceptable, for anonymous users, to cache these Templates in a proxy
+  server, so that they are cached for an hour (or 24 hours, or more).
+  Changes to the template itself, or to the `main_template` or other
+  template won't appear, but these sort of changes might be very rare
+  on a production site, and, if they happened, the sysadmin could
+  restart the proxy server to clear it's entire cache.
+
+.. tip:: Why Not Forms?
+
+  So, why aren't forms cachable with the Template rule?
+
+  Forms are use in Plone both to show the form, and also to
+  re-present the form with validation errors; if the form was
+  cached and used from cache, it might have validation errors
+  and already-entered data from a previous user.
+
+  FIXME: geoffd, couldn't this be fixed by adding form.submitted
+  to the 'Cache preventing request values' box? Or are there
+  other reasons why forms shouldn't be cached? [GD: yes, probably, but
+  I don't think it would be a huge win]
+
+XXXX END OF WRITTEN PART
+
+- More likely to use Apache than Squid, or to use nothing at all
+
+  - But everything should "work" w/o Squid, even if things are cache-in-mem rather than cache-in-squid when they could be
+
+- Should know to associate w/HTTP Cache for fine-to-cache full pages (ie, homepage if w/o personalization & portlets)
+
+- Cloned content types that are non-folderish should be added to content rules
+
+- New views for content (ie, news_item_short) that aren't on the display menu choices should be added to content tab
+
+- If add portlets that use form vars (ie, show-more-news-in-portlet or show-less-news-in-portlet), add this formvar to "etag request item" in all places
+
+- Cloned folderish types should get added to the containers tab
+
+- New views for folderish things that aren't on display menu choice should be added to containers tab
+
+- New templates that aren't contentish should be added to "templates" as long as it doesn't depend on things like clock
+
+  - if template uses formvars, add them to cache_preventing_Req_items, unless they're commonly-shared (worse case is that we
+    cache too many choices)
+
+- Nothing to know about for CSS/JS
+
+- If we clone new File/Image types, add to file/image
+
+- Know when to clear page cache [XXX: when is that? GD: for debugging]
+
+- *Might* be helpful for them to understand the header-settings, but only the most basic (ie, cache-for-1h-not-1d, etc.)
+
+  - XXX: should we ship additional header settings (ie, ship with "cache-in-mem-for-1h" v "cache-in-member-for-1d" (both of which could still be cleared, of course, but would have diff max cache lengths)
+
+- RAMCaches still work exactly the same, so you can still do things like cache production of news-item-portlet-search
+
+  - Nothing here to clear those RAM caches in advance, or in any smart way
+
+- RelDB caches still work the same
+
+  - Nothing here to clear those reldb caches in advance
+
+
+Intermediate Developers
+=======================
+
+- [These are people who are building Archetypes, building web apps, but not neccessarily hard-core-geeks]
+
+- FIXME
+
+Advanced Developers
+===================
+
+- [These are people who are seriously customizing Plone, and will learn more knobs to get more power]
+
+- FIXME
+
+System Admins
+=============
+
+- [People who administer the Squid/Apache stuff, but aren't necc Zope/Plone people]
+
+- FIXME
+
+-----------------
+Special Audiences
+-----------------
+
+People may fit into more than one of these, in addition to above audiences.
+
+
+People who store uesrs in LDAP / Rel DB 
+=======================================
+
+- Default caching is too aggressive to cover this case
+
+- Should check "user roles" everywhere that "user id" is checked in ETags
+
+  - Covers case of "joel was manager but changed in LDAP to make him just member"
+ 
+  - Since that won't change catalog, and therefore won't work w/existing etag choices
+
+People who don't store content in ZODB
+======================================
+
+- (ie, storing content on filesytem or in relational database)
+
+- If catalog doesn't change on content change, many clear-cache features won't work
+
+  - Default caching will be too aggressive
+
+  - [FIXME: Is there a built-in fix for this? They could just not add those fs- or reldb-stored content types to "content" tab, right? This miss anything significant?]
+
+People Who Want to Learn to Use Squid
+=====================================
+
+- FIXME: What do they need to know to do this?
+
+LDAP/RelDB storage of users
+===========================
+
+- Cachefu can act on user roles or on user, and not know that user perms have changed
