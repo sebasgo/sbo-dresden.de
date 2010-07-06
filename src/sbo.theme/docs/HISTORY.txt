@@ -1,9 +1,7 @@
-Changelog for sbo.theme
+Changelog
+=========
 
-    (name of developer listed in brackets)
+1.0dev (unreleased)
+-------------------
 
-sbo.theme - 0.1 Unreleased
-
-    - Initial package structure.
-      [zopeskel]
-
+- Initial release

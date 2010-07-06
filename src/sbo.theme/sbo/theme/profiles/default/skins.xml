@@ -1,7 +1,21 @@
 <?xml version="1.0"?>
-<object name="portal_skins" allow_any="False" cookie_persistence="False"
-   default_skin="SBO Theme">
+<!-- This file holds the setup configuration for the portal_skins tool -->
 
+<!-- Change the value of these parameters to modify portal_skins behavior:
+     - allow_any: change it to True if you want users to be able to select the
+       skin to use from their personal preferences management page. In the
+       ZMI, this value is known as 'Skin flexibility'.
+     - cookie_persistence: change it to True if you want to make the skin cookie
+       persist indefinitely. In the ZMI, this value is known as 'Skin Cookie
+       persistence'.
+       -->
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="SBO Plone Theme">
+
+ <!-- This list registers the folders that are stored in the skins directory
+      of your product (on the filesystem) as Filesystem Directory Views within
+      the portal_skins tool, so that they become usable as skin layers.
+      -->
  <object name="sbo_theme_custom_images"
     meta_type="Filesystem Directory View"
     directory="sbo.theme:skins/sbo_theme_custom_images"/>
@@ -12,7 +26,19 @@
     meta_type="Filesystem Directory View"
     directory="sbo.theme:skins/sbo_theme_styles"/>
 
- <skin-path name="SBO Theme" based-on="Plone Default">
+ <!-- A skin-path in this file corresponds to a Skin Selection in the
+     'Properties' tab of the portal_skins tool, in the ZMI.
+     You can define for each new skin path the layers that it holds. A new
+     skin can be based on another existing one by using the 'based-on'
+     attribute.
+     The definition of a layer accepts these parameters:
+       - name: quite self explanatory, the name of the layer.
+       - insert-before: name of the layer before which it must be added.
+       - insert-after: name of the layer after which it must be added.
+       Note: insert-before (and -after) accepts the value "*" which means
+       "all".
+       -->
+ <skin-path name="SBO Plone Theme" based-on="Plone Default">
   <layer name="sbo_theme_custom_images"
      insert-after="custom"/>
   <layer name="sbo_theme_custom_templates"

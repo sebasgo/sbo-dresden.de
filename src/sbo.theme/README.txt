@@ -1,7 +1,4 @@
-sbo.theme Package Readme
-=========================
+Introduction
+============
 
-Overview
---------
 
-An installable theme for Plone 3.0
