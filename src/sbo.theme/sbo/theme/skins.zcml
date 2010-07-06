@@ -3,12 +3,14 @@
     xmlns:cmf="http://namespaces.zope.org/cmf"
     i18n_domain="sbo.theme">
 
-   <!-- File System Directory Views registration -->
-   <cmf:registerDirectory
-       name="sbo_theme_custom_images"/>
-   <cmf:registerDirectory
-       name="sbo_theme_custom_templates"/>
-   <cmf:registerDirectory
-       name="sbo_theme_styles"/>
+  <!-- File System Directory Views registration -->
+  <cmf:registerDirectory name="sbo_theme_custom_images"/>
+  <cmf:registerDirectory name="sbo_theme_custom_templates"/>
+  <cmf:registerDirectory name="sbo_theme_styles"/>
+
+  <!-- Note: This could also be done for all folders at once
+       by replacing the previous lines with this one:
+  <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
+  -->
 
 </configure>

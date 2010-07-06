@@ -5,10 +5,18 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="SBO Theme"
+      title="SBO Plone Theme"
       directory="profiles/default"
-      description='Extension profile for the "SBO Theme" Plone theme.'
+      description='Extension profile for the "SBO Plone Theme" Plone theme.'
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+  <genericsetup:importStep
+      name="sbo.theme.various"
+      title="SBO Plone Theme: miscellaneous import steps"
+      description="Various import steps that are not handled by GS import/export handlers."
+      handler="sbo.theme.setuphandlers.setupVarious">
+    <depends name="skins"/>
+  </genericsetup:importStep>
 
 </configure>

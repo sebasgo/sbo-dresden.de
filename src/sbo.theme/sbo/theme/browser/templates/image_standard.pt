@@ -1,5 +1,9 @@
 <tal:manager replace="structure provider:collage.ContentManager" />
-
+<!--
+    Overrides the way Collage renders images.
+    
+    Instead of showing full images the preview images are used.
+-->
 <img class="collage-image"
      tal:attributes="alt here/title_or_id;
 		     src string:${here/absolute_url}/image_preview" />
