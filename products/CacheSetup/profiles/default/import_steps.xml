@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
- <import-step id="cachesettings" version="20060907-01"
-              handler="Products.CacheSetup.exportimport.cachefu.importSetup"
-              title="CacheFu Settings Tool">
-  Import CacheFu settings.
- </import-step>
-</import-steps>

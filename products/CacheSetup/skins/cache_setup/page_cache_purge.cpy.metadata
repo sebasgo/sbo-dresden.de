@@ -1,8 +1,0 @@
-[default]
-title = Purges the Page Cache
-
-[validators]
-validators =
-
-[actions]
-action.success=traverse_to:string:page_cache_config
