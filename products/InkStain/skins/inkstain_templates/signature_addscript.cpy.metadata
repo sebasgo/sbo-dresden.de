@@ -1,9 +1,0 @@
-[default]
-title=Add a guestbook message
-
-[validators]
-validators=
- 
-[actions]
-action.failure=redirect_to:string:view
-action.success=redirect_to:string:view
