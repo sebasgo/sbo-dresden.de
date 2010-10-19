@@ -1,25 +1,20 @@
 <?xml version="1.0"?>
 <rolemap>
-  <roles>
-    <role name="StaffMember" />
-  </roles>
   <permissions>
       <permission name="View"
                 acquire="True">
         <role name="Reader" />
-        <role name="StaffMember" />
+        <role name="Member" />
     </permission>
     
     <!-- This disables the dashboard for regular members -->
     <permission name="Portlets: Manage own portlets" acquire="False">
         <role name="Manager" />
-        <role name="StaffMember" />
+        <role name="Contributor" />
     </permission>
     
-    <!-- This allows anonymous visitors to register for the site  -->
     <permission name="Add portal member" acquire="False">
         <role name="Manager" />
-        <role name="Anonymous" />
     </permission>
   </permissions>
 </rolemap>
