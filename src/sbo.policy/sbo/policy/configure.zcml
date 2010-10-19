@@ -4,7 +4,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="sbo.policy">
 
-    <include package="sbo.theme" />
+    <!-- <include package="sbo.theme" /> -->
 
     <five:registerPackage package="." initialize=".initialize" />
 
