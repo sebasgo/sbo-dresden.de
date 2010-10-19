@@ -3,7 +3,7 @@ from Products.CMFCore.utils import getToolByName
 
 PRODUCT_DEPENDENCIES = (
 #    'sbo.theme',
-#    'plone.app.iterate',
+    'plone.app.iterate',
 #    'Collage',
 )
 
