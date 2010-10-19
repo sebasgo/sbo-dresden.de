@@ -1,9 +1,11 @@
 import transaction
 from Products.CMFCore.utils import getToolByName
 
-PRODUCT_DEPENDENCIES = ('sbo.theme',
-	'plone.app.iterate',
-	'Collage',)
+PRODUCT_DEPENDENCIES = (
+#    'sbo.theme',
+#    'plone.app.iterate',
+#    'Collage',
+)
 
 EXTENSION_PROFILES = ('sbo.policy:default',)
 
@@ -12,7 +14,6 @@ def install(self, reinstall=False):
     portal_setup = getToolByName(self, 'portal_setup')
 
     for product in PRODUCT_DEPENDENCIES:
-	print product
         if reinstall and portal_quickinstaller.isProductInstalled(product):
             portal_quickinstaller.reinstallProducts([product])
             transaction.savepoint()
