@@ -3,58 +3,36 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="sbo.theme">
 
-  <!-- 'SBO Plone Theme' Zope 3 browser layer
-    Register views, viewlets and resources for this layer to make sure
-    they only apply to the 'SBO Plone Theme' theme.
-    You can also use this layer to override default Plone browser views
-    and viewlets only within the 'SBO Plone Theme' theme.
-  -->
   <interface
       interface=".interfaces.IThemeSpecific"
       type="zope.publisher.interfaces.browser.IBrowserSkinType"
       name="SBO Plone Theme"
       />
   
-  <!-- Viewlets registration -->
-  <!-- EXAMPLE (UNCOMMENT TO MAKE AVAILABLE):
-  <browser:viewlet
-      name="sbo.someviewlet"
-      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-      class=".viewlets.MyViewlet"
-      layer=".interfaces.IThemeSpecific"
-      permission="zope2.View"
-      />
-  -->
-
-  <!-- Zope 3 browser resources -->
-
-  <!-- Resource directory for images
-    See sbo/theme/browser/images/README.txt
-    for more information about registering images as Zope 3 browser
-    resources.
-  -->
   <browser:resourceDirectory
       name="sbo.theme.images"
       directory="images"
       layer=".interfaces.IThemeSpecific"
       />
 
-  <!-- Resource directory for stylesheets
-    See sbo/theme/browser/stylesheets/README.txt
-    for more information about registering stylesheets as Zope 3 browser
-    resources.
-  -->
   <browser:resourceDirectory
       name="sbo.theme.stylesheets"
       directory="stylesheets"
       layer=".interfaces.IThemeSpecific"
       />
-    <browser:viewlet
-        name="sbo.footer"
-        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        layer=".interfaces.IThemeSpecific"
-        template="templates/footer.pt"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="sbo.footer"
+      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+      layer=".interfaces.IThemeSpecific"
+      template="templates/footer.pt"
+      permission="zope2.View"
+      />
+  <browser:viewlet
+      name="sbo.global_nav"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      layer=".interfaces.IThemeSpecific"
+      class=".viewlets.GlobalNavViewlet"
+      permission="zope2.View"
+      />
 
 </configure>

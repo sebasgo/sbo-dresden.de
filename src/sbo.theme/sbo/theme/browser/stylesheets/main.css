@@ -1,299 +1,34 @@
-ul {
-  list-style-image: none;
+#portal-globalnav {
+        position:relative;
+        display: inline;
 }
 
-h1, h2 {
-  border-bottom: 1px solid #cccccc;
+#portal-globalnav li ul {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+        z-index: 200;
 }
 
-#content h2, #content h3 {
-  margin-top: 1.5em;
+#portal-globalnav li ul li {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        clear: left;
 }
 
-a,
-a.statePublished,
-dd.portletItem a,
-dd.portletFooter a,
-dd.portletItem a:visited,
-dd.portletFooter a:visited {
-  color: #444444;
+#portal-globalnav li ul li a {
+        display: block;
 }
 
-.documentContent p a {
-  border-bottom: #cccccc;
+#portal-globalnav li:hover ul {
+        visibility: visible;
+        display: block;
 }
 
-.callout {
-  color: #D5A47C;
-}
-
-.pullquote {
-  border-left: 4px solid #A4A4A4;
-}
-
-pre {
-  background-color: #eeeeee;
-  border: 1px solid #cccccc;
-}
-
-#login-form input
-{
-  font-size: 100%
-}
-
-.documentActions {
-  border-top: 1px solid #ccc;
-}
-
-/* page layout styles */
-
-body {
-  background-color: #e4e4e4;
-  margin: auto;
-  padding: 0;
-  width: 960px;
-}
-
-#visual-portal-wrapper {
-  margin: 20px;
-  background-color: white;
-}
-
-#portal-top {
-  background-color: #f7cfae;
-}
-
-#portal-header {
-  background-image: url('++resource++sbo.theme.images/headerbg.png');
-}
-
-#portal-siteactions li a {
-  border: 0;
-  font-size: 80%;
-  color: #777777;
-  height: auto;
-  padding: 0;
-  padding-left: 0.4em;
-  margin-right: 0;
-  text-decoration: none;
-}
-
-#portal-siteactions li.selected a {
-  border: 0;
-  background-color: transparent;
-  color: #777777;
-}
-
-#portal-siteactions li a:hover {
-  border: 0;
-  background-color: transparent;
-  color: #444444;
-}
-
-#portal-logo {
-  padding-bottom: 1.5em;
-  font-size: 100%;
-  display: inline;
-}
-
-#portal-logo img {
-  margin: 1em 0em 1em 2em;
-}
-
-#portal-personaltools {
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
-  background-color: #FBE5D3;
-  padding: 0 2em;
-}
-
-#portal-personaltools li a {
-  color: #777777;
-}
-
-/* Stylesheets for navigation tree */
-
-
-dl.portletNavigationTree dt.portletHeader {
-  display: none;
-}
-
-dl.portletNavigationTree dd.portletItem {
-  padding: 0;
-  border: 0;
-}
-
-dl.portletNavigationTree dd.lastItem{
-  border-bottom: 1px #dddddd solid;
-}
-
-/* Stylesheets for navigation: all tree levels */
-
-
-dl.portletNavigationTree .navTreeItem a,
-dl.portletNavigationTree .navTreeItem a:hover
-dl.portletNavigationTree .navTreeItem a.navTreeCurrentItem {
-  color: #444444 !important;
-  border: 0 !important;
-}
-
-dl.portletNavigationTree .navTreeItem a:hover,
-dl.portletNavigationTree .navTreeItem a.navTreeCurrentItem {
-  background-color: #e8e8e8 !important;
-}
-
-/* Stylesheets for navigation tree level 0 */
-dl.portletNavigationTree .navTreeLevel0 li.navTreeItem {
-  border-top: 1px solid #dddddd;
-  padding: 0.4em 0;
-}
-
-dl.portletNavigationTree .navTreeLevel0 a,
-dl.portletNavigationTree .navTreeLevel0 a:hover,
-dl.portletNavigationTree .navTreeLevel0 a.navTreeCurrentItem {
-  background-repeat: repeat-y;
-  background-color: transparent;
-  padding-left: 1.67em;
-  font-size: 120%;
-  padding-top: 0.6em !important;
-  padding-bottom: 0.6em !important;
-}
-
-dl.portletNavigationTree .navTreeLevel0 a {
-  background-image: url('++resource++sbo.theme.images/navtreeitembg_normal.png');
-}
-
-
-dl.portletNavigationTree .navTreeLevel0 a:hover,
-dl.portletNavigationTree .navTreeLevel0 a.navTreeCurrentItem {
-  background-image: url('++resource++sbo.theme.images/navtreeitembg_active.png');
-}
-
-/* Stylesheets for navigation:s tree levels > 0 */
-
-dl.portletNavigationTree .navTreeLevel1 {
-  margin-left: 2em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-dl.portletNavigationTree .navTreeLevel1 li.navTreeItem {
-  border-top: 0;
-  padding: 0;
-}
-
-dl.portletNavigationTree .navTreeLevel1 a,
-dl.portletNavigationTree .navTreeLevel1 a:hover,
-dl.portletNavigationTree .navTreeLevel1 a.navTreeCurrentItem {
-  font-size: 100%;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  padding-left: 0;
-}
-
-dl.portletNavigationTree .navTreeLevel1 a {
-  background-image: none;
-}
-
-
-dl.portletNavigationTree .navTreeLevel1 a:hover,
-dl.portletNavigationTree .navTreeLevel1 a.navTreeCurrentItem {
-  background-image: none;
-}
-
-dl.portlet {
-  border-bottom: 0;
-  margin:1px 0pt 3em;
-}
-
-.portletHeader {
-  background-color: transparent;
-  border: 0;
-  border-top: 1px solid #dddddd;
-  border-bottom: 1px solid #dddddd;
-  padding: 0;
-  color: #444444;
-}
-
-.portletItem {
-  border: 0;
-  padding: 1em 0;
-  clear: both;
-}
-
-.even {
-  background-color: transparent;
-}
-
-.visualIconPadding {
-  padding-left: 0;
-}
-
-span.portletItemDetails {
-  color: #444444;
-}
-
-
-dd.portletFooter {
-  background-color: transparent;
-  border-color: #dddddd;
-  border-style: solid none none none;
-  border-width: 1px 0 0 0;
-  padding: 0;
-}
-
-#portal-footer {
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
-  background-color: #FBE5D3;
-  padding: 2px 2em;
-  text-align: left;
-}
-
-a.link-parent {
-  display: none;
-}
-
-#portal-breadcrumbs {
-  border-bottom: 0;
-  background-color: white;
-}
-
-div.documentByLine {
-  margin-top: 1.5em;
-}
-
-.documentContent .portletFooter, .documentContent .portletItem {
-  padding: 0.3em 0;
-}
-
-fieldset {
-  border: 1px solid #cccccc;
-}
-
-input, textarea {
-  border: 1px solid #aaaaaa;
-}
-
-.fieldRequired {
-  padding-right: -5px;
-}
-
-/* guestbook */
-
-.inkstain-entry-name {
-  background-color: transparent;
-  border-bottom: 1px solid #cccccc;
-}
-
-.inkstain-entry-message {
-  padding: 0.2em 0;
-}
-
-
-.listingBar {
-  border: 0;
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
-  background-color: #FBE5D3;
+#portal-globalnav li {
+        display: inline;
+        position: relative;
+        float: left;
 }
