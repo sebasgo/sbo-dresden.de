@@ -1,43 +1,32 @@
-<!--
-  'view' refers to the MyViewlet class in viewlets.py
-  If you do not need anything fancy where python code might help,
-  like just a viewlet that displays '<h1>Hello World</h1>',
-  then you can remove anything else from this page template, remove
-  viewlets.py and change the viewlet registration in configure.zcml:
-  replace
-     class=".viewlets.MyViewlet"
-  with 
-     template="viewlet.pt"
-  -->
 <tal:tabs tal:condition="view/portal_tabs"
 i18n:domain="plone">
 <h5 class="hiddenStructure" i18n:translate="heading_sections">Sections</h5>
 
-<ul id="portal-globalnav">
-    <tal:tabs tal:repeat="tab view/portal_tabs"><li tal:attributes="id string:portaltab-${tab/id};
+<ul id="portal-globalnav"
+    ><tal:tabs tal:repeat="tab view/portal_tabs"><li tal:attributes="id string:portaltab-${tab/id};
     class python:view.selected_portal_tab==tab['id'] and 'selected' or 'plain'"
     ><a href=""
         tal:content="tab/name"
         tal:attributes="href tab/url;
         title tab/description|nothing">
         Tab Name
-    </a>
-    <tal:block omit-tag=""
-    tal:define="subnav tab/subtab;">
-    <tal:block omit-tag="" tal:condition="subnav">
-    <ul class="nn-twolevel-subnav">
-        <tal:tabs tal:repeat="subtab subnav">
-        <li tal:attributes="id string:portaltab-${subtab/id};">
-        <a href="" class="" tal:attributes="href subtab/url;" accesskey="accesskeys-tabs" i18n:attributes="accesskey">
-            <tal:block omit-tag="" i18n:translate="" >
-            <span tal:replace="subtab/name">Tab Name</span>
-            </tal:block>
-        </a>
-        </li>
-        </tal:tabs>
-    </ul>
-    </tal:block>
-    </tal:block>
-    </li></tal:tabs>
+    </a
+    ><tal:block omit-tag=""
+    tal:define="subnav tab/subtab;"
+    ><tal:block omit-tag="" tal:condition="subnav"
+    ><ul class="level-two"
+        ><tal:tabs tal:repeat="subtab subnav"
+        ><li tal:attributes="id string:portaltab-${subtab/id};"
+        ><a href="" class="" tal:attributes="href subtab/url;" accesskey="accesskeys-tabs" i18n:attributes="accesskey"
+            ><tal:block omit-tag="" i18n:translate="" 
+            ><span tal:replace="subtab/name">Tab Name</span
+            ></tal:block
+        ></a
+        ></li
+        ></tal:tabs
+    ></ul
+    ></tal:block
+    ></tal:block
+    ></li></tal:tabs>
 </ul>
 </tal:tabs>

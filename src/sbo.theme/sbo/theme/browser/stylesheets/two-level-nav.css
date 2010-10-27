@@ -1,0 +1,28 @@
+#portal-globalnav {
+    position: relative;
+}
+
+#portal-globalnav li ul {
+        display: none;
+        visibility: hidden;
+        z-index: 200;
+        position: absolute;
+        left: 0px;
+}
+
+#portal-globalnav li ul li {
+}
+
+#portal-globalnav li ul li a {
+}
+
+#portal-globalnav li.selected ul
+{
+        visibility: visible;
+        display: block;
+}
+
+#portal-globalnav li
+{
+        float: left;
+}
