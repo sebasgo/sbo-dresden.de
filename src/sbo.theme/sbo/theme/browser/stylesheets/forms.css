@@ -1,0 +1,15 @@
+#archetypes-fieldname-title input
+{
+    font-size: 14px;
+}
+
+#archetypes-fieldname-description textarea#description
+{
+
+    font-size: 14px;
+}
+
+.ploneSkin table.mceToolbar
+{
+    float: none !important;
+}
