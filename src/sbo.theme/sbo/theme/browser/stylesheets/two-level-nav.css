@@ -1,7 +1,9 @@
 #portal-globalnav {
     position: relative;
-    height: 27px;
+    height: 55px;
     background-image: url(++resource++sbo.theme.images/globalnav-bg.png);
+    background-repeat: repeat-x;
+    background-color: #f0f1f2;
     font-size: 12px;
     margin: 0;
 }
@@ -39,9 +41,11 @@
         z-index: 200;
         position: absolute;
         left: 0px;
-        top: 27px;
-        width: 1000px;
-        background-color: red;
+        top: 28px;
+        width: 680px;
+        background-image: url(++resource++sbo.theme.images/globalnav-second-level-bg.png);
+        padding: 0 50px;
+        
 }
 
 #portal-globalnav li.selected ul
@@ -53,7 +57,14 @@
 #portal-globalnav li ul li {
 }
 
-#portal-globalnav li ul li a {
+#portal-globalnav li.selected ul li a
+{
+    background-image: none;
 }
 
+#portal-globalnav li.selected ul li a:hover,
+#portal-globalnav li.selected ul li.selected a
+{
+    background-image: url(++resource++sbo.theme.images/globalnav-second-level-selected-tab-bg.png);
+}
 
