@@ -27,4 +27,8 @@
         <viewlet name="plone.colophon" />
     </hidden>
 
+    <hidden manager="plone.abovecontent" skinname="SBO Plone Theme">
+        <viewlet name="plone.path_bar" />
+    </hidden>
+    
 </object>

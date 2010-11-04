@@ -1,11 +1,11 @@
 #portal-globalnav {
     position: relative;
-    height: 55px;
+    height: 61px;
     background-image: url(++resource++sbo.theme.images/globalnav-bg.png);
     background-repeat: repeat-x;
     background-color: #f0f1f2;
     font-size: 12px;
-    margin: 0;
+    margin: 0 0 5px;
 }
 
 #portal-globalnav li
@@ -45,6 +45,7 @@
         width: 680px;
         background-image: url(++resource++sbo.theme.images/globalnav-second-level-bg.png);
         padding: 0 50px;
+        height: 33px;
         
 }
 
