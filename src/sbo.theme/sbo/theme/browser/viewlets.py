@@ -109,13 +109,28 @@ class GlobalNavViewlet(ViewletBase):
 
         rawresult = portal_catalog.searchResults(**query)
 
+        request = getattr(context, 'REQUEST', {})
+        objPath = None
+        objPhysicalPath = None
+        if context is not None:
+            objPhysicalPath = context.getPhysicalPath()
+            if utils.isDefaultPage(context, request):
+                objPhysicalPath = objPhysicalPath[:-1]
+            objPath = '/'.join(objPhysicalPath)
+
         # now add the content to results
         for item in rawresult:
             if not (excludedIds.has_key(item.getId) or item.exclude_from_nav):
                 id, item_url = get_view_url(item)
+                itemPath = item.getPath()
+                isCurrent = False
+                if objPath is not None:
+                    if objPath.startswith(itemPath):
+                        isCurrent = True
                 data = {'name'      : utils.pretty_title_or_id(context, item),
                         'id'         : item.getId,
                         'url'        : item_url,
-                        'description': item.Description}
+                        'description': item.Description,
+                        'is_current' : isCurrent}
                 result.append(data)
         return result
