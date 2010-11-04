@@ -2,11 +2,11 @@
 
 <object>
     <order manager="plone.portalheader" skinname="SBO Plone Theme"
-           based-on="Plone Default">
+           based-on="Plone Default" purge="True">
         <viewlet name="plone.personal_bar" />
         <viewlet name="plone.skip_links" />
         <viewlet name="plone.logo" />
-        <viewlet anem="sbo.global_nav" />
+        <viewlet name="sbo.global_nav" />
     </order>
 
     <hidden manager="plone.portalheader" skinname="SBO Plone Theme">
@@ -15,9 +15,10 @@
         <viewlet name="plone.app.i18n.locales.languageselector" />
     </hidden>
 
-    <!-- Leave the footer alone for now
     <order manager="plone.portalfooter" skinname="SBO Plone Theme"
-           based-on="Plone Default">
+            based-on="Plone Default" purge="True">
+        <viewlet name="sbo.footer_sep" />
+        <viewlet name="plone.site_actions" />
         <viewlet name="sbo.footer" />
     </order>
 
@@ -25,6 +26,5 @@
         <viewlet name="plone.footer" />
         <viewlet name="plone.colophon" />
     </hidden>
-    -->
 
 </object>
