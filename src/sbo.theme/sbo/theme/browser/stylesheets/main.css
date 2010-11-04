@@ -7,17 +7,22 @@ body
 
 h1
 {
-    font-size: 22px;
+    color: #001d3e;
+    font-size: 19px;
+    line-height: 1em;
+    border-bottom: 2px solid #001d3e;
+    margin-bottom: 5px;
 }
 
 h2
 {
-    font-size: 20px;
+    color: #001d3e;
+    font-size: 18px;
 }
 
 h3, h4
 {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 h5
@@ -32,7 +37,7 @@ h6
 
 #visual-portal-wrapper
 {
-    width: 1000px;
+    width: 780px;
     margin: auto;
     background-color: white;
 }
@@ -60,7 +65,8 @@ h6
 
 #content
 {
-    font-size: 14px;
+    font-size: 11px;
+    line-height: 1.5em;
 }
 
 #content .documentDescription,
@@ -68,10 +74,52 @@ h6
     color: #666;
     margin-left: 0;
     font-style: bold;
-    font-size: 16px
+    font-size: 13px;
+    margin-bottom: 1em;
 }
 
-#edit-bar
+#edit-bar,
+ul.formTabs
 {
     font-size: 11px;
 }
+
+#edit-bar .contentViews
+{
+    float: none;
+}
+
+#content-views li.selected a,
+#content-views li a:hover
+{
+    background-color: #ccc;
+}
+
+
+#edit-bar #contentActionMenus
+{
+    float: none;
+    display: block;
+    height: 22px;
+    position: static;
+    background: #ccc;
+    border: 0;
+    border-radius: 0;
+    right: 0;
+    top: 0;
+}
+
+#contentActionMenus dl.actionMenu a
+{
+    background-color: transparent;
+    color: #000;
+}
+
+#contentActionMenus dl.actionMenu dd.actionMenuContent,
+#contentActionMenus dl.actionMenu dd.actionMenuContent a
+{
+    background-color: #ccc;
+    border-bottom-color: #ccc;
+    color: #000;
+}
+
