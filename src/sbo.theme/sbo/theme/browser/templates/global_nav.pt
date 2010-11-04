@@ -16,8 +16,9 @@ i18n:domain="plone">
     ><tal:block omit-tag="" tal:condition="subnav"
     ><ul class="level-two"
         ><tal:tabs tal:repeat="subtab subnav"
-        ><li tal:attributes="id string:portaltab-${subtab/id};"
-        ><a href="" class="" tal:attributes="href subtab/url;" accesskey="accesskeys-tabs" i18n:attributes="accesskey"
+        ><li tal:attributes="id string:portaltab-${subtab/id}; class python:subtab['is_current'] and 'selected' or 'plain'"
+        ><a href="" class="" tal:attributes="href subtab/url;"
+                accesskey="accesskeys-tabs" i18n:attributes="accesskey"
             ><tal:block omit-tag="" i18n:translate="" 
             ><span tal:replace="subtab/name">Tab Name</span
             ></tal:block
