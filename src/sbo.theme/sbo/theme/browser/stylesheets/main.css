@@ -123,3 +123,38 @@ ul.formTabs
     color: #000;
 }
 
+#portal-footer-sep
+{
+    clear: both;
+    height: 9px;
+    background-image:  url(++resource++sbo.theme.images/footer-sep.png);
+}
+
+#portal-siteactions
+{
+    height: 15px;
+    padding: 3px 0 0;
+    font-size: 11px;
+    overflow: hidden;
+    background-image:  url(++resource++sbo.theme.images/footer-siteactions-bg.png);
+}
+
+#portal-siteactions li a,
+#portal-siteactions li a:hover
+{
+    font-size: 11px;
+    color: white;
+}
+
+#portal-footer
+{
+    height: 17px;
+    font-size: 11px;
+    margin: 0;
+    padding: 2px 0 0;
+    overflow: hidden;
+    line-height: 1em;
+    text-align: center;
+    background-image:  url(++resource++sbo.theme.images/footer-bg.png);
+    color: #fff;
+}

@@ -1,0 +1,3 @@
+<div id="portal-footer-sep" metal:define-macro="portal_footer_sep"
+i18n:domain="sbo.theme" ></div>
+

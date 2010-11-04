@@ -21,6 +21,13 @@
       layer=".interfaces.IThemeSpecific"
       />
   <browser:viewlet
+      name="sbo.footer_sep"
+      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+      layer=".interfaces.IThemeSpecific"
+      template="templates/footer_sep.pt"
+      permission="zope2.View"
+      />
+  <browser:viewlet
       name="sbo.footer"
       manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
       layer=".interfaces.IThemeSpecific"
