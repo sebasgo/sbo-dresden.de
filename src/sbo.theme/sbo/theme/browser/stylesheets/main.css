@@ -1,0 +1,77 @@
+body
+{
+    background-image: url(++resource++sbo.theme.images/bg-gradient.png);
+    background-repeat: repeat-x;
+    font: 16px Verdana, FreeSans, sans-serif;
+}
+
+h1
+{
+    font-size: 22px;
+}
+
+h2
+{
+    font-size: 20px;
+}
+
+h3, h4
+{
+    font-size: 18px;
+}
+
+h5
+{
+    font-size: 16px;
+}
+
+h6
+{
+    font-size: 14px;
+}
+
+#visual-portal-wrapper
+{
+    width: 1000px;
+    margin: auto;
+    background-color: white;
+}
+
+#portal-top div.width-full
+{
+    width: 100%
+}
+
+#portal-top div.position-0
+{
+    margin-left: -100%
+}
+
+#portal-personaltools-wrapper
+{
+    position: absolute;
+    right: 15px;
+}
+
+#portal-logo
+{
+    margin: 0;
+}
+
+#content
+{
+    font-size: 14px;
+}
+
+#content .documentDescription,
+#content #description {
+    color: #666;
+    margin-left: 0;
+    font-style: bold;
+    font-size: 16px
+}
+
+#edit-bar
+{
+    font-size: 11px;
+}

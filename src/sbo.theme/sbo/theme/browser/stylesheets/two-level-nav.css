@@ -1,13 +1,53 @@
 #portal-globalnav {
     position: relative;
+    height: 27px;
+    background-image: url(++resource++sbo.theme.images/globalnav-bg.png);
+    font-size: 12px;
+    margin: 0;
 }
+
+#portal-globalnav li
+{
+        float: left;
+}
+
+#portal-globalnav li.selected a,
+#portal-globalnav li a:hover,
+#portal-globalnav li.selected a:hover
+{
+    color: #000;
+    background: transparent;
+    background-image:  url(++resource++sbo.theme.images/globalnav-selected-tab-bg.png);
+    background-repeat: repeat-x;
+}
+
+
+#portal-globalnav li a
+{
+    background: transparent;
+    border: 0;
+    color: #fff;
+    height: 21px;
+    padding: 6px 8px 0;
+    width: 90px;
+    text-align: center;
+}
+
 
 #portal-globalnav li ul {
         display: none;
-        visibility: hidden;
         z-index: 200;
         position: absolute;
         left: 0px;
+        top: 27px;
+        width: 1000px;
+        background-color: red;
+}
+
+#portal-globalnav li.selected ul
+{
+        display: block;
+        
 }
 
 #portal-globalnav li ul li {
@@ -16,13 +56,4 @@
 #portal-globalnav li ul li a {
 }
 
-#portal-globalnav li.selected ul
-{
-        visibility: visible;
-        display: block;
-}
 
-#portal-globalnav li
-{
-        float: left;
-}
