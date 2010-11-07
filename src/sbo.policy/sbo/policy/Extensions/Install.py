@@ -2,9 +2,9 @@ import transaction
 from Products.CMFCore.utils import getToolByName
 
 PRODUCT_DEPENDENCIES = (
-#    'sbo.theme',
+    'sbo.theme',
     'plone.app.iterate',
-#    'Collage',
+    'Collage',
 )
 
 EXTENSION_PROFILES = ('sbo.policy:default',)
