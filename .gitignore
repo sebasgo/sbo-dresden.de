@@ -11,5 +11,6 @@ var/
 
 *~
 *.pyc
+*.pyo
 *.egg-info
 *.egg
