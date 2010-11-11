@@ -6,5 +6,11 @@
   <!-- configure your content components here -->
   
   <!-- -*- extra stuff goes here -*- -->
+  <class class=".guestbook.Guestbook">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IGuestbook"
+        />
+  </class>
 
 </configure>
