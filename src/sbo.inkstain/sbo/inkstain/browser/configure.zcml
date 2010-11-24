@@ -12,4 +12,11 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="..interfaces.IGuestbook"
+    name="writeentry"
+    class=".writeentry.WriteEntryForm"
+    permission="zope2.View"
+    />
+
 </configure>
