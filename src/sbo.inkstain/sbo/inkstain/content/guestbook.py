@@ -4,6 +4,7 @@
 from zope.interface import implements
 
 from OFS.SimpleItem import SimpleItem
+from persistent.list import PersistentList
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
@@ -43,11 +44,20 @@ schemata.finalizeATCTSchema(
 )
 
 class GuestbookEntry(SimpleItem):
-    name=None
-    email=None
     date=None
-    homepage=None
-    post=None
+    name=None
+    email_address=None
+    homepage_address=None
+    message=None
+
+    def __repr__(self):
+        return "<GuestbookEntry %r,%r,%r,%r,%r>" % (
+            self.date,
+            self.name,
+            self.email_address,
+            self.homepage_address,
+            self.message,
+        )
 
 class Guestbook(base.ATCTContent):
     """A simple guestbook"""
@@ -59,6 +69,8 @@ class Guestbook(base.ATCTContent):
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
     entries_per_page = atapi.ATFieldProperty('entries_per_page')
+
+    entries = PersistentList()
 
 atapi.registerType(Guestbook, PROJECTNAME)
 
