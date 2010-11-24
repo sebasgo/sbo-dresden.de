@@ -70,7 +70,11 @@ class Guestbook(base.ATCTContent):
     description = atapi.ATFieldProperty('description')
     entries_per_page = atapi.ATFieldProperty('entries_per_page')
 
-    entries = PersistentList()
+    @property
+    def entries(self):
+        if not hasattr(self, '_entries'):
+            self._entries = PersistentList()
+        return self._entries
 
 atapi.registerType(Guestbook, PROJECTNAME)
 
