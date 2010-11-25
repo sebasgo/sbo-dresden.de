@@ -1,0 +1,29 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-11-25 13:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sbo.theme\n"
+
+#. Default: "Next ${number} items"
+#: ./skins/sbo_theme_custom_templates/batch_macros.pt:44
+msgid "batch_next_x_items"
+msgstr ""
+
+#. Default: "Previous ${number} items"
+#: ./skins/sbo_theme_custom_templates/batch_macros.pt:31
+msgid "batch_previous_x_items"
+msgstr ""
+
