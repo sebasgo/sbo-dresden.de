@@ -19,4 +19,9 @@
     permission="zope2.View"
     />
 
+  <browser:resourceDirectory
+      name="sbo.inkstain.stylesheets"
+      directory="stylesheets"
+      />
+
 </configure>

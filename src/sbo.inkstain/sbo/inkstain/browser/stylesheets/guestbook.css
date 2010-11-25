@@ -1,0 +1,23 @@
+dl.guestbook dt
+{
+    color: #001d3e;
+    border-bottom: 1px solid #001d3e;
+    margin-bottom: 5px;
+}
+
+dl.guestbook dt a.external-link
+{
+    font-weight: normal;
+    border: none !important;
+}
+
+dl.guestbook dt div.date
+{
+    float: right;
+    font-weight: normal;
+}
+
+dl.guestbook dd.message
+{
+    margin: 0 !important;
+}
