@@ -10,5 +10,9 @@
       <role name="Manager" />
       <role name="Reviewer" />
     </permission>
+    <permission name="sbo.inkstain: Add guestbook entry" acquire="False">
+      <role name="Authenticated" />
+      <role name="Anonymous" />
+    </permission>
   </permissions>
 </rolemap>
