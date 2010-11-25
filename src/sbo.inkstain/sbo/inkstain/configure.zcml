@@ -7,6 +7,11 @@
     
   <five:registerPackage package="." initialize=".initialize" />
 
+   <permission
+      id="sbo.inkstain.ReviewGuestbook"
+      title="sbo.inkstain: Review guestbook"
+      />
+
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />
   <include package=".content" />
@@ -21,6 +26,7 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   
+
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>

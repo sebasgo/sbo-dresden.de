@@ -1,5 +1,6 @@
 import re
 from DateTime import DateTime
+from uuid import uuid4
 
 from zope.interface import Interface
 
@@ -80,6 +81,7 @@ class WriteEntryForm(formbase.PageForm):
         context = aq_inner(self.context)
 
         entry = GuestbookEntry()
+        entry.id = uuid4().hex
         entry.date = DateTime()
         entry.name = data['name']
         entry.email_address = data['email_address']

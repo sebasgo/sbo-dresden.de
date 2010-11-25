@@ -14,10 +14,28 @@
     batch python:Batch(view.entries(), b_size, int(b_start), orphan=1);
     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
     ">
+<form method="post"
+    tal:attributes="action string:${context/absolute_url}"
+    i18n:translate="guestbook-view"
+    >
 
   <dl tal:repeat="entry batch" class="guestbook">
     <dt>
+      <input type="checkbox"
+        name="messages:list"
+        tal:attributes="value entry/getId"
+        tal:condition="view/canReviewGuestbook"
+        />
       <div tal:replace="entry/name">Avarage Joe</div>
+      <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
+        &mdash;
+        <a href="mailto:mail@avarage-joe.com"
+            tal:attributes="href string: mailto:${entry/email_address}"
+            tal:content="entry/email_address"
+            >
+          http://avarage-joe.com
+        </a>
+      </div>
       <div tal:omit-tag="" tal:condition="entry/homepage_address">
         &mdash;
         <a class="external-link" href="http://avarage-joe.com"
@@ -38,7 +56,16 @@
     </dd>
   </dl>
 
+  <input type="submit" name="form.button.Delete" value="Delete marked entries"
+      class="context destructive"
+      tal:condition="view/canReviewGuestbook"
+      i18n:name="delete_button"
+      i18n:attributes="value"
+      />
+
   <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+</form>
 </metal:content-core>
 </body>
 </html>
