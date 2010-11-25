@@ -5,7 +5,7 @@ dl.guestbook dt
     margin-bottom: 5px;
 }
 
-dl.guestbook dt a.external-link
+dl.guestbook dt a
 {
     font-weight: normal;
     border: none !important;
