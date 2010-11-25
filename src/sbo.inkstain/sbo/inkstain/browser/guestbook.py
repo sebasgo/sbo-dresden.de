@@ -38,6 +38,9 @@ class GuestbookView(BrowserView):
         context = aq_inner(self.context)
         return context.entries[::-1]
 
+    def canAddGuestbookEntries(self):
+        return checkPermission("sbo.inkstain.AddGuestbookEntry", self.context)
+
     def canReviewGuestbook(self):
         return checkPermission("sbo.inkstain.ReviewGuestbook", self.context)
 

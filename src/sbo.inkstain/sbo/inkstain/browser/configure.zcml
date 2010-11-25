@@ -16,7 +16,7 @@
     for="..interfaces.IGuestbook"
     name="writeentry"
     class=".writeentry.WriteEntryForm"
-    permission="zope2.View"
+    permission="sbo.inkstain.AddGuestbookEntry"
     />
 
   <browser:resourceDirectory

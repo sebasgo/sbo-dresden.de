@@ -14,10 +14,15 @@
     batch python:Batch(view.entries(), b_size, int(b_start), orphan=1);
     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
     ">
-<form method="post"
-    tal:attributes="action string:${context/absolute_url}"
-    i18n:translate="guestbook-view"
-    >
+<form method="post" tal:attributes="action string:${context/absolute_url}">
+
+  <p tal:condition="view/canAddGuestbookEntries">
+    <a tal:attributes="href string:${context/absolute_url}/@@writeentry"
+        i18n:translate="link_make_new_entry"
+        >
+        Write a guestbook entry
+    </a>
+  </p>
 
   <dl tal:repeat="entry batch" class="guestbook">
     <dt>
@@ -59,7 +64,7 @@
   <input type="submit" name="form.button.Delete" value="Delete marked entries"
       class="context destructive"
       tal:condition="view/canReviewGuestbook"
-      i18n:name="delete_button"
+      i18n:translate="delete_button"
       i18n:attributes="value"
       />
 
