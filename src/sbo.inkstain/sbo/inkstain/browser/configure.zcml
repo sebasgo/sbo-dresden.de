@@ -19,9 +19,15 @@
     permission="sbo.inkstain.AddGuestbookEntry"
     />
 
+  <adapter
+    for="..interfaces.IGuestbook"
+    provides=".writeentry.IWriteEntryForm"
+    factory=".writeentry.Entry" />
+
+
   <browser:resourceDirectory
-      name="sbo.inkstain.stylesheets"
-      directory="stylesheets"
-      />
+    name="sbo.inkstain.stylesheets"
+    directory="stylesheets"
+    />
 
 </configure>

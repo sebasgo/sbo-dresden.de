@@ -1,18 +1,15 @@
 import re
-from DateTime import DateTime
 from uuid import uuid4
-
-from zope.interface import Interface
-
-from zope import schema
-
-from zope.formlib import form
-from Products.Five.formlib import formbase
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from Products.statusmessages.interfaces import IStatusMessage
+from DateTime import DateTime
 
 from Acquisition import aq_inner
+from zope.interface import Interface
+from zope import schema
+from zope.component import getMultiAdapter
+from z3c.form import form, field, button
+from plone.z3cform.layout import wrap_form
+from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
+from Products.statusmessages.interfaces import IStatusMessage
 
 from sbo.inkstain import InkstainMessageFactory as _
 from sbo.inkstain.content.guestbook import GuestbookEntry
@@ -66,32 +63,57 @@ class IWriteEntryForm(Interface):
         max_length=1000
     )
 
-class WriteEntryForm(formbase.PageForm):
-    form_fields = form.FormFields(IWriteEntryForm)
+    captcha = schema.TextLine(
+        title=u"ReCaptcha",
+        description=u"",
+        required=False
+    )
+
+class Entry(object):
+    name = u""
+    email_address = u""
+    homepage_address = u""
+    message = u""
+    captcha = u""
+    def __init__(self, context):
+        self.context = context
+
+class BaseForm(form.Form):
+    fields = field.Fields(IWriteEntryForm)
+    fields['captcha'].widgetFactory = ReCaptchaFieldWidget
+
     label = _(u"Make a guestbook entry")
     description = _(u"Got a comment? Please submit it using the form below!")
 
     # This trick hides the editable border and tabs in Plone
-    def __call__(self):
+    def render(self):
         self.request.set('disable_border', True)
-        return super(WriteEntryForm, self).__call__()
+        return super(BaseForm, self).render()
 
-    @form.action(_(u"Send"))
-    def action_send(self, action, data):
+    #@form.action(_(u"Send"))
+    @button.buttonAndHandler(u'Send')
+    def action_send(self, action):
         context = aq_inner(self.context)
+        data, errors = self.extractData()
+        captcha = getMultiAdapter((self.context, self.request), name='recaptcha')
 
-        entry = GuestbookEntry()
-        entry.id = uuid4().hex
-        entry.date = DateTime()
-        entry.name = data['name']
-        entry.email_address = data['email_address']
-        entry.homepage_address = data['homepage_address']
-        entry.message = data['message']
+        if captcha.verify():
+            entry = GuestbookEntry()
+            entry.id = uuid4().hex
+            entry.date = DateTime()
+            entry.name = data['name']
+            entry.email_address = data['email_address']
+            entry.homepage_address = data['homepage_address']
+            entry.message = data['message']
 
-        context.entries.append(entry)
+            context.entries.append(entry)
 
-        confirm = _(u"Thank you for your guestbook entry!")
-        IStatusMessage(self.request).addStatusMessage(confirm, type='info')
+            confirm = _(u"Thank you for your guestbook entry!")
+            IStatusMessage(self.request).addStatusMessage(confirm, type='info')
 
-        self.request.response.redirect(context.absolute_url())
+            self.request.response.redirect(context.absolute_url())
+            return ''
+
         return ''
+
+WriteEntryForm = wrap_form(BaseForm)
