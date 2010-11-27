@@ -6,7 +6,7 @@
   <property name="description"
     i18n:translate="">A simple guestbook</property>
   <property name="content_meta_type">Guestbook</property>
-  <property name="content_icon">document_icon.gif</property>
+  <property name="content_icon">++resource++sbo.inkstain.images/guestbook_icon.gif</property>
   <property name="product">sbo.inkstain</property>
   <property name="factory">addGuestbook</property>
   <property name="immediate_view">atct_edit</property>
