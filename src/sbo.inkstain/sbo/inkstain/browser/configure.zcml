@@ -24,7 +24,6 @@
     provides=".writeentry.IWriteEntryForm"
     factory=".writeentry.Entry" />
 
-
   <browser:resourceDirectory
     name="sbo.inkstain.stylesheets"
     directory="stylesheets"
