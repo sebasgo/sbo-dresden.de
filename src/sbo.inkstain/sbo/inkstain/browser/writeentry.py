@@ -44,7 +44,7 @@ class IWriteEntryForm(Interface):
 
     email_address = schema.ASCIILine(
         title=_(u"Your email address"),
-        description=_(u"We will use this to contact you if you request it."),
+        description=_(u"Won't be published."),
         required=True,
         constraint=validate_email
     )
