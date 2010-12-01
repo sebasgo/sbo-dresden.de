@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2010-12-01 22:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sbo.inkstain\n"
+
+#: ./profiles/default/types/Guestbook.xml
+msgid "A simple guestbook"
+msgstr "Ein einfaches Gästebuch"
+
+#: ./browser/guestbook.pt:61
+msgid "Delete marked entries"
+msgstr "Lösche markierte Einträge"
+
+#: ./content/guestbook.py:27
+#: ./interfaces/guestbook.py:11
+msgid "Entries per page"
+msgstr "Einträge pro Seite"
+
+#: ./browser/writeentry.py:87
+msgid "Got a comment? Please submit it using the form below!"
+msgstr "Wollen Sie etwas los werden? Schreiben Sie es und mit dem Formular unterhalb."
+
+#: ./profiles/default/types/Guestbook.xml
+msgid "Guestbook"
+msgstr "Gästebuch"
+
+#: ./browser/writeentry.py:20
+msgid "Invalid email address"
+msgstr "Ungültige Email-Adresse"
+
+#: ./browser/writeentry.py:29
+msgid "Invalid homepage address"
+msgstr "Ungültige Homepage-Adresse"
+
+#: ./browser/writeentry.py:61
+msgid "Message"
+msgstr "Nachricht"
+
+#: ./browser/writeentry.py:62
+msgid "Please keep to 1,000 characters."
+msgstr "Nicht mehr als 1000 Zeichen."
+
+#: ./content/guestbook.py:28
+#: ./interfaces/guestbook.py:12
+msgid "Sets the number of entries which are shown on one page."
+msgstr "Legt fest, wie viele Einträge auf einer Seite angezeigt werden"
+
+#: ./browser/writeentry.py:126
+msgid "Thank you for your guestbook entry!"
+msgstr "Danke für Ihren Gästebucheintrag"
+
+#: ./browser/guestbook.py:27
+msgid "The marked entries have been deleted."
+msgstr "Die markierten Einträge wurden gelöscht."
+
+#: ./browser/writeentry.py:48
+msgid "Won't be published."
+msgstr "Wird nicht veröffentlicht."
+
+#: ./browser/writeentry.py:86
+msgid "Write a guestbook entry"
+msgstr "Schreibe einen Gästebucheintrag"
+
+#: ./browser/writeentry.py:55
+msgid "You may leave the address of own homepage."
+msgstr "Sie können die Adresse Ihrer eigenen Homepage angeben."
+
+#: ./browser/writeentry.py:47
+msgid "Your email address"
+msgstr "Ihre Email-Adresse"
+
+#: ./browser/writeentry.py:54
+msgid "Your homepage"
+msgstr "Ihre Homepage"
+
+#: ./browser/writeentry.py:42
+msgid "Your name"
+msgstr "Ihr Name"
+
+#: ./browser/guestbook.pt:61
+msgid "delete_button"
+msgstr ""
+
+#. Default: "Write a guestbook entry"
+#: ./browser/formwrapper.pt:6
+msgid "write_entry_form_legend"
+msgstr "Schreibe einen Gästebucheintrag"
+
+msgid "Inkstain Guestbook"
+msgstr "Inkstain Gästebuch"

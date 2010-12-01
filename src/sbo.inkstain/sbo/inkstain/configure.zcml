@@ -28,13 +28,12 @@
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
-      title="sbo.inkstain"
+      title="Inkstain Guestbook"
       directory="profiles/default"
       description="A simple guestbook."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   
-
-  <!-- -*- extra stuff goes here -*- -->
+  <i18n:registerTranslations directory="locales" />
 
 </configure>

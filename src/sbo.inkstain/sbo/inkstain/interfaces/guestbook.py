@@ -9,6 +9,6 @@ class IGuestbook(Interface):
 
     entries_per_page = schema.Int(
         title=_(u"Entries per page"),
-        description=_(u"Set the number of entries which are shown on one page."),
+        description=_(u"Sets the number of entries which are shown on one page."),
         required=True
     )

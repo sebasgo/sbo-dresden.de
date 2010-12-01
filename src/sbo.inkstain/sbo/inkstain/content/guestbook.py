@@ -11,7 +11,7 @@ from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 
-
+from sbo.inkstain import InkstainMessageFactory as _
 from sbo.inkstain.interfaces import IGuestbook
 from sbo.inkstain.config import PROJECTNAME
 
@@ -24,10 +24,8 @@ GuestbookSchema = base.ATContentTypeSchema.copy() + atapi.Schema((
         default=15,
         storage=atapi.AnnotationStorage(),
         widget=atapi.IntegerWidget(
-            label=u"Entries per page",
-            label_msgid="label_entries_per_page",
-            description=u"Set the number of entries which are shown on one page.",
-            i18n_domain='sbo.inkstain'
+            label=_(u"Entries per page"),
+            description=_(u"Sets the number of entries which are shown on one page."),
         ),
     ),
 
