@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sbo.inkstain">
+
+  <include package="plone.app.contentmenu" />
+
+  <browser:page
+    for="..interfaces.IGuestbook"
+    name="view"
+    class=".guestbook.GuestbookView"
+    permission="zope2.View"
+    layer=".interfaces.IInkstainLayer"
+    />
+
+  <browser:page
+    for="..interfaces.IGuestbook"
+    name="writeentry"
+    class=".writeentry.WriteEntryForm"
+    permission="sbo.inkstain.AddGuestbookEntry"
+    layer=".interfaces.IInkstainLayer"
+    />
+
+  <adapter
+    for="..interfaces.IGuestbook"
+    provides=".writeentry.IWriteEntryForm"
+    factory=".writeentry.Entry" />
+
+  <browser:resourceDirectory
+    name="sbo.inkstain.stylesheets"
+    directory="stylesheets"
+    layer=".interfaces.IInkstainLayer"
+    />
+
+  <browser:resourceDirectory
+    name="sbo.inkstain.images"
+    directory="images"
+    layer=".interfaces.IInkstainLayer"
+    />
+
+</configure>

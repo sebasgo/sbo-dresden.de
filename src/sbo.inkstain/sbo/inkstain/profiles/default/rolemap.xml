@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <!-- -*- extra stuff goes here -*- -->
+    <permission name="sbo.inkstain: Add guestbook" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="sbo.inkstain: Review guestbook" acquire="False">
+      <role name="Manager" />
+      <role name="Reviewer" />
+    </permission>
+    <permission name="sbo.inkstain: Add guestbook entry" acquire="False">
+      <role name="Authenticated" />
+      <role name="Anonymous" />
+    </permission>
+  </permissions>
+</rolemap>
