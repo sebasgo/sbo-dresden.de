@@ -14,63 +14,60 @@
     batch python:Batch(view.entries(), b_size, int(b_start), orphan=1);
     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
     ">
-<form method="post" tal:attributes="action string:${context/absolute_url}">
 
-  <p tal:condition="view/canAddGuestbookEntries">
-    <a tal:attributes="href string:${context/absolute_url}/@@writeentry"
-        i18n:translate="link_make_new_entry"
-        >
-        Write a guestbook entry
-    </a>
-  </p>
-
-  <dl tal:repeat="entry batch" class="guestbook">
-    <dt>
-      <input type="checkbox"
-        name="messages:list"
-        tal:attributes="value entry/getId"
-        tal:condition="view/canReviewGuestbook"
-        />
-      <div tal:replace="entry/name">Avarage Joe</div>
-      <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
-        &mdash;
-        <a href="mailto:mail@avarage-joe.com"
-            tal:attributes="href string: mailto:${entry/email_address}"
-            tal:content="entry/email_address"
-            >
-          http://avarage-joe.com
-        </a>
-      </div>
-      <div tal:omit-tag="" tal:condition="entry/homepage_address">
-        &mdash;
-        <a class="external-link" href="http://avarage-joe.com"
-            tal:attributes="href entry/homepage_address"
-            tal:content="entry/homepage_address"
-            >
-          http://avarage-joe.com
-        </a>
-      </div>
-      <div class="date"
-          tal:content="python:toLocalizedTime(entry.date, long_format=1)"
-          >
-        20.10.2010 20:10
-      </div>
-    </dt>
-    <dd class="message" tal:content="entry/message">
-      Great work here! Kudos to everyone!
-    </dd>
-  </dl>
-
-  <input type="submit" name="form.button.Delete" value="Delete marked entries"
-      class="context destructive"
-      tal:condition="view/canReviewGuestbook"
-      i18n:translate="delete_button"
-      i18n:attributes="value"
+  <div class="writeentryform"
+      tal:condition="view/canAddGuestbookEntries"
+      tal:content="structure view/createWriteEntryForm"
       />
 
+  <form method="post" tal:attributes="action string:${context/absolute_url}">
+    <dl tal:repeat="entry batch" class="guestbook">
+      <dt>
+        <input type="checkbox"
+          name="messages:list"
+          tal:attributes="value entry/getId"
+          tal:condition="view/canReviewGuestbook"
+          />
+        <div tal:replace="entry/name">Avarage Joe</div>
+        <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
+          &mdash;
+          <a href="mailto:mail@avarage-joe.com"
+              tal:attributes="href string: mailto:${entry/email_address}"
+              tal:content="entry/email_address"
+              >
+            http://avarage-joe.com
+          </a>
+        </div>
+        <div tal:omit-tag="" tal:condition="entry/homepage_address">
+          &mdash;
+          <a class="external-link" href="http://avarage-joe.com"
+              tal:attributes="href entry/homepage_address"
+              tal:content="entry/homepage_address"
+              >
+            http://avarage-joe.com
+          </a>
+        </div>
+        <div class="date"
+            tal:content="python:toLocalizedTime(entry.date, long_format=1)"
+            >
+          20.10.2010 20:10
+        </div>
+      </dt>
+      <dd class="message" tal:content="entry/message">
+        Great work here! Kudos to everyone!
+      </dd>
+    </dl>
+
+    <input type="submit" name="form.button.Delete" value="Delete marked entries"
+        class="context destructive"
+        tal:condition="view/canReviewGuestbook"
+        i18n:translate="delete_button"
+        i18n:attributes="value"
+        />
+
+  </form>
   <div metal:use-macro="context/batch_macros/macros/navigation" />
 
-</form>
 </metal:content-core>
 </body>
 </html>

@@ -1,3 +1,15 @@
+div.writeentryform
+{
+    float: right;
+    width: 340px;
+    background-color: #fff;
+}
+
+dl.guestbook
+{
+    margin-right: 360px;
+}
+
 dl.guestbook dt
 {
     color: #001d3e;

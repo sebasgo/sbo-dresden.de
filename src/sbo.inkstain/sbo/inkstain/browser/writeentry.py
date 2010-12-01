@@ -7,9 +7,10 @@ from zope.interface import Interface
 from zope import schema
 from zope.component import getMultiAdapter
 from z3c.form import form, field, button
-from plone.z3cform.layout import wrap_form
+from plone.z3cform.layout import FormWrapper, wrap_form
 from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
 from Products.statusmessages.interfaces import IStatusMessage
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from sbo.inkstain import InkstainMessageFactory as _
 from sbo.inkstain.content.guestbook import GuestbookEntry
@@ -85,12 +86,26 @@ class BaseForm(form.Form):
     label = _(u"Make a guestbook entry")
     description = _(u"Got a comment? Please submit it using the form below!")
 
+    def updateWidgets(self):
+        super(BaseForm, self).updateWidgets()
+        self.widgets['message'].rows = 5;
+        self.widgets['captcha'].label = u''
+
     # This trick hides the editable border and tabs in Plone
     def render(self):
         self.request.set('disable_border', True)
         return super(BaseForm, self).render()
 
-    #@form.action(_(u"Send"))
+    @property
+    def action(self):
+        """ Rewrite HTTP POST action.
+
+        If the form is rendered embedded on the others pages we
+        make sure the form is posted through the same view always,
+        instead of making HTTP POST to the page where the form was rendered.
+        """
+        return self.context.absolute_url() + "/@@writeentry"
+
     @button.buttonAndHandler(u'Send')
     def action_send(self, action):
         context = aq_inner(self.context)
@@ -115,5 +130,13 @@ class BaseForm(form.Form):
             return ''
 
         return ''
+
+class InlineWriteEntryForm(FormWrapper):
+     """ Form view which renders z3c.forms embedded in a portlet.
+
+     Subclass FormWrapper so that we can use custom frame template. """
+
+     form = BaseForm
+     index = ViewPageTemplateFile("formwrapper.pt")
 
 WriteEntryForm = wrap_form(BaseForm)
