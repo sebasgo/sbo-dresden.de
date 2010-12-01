@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- This file holds the setup configuration for the portal_javascripts tool.
+     -->
+
+<object name="portal_javascripts">
+
+  <!-- Enable kss for anonymous users -->
+  <javascript id="sarissa.js" expression="" authenticated="False" />
+  <javascript id="++resource++kukit.js" authenticated="False" />
+
+</object>
