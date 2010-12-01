@@ -1,7 +1,8 @@
 <fieldset xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="sbo.inkstain"
+    lang="en"
     >
-  <legend>Write a guestbook entry</legend>
+  <legend i18n:translate="write_entry_form_legend">Write a guestbook entry</legend>
   <div tal:replace="structure view/contents" />
 </fieldset>

@@ -83,7 +83,7 @@ class BaseForm(form.Form):
     fields = field.Fields(IWriteEntryForm)
     fields['captcha'].widgetFactory = ReCaptchaFieldWidget
 
-    label = _(u"Make a guestbook entry")
+    label = _(u"Write a guestbook entry")
     description = _(u"Got a comment? Please submit it using the form below!")
 
     def updateWidgets(self):
