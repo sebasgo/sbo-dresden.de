@@ -121,7 +121,7 @@ class BaseForm(form.Form):
             entry.homepage_address = data['homepage_address']
             entry.message = data['message']
 
-            context.entries.append(entry)
+            context.addEntry(entry)
 
             confirm = _(u"Thank you for your guestbook entry!")
             IStatusMessage(self.request).addStatusMessage(confirm, type='info')
