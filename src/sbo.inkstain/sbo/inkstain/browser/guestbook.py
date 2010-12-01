@@ -24,7 +24,7 @@ class GuestbookView(BrowserView):
             context = aq_inner(self.context)
             deleteIds = form.get('messages', [])
             context.manage_delObjects(ids = deleteIds)
-            confirm = _(u"Marked messages have been deleted.")
+            confirm = _(u"The marked entries have been deleted.")
             IStatusMessage(self.request).addStatusMessage(confirm, type='info')
             postback = False
 
