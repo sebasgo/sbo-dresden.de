@@ -5,6 +5,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 
+from sbo.inkstain.browser.writeentry import InlineWriteEntryForm
 from sbo.inkstain import InkstainMessageFactory as _
 
 
@@ -34,6 +35,12 @@ class GuestbookView(BrowserView):
             self.request.response.redirect(self.context.absolute_url())
             return ''
 
+    def createWriteEntryForm(self):
+        context = self.context.aq_inner
+        view = InlineWriteEntryForm(context, self.request)
+        view = view.__of__(context) 
+        return view();
+
     def entries(self):
         context = aq_inner(self.context)
         return context.entries[::-1]
@@ -43,4 +50,5 @@ class GuestbookView(BrowserView):
 
     def canReviewGuestbook(self):
         return checkPermission("sbo.inkstain.ReviewGuestbook", self.context)
+
 
