@@ -1,0 +1,35 @@
+div.writeentryform
+{
+    float: right;
+    width: 340px;
+    background-color: #fff;
+}
+
+dl.guestbook
+{
+    margin-right: 360px;
+}
+
+dl.guestbook dt
+{
+    color: #001d3e;
+    border-bottom: 1px solid #001d3e;
+    margin-bottom: 5px;
+}
+
+dl.guestbook dt a
+{
+    font-weight: normal;
+    border: none !important;
+}
+
+dl.guestbook dt div.date
+{
+    float: right;
+    font-weight: normal;
+}
+
+dl.guestbook dd.message
+{
+    margin: 0 !important;
+}
