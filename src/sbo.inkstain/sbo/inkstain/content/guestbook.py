@@ -1,6 +1,8 @@
 """Definition of the Guestbook content type
 """
 
+from uuid import uuid1
+
 from zope.interface import implements
 
 from OFS.SimpleItem import SimpleItem
@@ -40,7 +42,8 @@ GuestbookSchema['description'].storage = atapi.AnnotationStorage()
 
 schemata.finalizeATCTSchema(
     GuestbookSchema,
-    moveDiscussion=False
+    moveDiscussion=False,
+    folderish=False
 )
 
 class GuestbookEntry(SimpleItem):
@@ -59,7 +62,7 @@ class GuestbookEntry(SimpleItem):
             self.message,
         )
 
-class Guestbook(base.ATCTContent):
+class Guestbook(base.ATCTFolder):
     """A simple guestbook"""
     implements(IGuestbook)
 
@@ -70,11 +73,8 @@ class Guestbook(base.ATCTContent):
     description = atapi.ATFieldProperty('description')
     entries_per_page = atapi.ATFieldProperty('entries_per_page')
 
-    @property
-    def entries(self):
-        if not hasattr(self, '_entries'):
-            self._entries = PersistentList()
-        return self._entries
+    def addEntry(self, entry):
+        self._setObject(entry.getId(), entry)
 
 atapi.registerType(Guestbook, PROJECTNAME)
 

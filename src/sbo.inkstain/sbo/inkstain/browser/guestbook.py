@@ -5,6 +5,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 
+from plone.memoize.view import memoize
+
 from sbo.inkstain.browser.writeentry import InlineWriteEntryForm
 from sbo.inkstain import InkstainMessageFactory as _
 
@@ -19,12 +21,9 @@ class GuestbookView(BrowserView):
         deleteButton = form.get('form.button.Delete', False)
 
         if form.get('form.button.Delete', False):
+            context = aq_inner(self.context)
             deleteIds = form.get('messages', [])
-            for deleteId in deleteIds:
-                for index, entry in enumerate(self.context.entries):
-                    if entry.getId() == deleteId:
-                        del(self.context.entries[index])
-                        break
+            context.manage_delObjects(ids = deleteIds)
             confirm = _(u"Marked messages have been deleted.")
             IStatusMessage(self.request).addStatusMessage(confirm, type='info')
             postback = False
@@ -36,14 +35,17 @@ class GuestbookView(BrowserView):
             return ''
 
     def createWriteEntryForm(self):
-        context = self.context.aq_inner
+        context = aq_inner(self.context)
         view = InlineWriteEntryForm(context, self.request)
         view = view.__of__(context) 
         return view();
 
+    @memoize
     def entries(self):
         context = aq_inner(self.context)
-        return context.entries[::-1]
+        entries = context.objectValues()
+        entries.sort(key=lambda entry: entry.date, reverse=True)
+        return entries
 
     def canAddGuestbookEntries(self):
         return checkPermission("sbo.inkstain.AddGuestbookEntry", self.context)
