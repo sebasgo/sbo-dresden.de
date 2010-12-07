@@ -4,7 +4,10 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="sbo.policy">
 
-    <!-- <include package="sbo.theme" /> -->
+    <include package="Products.Collage" />
+    <include package="plone.app.iterate" />
+    <include package="sbo.inkstain" />
+    <include package="sbo.theme" />
 
     <five:registerPackage package="." initialize=".initialize" />
 
@@ -12,7 +15,7 @@
       name="default"
       title="SBO Site Policy"
       directory="profiles/default"
-      description="Turn a plone site into the SBO site."
+      description="Turns a default plone installation into the SBO site."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

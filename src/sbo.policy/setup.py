@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-version = '0.1'
+version = '1.0'
 
 setup(name='sbo.policy',
       version=version,
-      description="Sbo Policy Product",
+      description="SBO Site Policy",
       long_description="""\
 """,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -26,7 +26,10 @@ setup(name='sbo.policy',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'plone.app.iterate',
+          'Products.Collage',
+          'sbo.inkstain',
+          'sbo.theme',
       ],
       entry_points="""
       # -*- Entry points: -*-
