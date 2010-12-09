@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<portlets>
+<assignment key="/" manager="plone.leftcolumn" category="context" purge="True"/>
+<assignment key="/" manager="plone.rightcolumn" category="context" purge="True"/>
+</portlets>
