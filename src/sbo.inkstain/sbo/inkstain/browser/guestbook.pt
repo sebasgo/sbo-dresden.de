@@ -47,11 +47,12 @@
             http://avarage-joe.com
           </a>
         </div>
-        <div class="date"
+        &mdash;
+        <span class="date"
             tal:content="python:toLocalizedTime(entry.date, long_format=1)"
             >
           20.10.2010 20:10
-        </div>
+        </span>
       </dt>
       <dd class="message" tal:content="entry/message">
         Great work here! Kudos to everyone!

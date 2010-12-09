@@ -55,7 +55,43 @@ h6
 #portal-personaltools-wrapper
 {
     position: absolute;
-    right: 15px;
+    right: 0px;
+}
+
+#portal-personaltools
+{
+    border: 0;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#portal-personaltools #anon-personalbar,
+#portal-personaltools dt
+{
+    background-image: url(++resource++sbo.theme.images/personaltools-bg.png);
+    width: 134px;
+    height: 19px;
+    padding: 2px 2px 0px 5px;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 !important;
+}
+
+#portal-personaltools #anon-personalbar a,
+#portal-personaltools dt a
+{
+    display: block;
+    font-size: 11px;
+    float: none;
+    color: #fff;
+}
+
+dl.actionMenu.activated dd
+{
+    border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
 }
 
 #portal-logo
@@ -79,6 +115,14 @@ h6
     margin-bottom: 1em;
 }
 
+#edit-bar
+{
+    border-style: solid;
+    border-radius: 0.3em 0.3em;
+    -moz-border-radius: 0.3em 0.3em;
+    padding: 0;
+}
+
 #edit-bar,
 ul.formTabs
 {
@@ -94,8 +138,14 @@ ul.formTabs
 #content-views li a:hover
 {
     background-color: #ccc;
+    border-radius: 0.3em 0.3em;
+    -moz-border-radius: 0.3em 0.3em;
 }
 
+#edit-bar .contentActions
+{
+    margin-top: -3px;
+}
 
 #edit-bar #contentActionMenus
 {
@@ -105,7 +155,8 @@ ul.formTabs
     position: static;
     background: #ccc;
     border: 0;
-    border-radius: 0;
+    border-radius: 0.3em 0.3em;
+    -moz-border-radius: 0.3em 0.3em;
     right: 0;
     top: 0;
 }
@@ -158,4 +209,14 @@ ul.formTabs
     text-align: center;
     background-image:  url(++resource++sbo.theme.images/footer-bg.png);
     color: #fff;
+}
+
+dl.portalMessage
+{
+    border-color: #2668b2;
+}
+
+dl.portalMessage dt
+{
+    background-color: #2668b2;
 }
