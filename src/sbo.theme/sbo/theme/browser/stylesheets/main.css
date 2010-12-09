@@ -220,3 +220,12 @@ dl.portalMessage dt
 {
     background-color: #2668b2;
 }
+
+#plone-contentmenu-workflow .state-draft
+{
+    background-color: red;
+    border: 0.1em solid red;
+    border-radius: 0.5em;
+    padding: 0px 0.5em;
+    -moz-border-radius: 0.5em;
+}
