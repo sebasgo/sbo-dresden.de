@@ -23,9 +23,8 @@ dl.guestbook dt a
     border: none !important;
 }
 
-dl.guestbook dt div.date
+dl.guestbook dt span.date
 {
-    float: right;
     font-weight: normal;
 }
 

@@ -10,7 +10,7 @@
 
 #portal-globalnav li
 {
-        float: left;
+    float: left;
 }
 
 #portal-globalnav li.selected a,
@@ -36,27 +36,24 @@
 }
 
 
-#portal-globalnav li ul {
-        display: none;
-        z-index: 200;
-        position: absolute;
-        left: 0px;
-        top: 28px;
-        width: 680px;
-        background-image: url(++resource++sbo.theme.images/globalnav-second-level-bg.png);
-        padding: 0 50px;
-        height: 33px;
-        
+#portal-globalnav li ul
+{
+    display: none;
+    z-index: 200;
+    position: absolute;
+    left: 0px;
+    top: 28px;
+    width: 680px;
+    background-image: url(++resource++sbo.theme.images/globalnav-second-level-bg.png);
+    padding: 0 50px;
+    height: 33px;
 }
 
 #portal-globalnav li.selected ul
 {
-        display: block;
-        
+    display: block;
 }
 
-#portal-globalnav li ul li {
-}
 
 #portal-globalnav li.selected ul li a
 {
