@@ -6,11 +6,15 @@ i18n:domain="plone">
     ><tal:tabs tal:repeat="tab view/portal_tabs"><li tal:attributes="id string:portaltab-${tab/id};
     class python:view.selected_portal_tab==tab['id'] and 'selected' or 'plain'"
     ><a href=""
-        tal:content="tab/name"
         tal:attributes="href tab/url;
-        title tab/description|nothing">
-        Tab Name
-    </a
+        title tab/description|nothing"
+    ><div class="left-edge"
+    ></div
+    ><div tal:replace="tab/name"
+    >Tab name</div
+    ><div class="right-edge"
+    ></div
+    ></a
     ><tal:block omit-tag=""
     tal:define="subnav tab/subtab;"
     ><tal:block omit-tag="" tal:condition="subnav"
@@ -19,10 +23,12 @@ i18n:domain="plone">
         ><li tal:attributes="id string:portaltab-${subtab/id}; class python:subtab['is_current'] and 'selected' or 'plain'"
         ><a href="" class="" tal:attributes="href subtab/url;"
                 accesskey="accesskeys-tabs" i18n:attributes="accesskey"
-            ><tal:block omit-tag="" i18n:translate="" 
+            ><div class="left-edge"
+            ></div
             ><span tal:replace="subtab/name">Tab Name</span
-            ></tal:block
-        ></a
+            ><div class="right-edge"
+            ></div
+            ></a
         ></li
         ></tal:tabs
     ></ul
