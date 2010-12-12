@@ -29,7 +29,7 @@ msgstr "Einträge pro Seite"
 
 #: ./browser/writeentry.py:87
 msgid "Got a comment? Please submit it using the form below!"
-msgstr "Wollen Sie etwas los werden? Schreiben Sie es und mit dem Formular unterhalb."
+msgstr "Wollen Sie einen Kommentar los werden? Schreiben Sie uns ihn mit dem Formular unterhalb."
 
 #: ./profiles/default/types/Guestbook.xml
 msgid "Guestbook"
