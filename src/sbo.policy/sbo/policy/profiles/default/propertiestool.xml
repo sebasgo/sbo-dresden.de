@@ -2,10 +2,22 @@
 <object name="portal_properties">
     <object name="site_properties">
         <property name="default_language">de</property>
-	<property name="enable_livesearch">False</property>
-	<property name="enable_sitemap">True</property>
-	<property name="icon_visibility">authenticated</property>
+        <property name="enable_livesearch">False</property>
+        <property name="enable_sitemap">True</property>
+        <property name="icon_visibility">authenticated</property>
+        <property name="webstats_js"
+        type="text">&lt;script type="text/javascript"&gt;
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-20207548-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+&lt;/script&gt;</property>
     </object>
 </object>
-
-
