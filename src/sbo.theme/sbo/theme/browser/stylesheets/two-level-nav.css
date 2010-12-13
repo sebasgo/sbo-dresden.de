@@ -14,7 +14,8 @@
     float: left;
 }
 
-#portal-globalnav li a
+#portal-globalnav li a,
+#portal-globalnav li a:link
 {
     background: transparent;
     border: 0;
@@ -23,6 +24,7 @@
     padding: 6px 8px 0;
     position: relative;
     min-width: 0px;
+    margin: 0;
 }
 
 
@@ -38,8 +40,7 @@
 }
 
 #portal-globalnav li.selected a div.left-edge,
-#portal-globalnav li a:hover div.left-edge,
-#portal-globalnav li.selected a:hover div.left-edge
+#portal-globalnav li a:hover div.left-edge
 {
     position: absolute;
     top: 0px;
@@ -50,15 +51,14 @@
 }
 
 #portal-globalnav li.selected a div.right-edge,
-#portal-globalnav li a:hover div.right-edge,
-#portal-globalnav li.selected a:hover div.right-edge
+#portal-globalnav li a:hover div.right-edge
 {
     position: absolute;
     top: 0px;
     right: 0px;
     width: 6px;
     height: 27px;
-    background-image:  url(++resource++sbo.theme.images/globalnav-selected-tab-bg-right.png);
+    background-image: url(++resource++sbo.theme.images/globalnav-selected-tab-bg-right.png);
 }
 
 #portal-globalnav li ul
