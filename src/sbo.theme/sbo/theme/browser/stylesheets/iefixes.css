@@ -1,0 +1,25 @@
+#portal-globalnav div.left-edge,
+#portal-globalnav div.right-edge,
+#portal-footer-sep
+{
+    overflow: hidden;
+}
+#portal-globalnav a:hover div.right-edge
+{
+    right: -1px;
+}
+
+
+#portal-globalnav li.plain a:hover,
+#portal-globalnav li.plain a:hover div.left-edge,
+#portal-globalnav li.plain a:hover div.right-edge
+{
+    background-image: none !important;
+    color: white;
+}
+
+#portal-globalnav li.selected ul li a
+{
+    color: #000 !important;
+}
+
