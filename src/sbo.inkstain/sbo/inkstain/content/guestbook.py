@@ -1,16 +1,13 @@
 """Definition of the Guestbook content type
 """
 
-from uuid import uuid1
-
 from zope.interface import implements
-
 from OFS.SimpleItem import SimpleItem
 from persistent.list import PersistentList
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
-
+from Products.CMFPlone.interfaces import INonStructuralFolder
 from sbo.inkstain import InkstainMessageFactory as _
 from sbo.inkstain.interfaces import IGuestbook
 from sbo.inkstain.config import PROJECTNAME
@@ -62,7 +59,7 @@ class GuestbookEntry(SimpleItem):
 
 class Guestbook(base.ATCTFolder):
     """A simple guestbook"""
-    implements(IGuestbook)
+    implements(IGuestbook, INonStructuralFolder)
 
     meta_type = "Guestbook"
     schema = GuestbookSchema
