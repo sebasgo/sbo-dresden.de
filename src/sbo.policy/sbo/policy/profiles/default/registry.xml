@@ -5,4 +5,18 @@
     <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">
         <value>6LeGar8SAAAAACFBOkx_puNvFAdNraakzHzJPLhr</value>
     </record>
+    <record name="plone.caching.interfaces.ICacheSettings.enabled">
+        <value>True</value>
+    </record>
+    <record name="plone.cachepurging.interfaces.ICachePurgingSettings.virtualHosting">
+        <value>True</value>
+    </record>
+    <record name="plone.app.caching.interfaces.IPloneCacheSettings.enableCompression">
+        <value>True</value>
+    </record>
+    <record name="plone.cachepurging.interfaces.ICachePurgingSettings.cachingProxies">
+        <value>
+            <element>http://localhost:8888</element>
+        </value>
+    </record>
 </registry>
