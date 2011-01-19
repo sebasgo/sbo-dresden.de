@@ -27,6 +27,7 @@ setup(name='sbo.policy',
       install_requires=[
           'setuptools',
           'plone.app.iterate',
+          'plone.app.caching',
           'Products.Collage',
           'sbo.inkstain',
           'sbo.theme',
