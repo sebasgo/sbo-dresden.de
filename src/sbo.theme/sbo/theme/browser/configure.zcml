@@ -20,6 +20,11 @@
       directory="stylesheets"
       layer=".interfaces.IThemeSpecific"
       />
+  <browser:resourceDirectory
+      name="sbo.theme.javascripts"
+      directory="javascripts"
+      layer=".interfaces.IThemeSpecific"
+      />
   <browser:viewlet
       name="sbo.footer_sep"
       manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
