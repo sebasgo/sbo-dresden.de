@@ -18,10 +18,14 @@
       for the latest list of all available keys and default values.
       -->
 
- <javascript
-    id="++resource++sbo.theme.javascripts/tabbar.js"
+<javascript
+    id="++resource++sbo.theme.javascripts/jquery-ui-1.8.9.effects.min.js"
     cacheable="True" compression="safe" cookable="True"
     enabled="True" expression=""  inline="False"/>
 
+<javascript
+    id="++resource++sbo.theme.javascripts/tabbar.js"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression=""  inline="False"/>
 
 </object>
