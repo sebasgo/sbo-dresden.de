@@ -12,26 +12,36 @@
 #portal-globalnav li
 {
     float: left;
+    color: #fff;
 }
 
 #portal-globalnav li a,
-#portal-globalnav li a:link
+#portal-globalnav li a:link,
+#portal-globalnav li a:hover
 {
     background: transparent;
+    color: inherit;
     border: 0;
-    color: #fff;
     height: 21px;
     padding: 6px 8px 0;
     position: relative;
     min-width: 0px;
     margin: 0;
+    z-index: 2;
 }
 
-
+#portal-globalnav div.marker
+{
+    position: absolute;
+    overflow: hidden;
+    height: 27px;
+    z-index: 1;
+}
 
 #portal-globalnav li.selected a,
-#portal-globalnav li a:hover,
-#portal-globalnav li.selected a:hover
+#portal-globalnav li.selected a:hover,
+#portal-globalnav li.plain a:hover,
+#portal-globalnav div.marker
 {
     color: #000;
     background: transparent;
@@ -40,7 +50,8 @@
 }
 
 #portal-globalnav li.selected a div.left-edge,
-#portal-globalnav li a:hover div.left-edge
+#portal-globalnav li.plain a:hover div.left-edge,
+#portal-globalnav div.marker div.left-edge
 {
     position: absolute;
     top: 0px;
@@ -50,8 +61,14 @@
     background-image:  url(++resource++sbo.theme.images/globalnav-selected-tab-bg-left.png);
 }
 
+#portal-globalnav li.active
+{
+    color: #000;
+}
+
 #portal-globalnav li.selected a div.right-edge,
-#portal-globalnav li a:hover div.right-edge
+#portal-globalnav li.plain a:hover div.right-edge,
+#portal-globalnav div.marker div.right-edge
 {
     position: absolute;
     top: 0px;
@@ -79,26 +96,34 @@
     display: block;
 }
 
-
-#portal-globalnav li.selected ul li a
+#portal-globalnav li ul li
 {
+    color: #000;
+}
+
+#portal-globalnav li ul li.plain a
+{
+    color: #000;
     background-image: none;
 }
 
-#portal-globalnav li.selected ul li a:hover,
-#portal-globalnav li.selected ul li.selected a
+#portal-globalnav li ul li.plain a:hover,
+#portal-globalnav li ul li.selected a,
+#portal-globalnav li ul li.selected a:hover,
+#portal-globalnav li ul div.marker
 {
     background-image: url(++resource++sbo.theme.images/globalnav-second-level-selected-tab-bg.png);
 }
 
-#portal-globalnav li.selected ul li a div.left-edge,
-#portal-globalnav li.selected ul li a div.right-edge
+#portal-globalnav li ul li.plain a div.left-edge,
+#portal-globalnav li ul li.plain a div.right-edge
 {
     background-image: none;
 }
 
-#portal-globalnav li.selected ul li a:hover div.left-edge,
-#portal-globalnav li.selected ul li.selected a div.left-edge
+#portal-globalnav li ul li.plain a:hover div.left-edge,
+#portal-globalnav li ul li.selected a div.left-edge,
+#portal-globalnav li ul div.marker div.left-edge
 {
     position: absolute;
     top: 0px;
@@ -108,8 +133,9 @@
     background-image:  url(++resource++sbo.theme.images/globalnav-second-level-selected-tab-bg-left.png);
 }
 
-#portal-globalnav li.selected ul li a:hover div.right-edge,
-#portal-globalnav li.selected ul li.selected a div.right-edge
+#portal-globalnav li ul li.plain a:hover div.right-edge,
+#portal-globalnav li ul li.selected a div.right-edge,
+#portal-globalnav li ul div.marker div.right-edge
 {
     position: absolute;
     top: 0px;
