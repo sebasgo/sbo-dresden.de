@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="sbo.theme"
+  >
+<body>
+<metal:content-core fill-slot="content-core" tal:define="
+    Batch python:modules['Products.CMFPlone'].Batch;
+    b_size  python:15; b_size context/entries_per_page | b_size;
+    b_start python:0; b_start request/b_start | b_start;
+    batch python:Batch(view.concerts(), b_size, int(b_start), orphan=1);
+    toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+    ">
+    
+  It works!
+
+  <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+</metal:content-core>
+</body>
+</html>
