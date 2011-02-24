@@ -7,6 +7,7 @@ $(document).ready(function()
         var selectedTab = tabbar.children("li.selected").get(0);
         var activeTab = selectedTab;
         var tabs = tabbar.children("li");
+        var resetTimer = 0;
         
         tabs.removeClass("selected plain");
         tabbar.append('<div class="marker"></div>')
@@ -81,7 +82,15 @@ $(document).ready(function()
         
         tabbar.mouseleave(function()
         {
-            goToTab(selectedTab);
+            resetTimer = setTimeout(function()
+            {
+                goToTab(selectedTab);
+            }, 1000);
+        });
+        
+        tabbar.mouseenter(function()
+        {
+            clearTimeout(resetTimer);
         });
     };
     
