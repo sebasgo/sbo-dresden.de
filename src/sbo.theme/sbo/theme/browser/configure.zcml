@@ -58,6 +58,14 @@
     layer=".interfaces.IThemeSpecific"
     />
 
+  <browser:page
+    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    name="newsview"
+    class=".views.NewsView"
+    permission="zope2.View"
+    layer=".interfaces.IThemeSpecific"
+    />
+  
   <browser:menuItem
     for="Products.Archetypes.interfaces.base.IBaseFolder"
     title="Concerts"
@@ -67,4 +75,13 @@
     i18n:attributes="title; description"
     />
 
+  <browser:menuItem
+    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    title="News"
+    action="@@newsview"
+    menu="plone_displayviews"
+    description="Displays news items in this folder"
+    i18n:attributes="title; description"
+    />
+    
 </configure>
