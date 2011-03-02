@@ -119,7 +119,7 @@
             </tr>
           </tbody>
         </table>
-        </div>
+      </div>
       
       <div class="documentDescription" tal:content="obj/Description">
         Description
