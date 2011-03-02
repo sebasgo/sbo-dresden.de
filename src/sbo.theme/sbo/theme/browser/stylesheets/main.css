@@ -116,6 +116,30 @@ dl.actionMenu.activated dd
     margin-bottom: 1em;
 }
 
+#content div.newsImageContainer
+{
+    float: left;
+    margin: 0 1em 0.5em 0em;
+}
+
+
+div.newsitemDetails
+{
+    float: right;
+    margin: 0px 0px 0.5em 1em;
+}
+
+#content .image-left,
+#content .image-right
+{
+    clear: none;
+}
+
+#content .listingBar
+{
+    clear: both;
+}
+
 #edit-bar
 {
     border-style: solid;
