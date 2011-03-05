@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2010-11-27T11:48:27.727368
+
+====== Tasks v1.1 ======
+
+===== general =====
+[ ] pin plone 4.0.4
+
+===== sbo.theme =====
+[*] interactivity for global navigation using jquery
+[*] custom concert view
+[*] custom news view
+[ ] frontpage view
+[ ] IE6.0 deprecation warning viewlet
+[ ] add 2011 to copyright line
+[ ] make personal tools/login button resize to its contents
+[ ] i18n
