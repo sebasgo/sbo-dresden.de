@@ -6,6 +6,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 
 ===== general =====
 [ ] pin plone 4.0.4
+[ ] include PIL in buildout
 
 ===== sbo.theme =====
 [*] interactivity for global navigation using jquery
