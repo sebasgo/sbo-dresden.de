@@ -12,8 +12,13 @@ Creation-Date: 2010-11-27T11:48:27.727368
 [*] interactivity for global navigation using jquery
 [*] custom concert view
 [*] custom news view
-[ ] frontpage view
 [ ] IE6.0 deprecation warning viewlet
 [ ] add 2011 to copyright line
 [ ] make personal tools/login button resize to its contents
 [ ] i18n
+
+===== sbo.frontpage =====
+[*] boilerplate
+[*] schema
+[ ] view
+[ ] kill Collage
