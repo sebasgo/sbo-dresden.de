@@ -5,7 +5,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 ====== Tasks v1.1 ======
 
 ===== general =====
-[ ] pin plone 4.0.4
+[*] pin plone 4.0.4
 [ ] include PIL in buildout
 
 ===== sbo.theme =====
