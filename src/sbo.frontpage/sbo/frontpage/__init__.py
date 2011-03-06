@@ -11,7 +11,7 @@ from Products.CMFCore import utils
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
 
-frontpageMessageFactory = MessageFactory('sbo.frontpage')
+FrontpageMessageFactory = MessageFactory('sbo.frontpage')
 
 
 def initialize(context):

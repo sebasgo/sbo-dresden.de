@@ -6,16 +6,54 @@ from zope.interface import implements
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
-
-# -*- Message Factory Imported Here -*-
+from archetypes.referencebrowserwidget import ReferenceBrowserWidget
+from sbo.frontpage import FrontpageMessageFactory as _
 
 from sbo.frontpage.interfaces import IFrontpage
 from sbo.frontpage.config import PROJECTNAME
 
 FrontpageSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
-    # -*- Your Archetypes field definitions here ... -*-
+    atapi.ReferenceField(
+        "coverImage",
+        required=True,
+        relationship="isCoverImage",
+        allowed_types=('Image',),
+        multiValued=False,
+        storage=atapi.AnnotationStorage(),
+        widget=ReferenceBrowserWidget(
+            label=_(u"Cover image"),
+            description=_(u"The image displayed initially on the front page")
+        )
+    ),
 
+    atapi.ReferenceField(
+        "newsFolder",
+        required=True,
+        relationship="isNewsFolder",
+        allowed_types=('Folder',),
+        multiValued=False,
+        storage=atapi.AnnotationStorage(),
+        widget=ReferenceBrowserWidget(
+            label=_(u"News folder"),
+            description=_(
+                u"The folder containing the news items of the website"
+            )
+        )
+    ),
+
+    atapi.ReferenceField(
+        "concertsFolder",
+        required=True,
+        relationship="isConcertsFolder",
+        allowed_types=('Folder',),
+        multiValued=False,
+        storage=atapi.AnnotationStorage(),
+        widget=ReferenceBrowserWidget(
+            label=_(u"Concerts folder"),
+            description=_(u"The folder containing the concerts of the website")
+        )
+    )
 ))
 
 # Set storage on fields copied from ATContentTypeSchema, making sure
@@ -36,7 +74,8 @@ class Frontpage(base.ATCTContent):
 
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
-
-    # -*- Your ATSchema to Python Property Bridges Here ... -*-
+    cover_image = atapi.ATFieldProperty('coverImage')
+    news_folder = atapi.ATFieldProperty('newsFolder')
+    concerts_folder = atapi.ATFieldProperty('concertsFolder')
 
 atapi.registerType(Frontpage, PROJECTNAME)
