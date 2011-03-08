@@ -13,4 +13,10 @@
     layer=".interfaces.IFrontPageLayer"
     />
 
+  <browser:resourceDirectory
+    name="sbo.inkstain.resources"
+    directory="resources"
+    layer=".interfaces.IFrontPageLayer"
+    />
+    
 </configure>
