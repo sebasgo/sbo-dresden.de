@@ -74,8 +74,8 @@ class Frontpage(base.ATCTContent):
 
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
-    cover_image = atapi.ATFieldProperty('coverImage')
-    news_folder = atapi.ATFieldProperty('newsFolder')
-    concerts_folder = atapi.ATFieldProperty('concertsFolder')
+    cover_image = atapi.ATReferenceFieldProperty('coverImage')
+    news_folder = atapi.ATReferenceFieldProperty('newsFolder')
+    concerts_folder = atapi.ATReferenceFieldProperty('concertsFolder')
 
 atapi.registerType(Frontpage, PROJECTNAME)
