@@ -1,1 +1,50 @@
-/* frontpage css */
+body.portaltype-frontpage #content-core .concerts
+{
+    float: right;
+    width: 250px;
+    background-color: #ddd;
+    padding: 5px;
+}
+
+body.portaltype-frontpage #content-core .concerts h2
+{
+    margin: 0;
+}
+ 
+
+body.portaltype-frontpage #content-core .concerts dl
+{
+}
+
+body.portaltype-frontpage #content-core .concerts dl dt
+{
+    margin: 4px 0 0;
+}
+
+body.portaltype-frontpage #content-core .concerts dl dd
+{
+    margin: 0;
+}
+
+body.portaltype-frontpage #content-core .concerts table
+{
+    margin: 4px 0 0;
+    padding: 0;
+}
+
+body.portaltype-frontpage #content-core .concerts table th
+{
+    padding-right: 3px;
+}
+
+
+body.portaltype-frontpage #content-core .concerts table img
+{
+    width: 17px;
+    height: 17px;
+}
+
+
+body.portaltype-frontpage #content-core .concerts dl dd .footer
+{
+}

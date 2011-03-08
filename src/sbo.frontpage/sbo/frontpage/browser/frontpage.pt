@@ -11,7 +11,7 @@
     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
     ">
   <div class="concerts">
-    <h2>Upcoming concerts</h2>
+    <h2 i18n:translate="upcoming_concerts_caption">Upcoming concerts</h2>
     <dl tal:repeat="concert view/concerts">
       <dt tal:content="concert/Title">
         Our annual concert
@@ -20,12 +20,26 @@
         <div tal:replace="concert/Description">
           The biggest event in concert history!
         </div>
-        <div class="date" tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
-          31.02.2013 15:30
-        </div>
-        <div class="location" tal:condition="concert/location" tal:content="concert/location">
-          International space station
-        </div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                <img class="data" src="" alt="Date:" i18n:attributes="alt" />
+              </th>
+              <td tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
+                31.02.2013 15:30
+              </td>
+            </tr>
+            <tr tal:condition="concert/location">
+              <th>
+                <img class="data" src="" alt="Location:" i18n:attributes="alt" />
+              </th>
+              <td tal:content="concert/location">
+                International space station
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </dd>
     </dl>
     <div class="footer"><!-- --></div>
