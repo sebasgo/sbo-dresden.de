@@ -10,6 +10,7 @@
 <metal:content-core fill-slot="content-core" tal:define="
     toLocalizedTime nocall:context/@@plone/toLocalizedTime;
     ">
+  
   <div class="concerts">
     <h2 i18n:translate="upcoming_concerts_caption">Upcoming concerts</h2>
     <dl tal:repeat="concert view/concerts">
@@ -44,6 +45,19 @@
     </dl>
     <div class="footer"><!-- --></div>
   </div>
+  
+  <div class="news">
+    <p class="pane" tal:define="img view/cover_image">
+      <img tal:replace="structure python:img.tag(scale='frontpage')" />
+      <em class="title" tal:content="img/Title">
+        Image title
+      </em>
+      <span class="description" tal:content="img/Description" tal:condition="img/Description">
+        Image description
+      </span>
+    </p>
+  </div>
+  
 </metal:content-core>
 </body>
 </html>
