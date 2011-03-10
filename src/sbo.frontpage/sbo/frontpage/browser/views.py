@@ -9,6 +9,10 @@ class FrontPageView(BrowserView):
     def __call__(self):
         return self.template()
     
+    def cover_image(self):
+        context = aq_inner(self.context)
+        return context.cover_image
+    
     def concerts(self):
         context = aq_inner(self.context)
         limit = 3
