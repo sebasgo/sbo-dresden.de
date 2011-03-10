@@ -4,7 +4,7 @@
 <object name="portal_css">
 
  <stylesheet title=""
-    id="++resource++sbo.inkstain.resources/frontpage.css"
+    id="++resource++sbo.frontpage.resources/frontpage.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""/>

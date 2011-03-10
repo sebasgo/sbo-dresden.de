@@ -14,7 +14,7 @@
     />
 
   <browser:resourceDirectory
-    name="sbo.inkstain.resources"
+    name="sbo.frontpage.resources"
     directory="resources"
     layer=".interfaces.IFrontPageLayer"
     />
