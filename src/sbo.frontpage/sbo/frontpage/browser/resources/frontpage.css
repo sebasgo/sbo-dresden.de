@@ -107,6 +107,7 @@ body.portaltype-frontpage #content-core .news em.title
     display: block;    
     position: absolute;
     width: 472px;
+    left: 0px;
     bottom: 0px;
     font-weight: bold;
     font-style: normal;
