@@ -2,18 +2,25 @@ body.portaltype-frontpage #content-core .concerts
 {
     float: right;
     width: 250px;
-    background-color: #ddd;
-    padding: 5px;
+    height: 362px;
+    background-image: url(++resource++sbo.frontpage.resources/concerts-bg.png);
+    position: relative;
 }
 
 body.portaltype-frontpage #content-core .concerts h2
 {
+    background-image: url(++resource++sbo.frontpage.resources/concerts-top-bg.png);
+    background-repeat: no-repeat;
     margin: 0;
+    padding: 5px 10px 0;
 }
  
 
 body.portaltype-frontpage #content-core .concerts dl
 {
+    margin: 0 10px;
+    height: 330px;
+    overflow-y: auto;
 }
 
 body.portaltype-frontpage #content-core .concerts dl dt
@@ -45,8 +52,14 @@ body.portaltype-frontpage #content-core .concerts table img
 }
 
 
-body.portaltype-frontpage #content-core .concerts dl dd .footer
+body.portaltype-frontpage #content-core .concerts .footer
 {
+    background-image: url(++resource++sbo.frontpage.resources/concerts-bottom-bg.png);
+    height: 4px;
+    width: 250px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
 }
 
 body.portaltype-frontpage #content-core .news
