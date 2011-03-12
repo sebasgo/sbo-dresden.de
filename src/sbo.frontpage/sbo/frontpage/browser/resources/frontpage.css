@@ -107,3 +107,25 @@ body.portaltype-frontpage #content-core .news em.title .description
     display: block;    
     font-weight: normal;
 }
+
+
+body.portaltype-frontpage #content-core .news a.navbutton
+{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: red;
+    top: 168px;
+    display: none;
+    border: 0;
+}
+
+body.portaltype-frontpage #content-core .news a.navbutton.previous
+{
+    left: 10px;
+}
+
+body.portaltype-frontpage #content-core .news a.navbutton.next
+{
+    right: 10px;
+}
