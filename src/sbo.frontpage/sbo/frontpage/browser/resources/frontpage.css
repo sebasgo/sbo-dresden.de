@@ -61,12 +61,25 @@ body.portaltype-frontpage #content-core .news .pane
 {
     width: 480px;
     height: 360px;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: none;
 }
+
 
 body.portaltype-frontpage #content-core .news .pane.active
 {
     display: block;
+}
+
+body.portaltype-frontpage #content-core .news .pane a,
+body.portaltype-frontpage #content-core .news .pane a:hover,
+body.portaltype-frontpage #content-core .news .pane a:active,
+body.portaltype-frontpage #content-core .news .pane a:visited
+{
+    display: block;    
+    border-bottom: 0;
 }
 
 body.portaltype-frontpage #content-core .news .pane img
@@ -83,6 +96,7 @@ body.portaltype-frontpage #content-core .news em.title
     width: 472px;
     bottom: 0px;
     font-weight: bold;
+    font-style: normal;
     padding: 3px 4px;
     background-image: url(++resource++sbo.frontpage.resources/titlebg.png);
     color: #fff;
