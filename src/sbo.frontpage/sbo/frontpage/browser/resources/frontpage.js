@@ -2,6 +2,7 @@ $(document).ready(function()
 {
     var setupNewsBox = function()
     {
+        var navTimeout = 0;        
         var newsBox = $("#content-core .news");
         
         var navigate = function(switchForward)
@@ -14,7 +15,7 @@ $(document).ready(function()
             
             nextPane = switchForward?
                 $(currentPane).next(".pane").get(0):
-                $(currentPane).previous(".pane").get(0);
+                $(currentPane).prev(".pane").get(0);
             
             if (!nextPane)
             {
@@ -27,12 +28,50 @@ $(document).ready(function()
             {
                 $(nextPane).addClass("active");
             });
+            
+            setupTimer();
         }
         
-        setInterval(function()
+        var createNavigationButtons = function()
         {
-            navigate(true);
-        }, 5000);
+            var createButton = function(which)
+            {
+                newsBox.append(
+                    '<a href="#" class="navbutton ' + which + '"><!-- --></a>'
+                );
+                
+                newsBox.children("a." + which).click(function(event)
+                {
+                    event.preventDefault();
+                    navigate(which == "next");
+                });
+            };
+            
+            createButton("next");
+            createButton("previous");
+            
+            newsBox.mouseenter(function()
+            {
+                newsBox.children("a.navbutton").fadeIn(250);
+            });
+            
+            newsBox.mouseleave(function()
+            {
+                newsBox.children("a.navbutton").fadeOut(250);
+            });
+        };
+        
+        var setupTimer = function()
+        {
+            clearTimeout(navTimeout);
+            navTimeout = setTimeout(function()
+            {
+                navigate(true);
+            }, 5000);
+        };
+        
+        createNavigationButtons();
+        setupTimer();
     };
     
     if($("body.portaltype-frontpage").get(0))
