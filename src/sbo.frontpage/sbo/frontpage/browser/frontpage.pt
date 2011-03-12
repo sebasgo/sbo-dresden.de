@@ -47,14 +47,26 @@
   </div>
   
   <div class="news">
-    <p class="pane" tal:define="img view/cover_image">
+    <p class="pane active" tal:define="img view/cover_image">
       <img tal:replace="structure python:img.tag(scale='frontpage')" />
-      <em class="title" tal:content="img/Title">
-        Image title
+      <em class="title">
+        <tal:title tal:replace="img/Title">Image title</tal:title>
+        <span class="description" tal:content="img/Description" tal:condition="img/Description">
+          Image description
+        </span>
       </em>
-      <span class="description" tal:content="img/Description" tal:condition="img/Description">
-        Image description
-      </span>
+    </p>
+    <p class="pane" tal:repeat="item view/news">
+      <a tal:attributes="href python:view.news_target_url(item)">
+        <img tal:condition="item/getImage|nothing" tal:replace="structure python:item.tag(scale='frontpage')" />
+        <img tal:condition="not:item/getImage|nothing" src="++resource++sbo.frontpage.resources/placeholder.jpg" />
+        <em class="title">
+          <tal:title tal:replace="item/Title">Image title</tal:title>
+          <span class="description" tal:content="item/Description" tal:condition="item/Description">
+            Image description
+          </span>
+        </em>
+      </a>
     </p>
   </div>
   

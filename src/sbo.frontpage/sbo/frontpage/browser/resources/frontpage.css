@@ -48,3 +48,48 @@ body.portaltype-frontpage #content-core .concerts table img
 body.portaltype-frontpage #content-core .concerts dl dd .footer
 {
 }
+
+body.portaltype-frontpage #content-core .news
+{
+    width: 480px;
+    height: 360px;
+    position: relative;
+    border: 1px solid #666;
+}
+
+body.portaltype-frontpage #content-core .news .pane
+{
+    width: 480px;
+    height: 360px;
+    display: none;
+}
+
+body.portaltype-frontpage #content-core .news .pane.active
+{
+    display: block;
+}
+
+body.portaltype-frontpage #content-core .news .pane img
+{
+    height: 360px;
+    width: 480px;
+}
+
+
+body.portaltype-frontpage #content-core .news em.title
+{
+    display: block;    
+    position: absolute;
+    width: 472px;
+    bottom: 0px;
+    font-weight: bold;
+    padding: 3px 4px;
+    background-image: url(++resource++sbo.frontpage.resources/titlebg.png);
+    color: #fff;
+}
+
+body.portaltype-frontpage #content-core .news em.title .description
+{
+    display: block;    
+    font-weight: normal;
+}
