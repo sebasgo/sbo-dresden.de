@@ -64,7 +64,13 @@ jq(document).ready(function()
                         jq(target).addClass("active");
                     }
                 });
-                jq(sub).show("slide", {direction: slideInDir}, time);
+                jq(sub).show("slide", {direction: slideInDir}, time, function()
+		{
+                    if (target != activeTab)
+		    {
+                        jq(sub).css("display", "");
+		    }
+		});
             }
             else
             {
