@@ -75,9 +75,9 @@ jq(document).ready(function()
             }
         }
         
-        tabs.mouseover(function(event)
+        tabs.children("a").mouseover(function(event)
         {
-            goToTab(event.currentTarget);
+            goToTab(event.currentTarget.parentNode);
         });
         
         tabbar.mouseleave(function()
