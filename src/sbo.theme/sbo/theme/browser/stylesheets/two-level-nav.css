@@ -12,6 +12,10 @@
 #portal-globalnav li
 {
     float: left;
+}
+
+#portal-globalnav li a
+{
     color: #fff;
 }
 
@@ -20,7 +24,6 @@
 #portal-globalnav li a:hover
 {
     background: transparent;
-    color: inherit;
     border: 0;
     height: 21px;
     padding: 6px 8px 0;
@@ -61,7 +64,7 @@
     background-image:  url(++resource++sbo.theme.images/globalnav-selected-tab-bg-left.png);
 }
 
-#portal-globalnav li.active
+#portal-globalnav li.active a
 {
     color: #000;
 }
@@ -96,7 +99,7 @@
     display: block;
 }
 
-#portal-globalnav li ul li
+#portal-globalnav li ul li a
 {
     color: #000;
 }
