@@ -1,4 +1,4 @@
-$(document).ready(function()
+jq(document).ready(function()
 {
     var animateTabbar = function(tabbar)
     {
@@ -19,10 +19,10 @@ $(document).ready(function()
         
         if (activeTab)
         {
-            $(activeTab).addClass("active");
+            jq(activeTab).addClass("active");
             marker.css("left", activeTab.offsetLeft);
             marker.css("width", activeTab.offsetWidth);
-            $(activeTab).children("ul").css("display", "block");
+            jq(activeTab).children("ul").css("display", "block");
         }
         
         var goToTab = function(target)
@@ -32,8 +32,8 @@ $(document).ready(function()
                 return;
             }
             
-            var sub = $(target).children("ul").get(0);
-            var oldSub = $(activeTab).children("ul").get(0);
+            var sub = jq(target).children("ul").get(0);
+            var oldSub = jq(activeTab).children("ul").get(0);
             
             var slideOutDir = "up";
             var slideInDir = "up";
@@ -46,9 +46,9 @@ $(document).ready(function()
             }
             
             
-            $(oldSub).css("display", "none");
-            $(oldSub).hide("slide", {direction: slideOutDir}, time);
-            $(activeTab).removeClass("active");
+            jq(oldSub).css("display", "none");
+            jq(oldSub).hide("slide", {direction: slideOutDir}, time);
+            jq(activeTab).removeClass("active");
             
             activeTab = target;
             
@@ -61,10 +61,10 @@ $(document).ready(function()
                 {
                     if (target == activeTab)
                     {
-                        $(target).addClass("active");
+                        jq(target).addClass("active");
                     }
                 });
-                $(sub).show("slide", {direction: slideInDir}, time);
+                jq(sub).show("slide", {direction: slideInDir}, time);
             }
             else
             {
@@ -94,13 +94,13 @@ $(document).ready(function()
         });
     };
     
-    var tabbar = $("#portal-globalnav");
+    var tabbar = jq("#portal-globalnav");
     
     animateTabbar(tabbar);
     
     tabbar.find("ul.level-two").each(function(index, elem)
     {
-        animateTabbar($(elem));
+        animateTabbar(jq(elem));
     });
      
 });
