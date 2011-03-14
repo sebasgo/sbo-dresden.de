@@ -1,21 +1,21 @@
-$(document).ready(function()
+jq(document).ready(function()
 {
     var setupNewsBox = function()
     {
         var navTimeout = 0;        
-        var newsBox = $("#content-core .news");
+        var newsBox = jq("#content-core .news");
         
         var navigate = function(switchForward)
         {
             var currentPane = newsBox.children(".pane.active").get(0);
-            $(currentPane).fadeOut(500, function()
+            jq(currentPane).fadeOut(500, function()
             {
-                $(currentPane).removeClass("active");
+                jq(currentPane).removeClass("active");
             });
             
             nextPane = switchForward?
-                $(currentPane).next(".pane").get(0):
-                $(currentPane).prev(".pane").get(0);
+                jq(currentPane).next(".pane").get(0):
+                jq(currentPane).prev(".pane").get(0);
             
             if (!nextPane)
             {
@@ -24,9 +24,9 @@ $(document).ready(function()
                     newsBox.children(".pane").last().get(0);
             }
             
-            $(nextPane).fadeIn(500, function()
+            jq(nextPane).fadeIn(500, function()
             {
-                $(nextPane).addClass("active");
+                jq(nextPane).addClass("active");
             });
             
             setupTimer();
@@ -74,7 +74,7 @@ $(document).ready(function()
         setupTimer();
     };
     
-    if($("body.portaltype-frontpage").get(0))
+    if(jq("body.portaltype-frontpage").get(0))
     {
         setupNewsBox();
     }
