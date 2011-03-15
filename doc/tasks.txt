@@ -23,6 +23,6 @@ Creation-Date: 2010-11-27T11:48:27.727368
 [*] boilerplate
 [*] schema
 [ ] view
-[ ] i18n
+[*] i18n
 [ ] kill Collage
 [ ] register as dependency of sbo.policy

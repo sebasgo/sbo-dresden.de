@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-03-15 12:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sbo.frontpage\n"
+"ProjecId-Version: 1.0nPOT-Creation-Date: 2010-11-25 13:20+0000\n"
+"X-Language: de_DE\n"
+"X-Source-Language: C\n"
+
+#: ./profiles/default/types/Frontpage.xml
+msgid "A front page displaying latest news and upcoming concerts."
+msgstr ""
+"Eine Startseite, welche die letzten Neuigkeiten und die nächsten Konzerte "
+"anzeigt."
+
+#: ./content/frontpage.py:53 ./interfaces/frontpage.py:26
+msgid "Concerts folder"
+msgstr "Konzerteordner"
+
+#: ./content/frontpage.py:25 ./interfaces/frontpage.py:12
+msgid "Cover image"
+msgstr "Titelbild"
+
+#: ./browser/frontpage.pt:28
+msgid "Date:"
+msgstr "Datum:"
+
+#: ./profiles/default/types/Frontpage.xml
+msgid "Frontpage"
+msgstr "Startseite"
+
+#: ./browser/frontpage.pt:36
+msgid "Location:"
+msgstr "Ort:"
+
+#: ./content/frontpage.py:38 ./interfaces/frontpage.py:19
+msgid "News folder"
+msgstr "Neuigkeitenordner"
+
+#: ./content/frontpage.py:54 ./interfaces/frontpage.py:27
+msgid "The folder containing the concerts of the website."
+msgstr "Der Ordner, welcher die Konzerte der Website enthält."
+
+#: ./content/frontpage.py:39 ./interfaces/frontpage.py:20
+msgid "The folder containing the news items of the website."
+msgstr "Der Ordner, welcher die Neuigkeiten der Website enthält."
+
+#: ./content/frontpage.py:26 ./interfaces/frontpage.py:13
+msgid "The image displayed initially on the front page."
+msgstr "Das Bild, welches anfangs auf der Startseite angezeigt wird."
+
+#. Default: "Upcoming concerts"
+#: ./browser/frontpage.pt:15
+msgid "upcoming_concerts_caption"
+msgstr "Nächste Konzerte"
