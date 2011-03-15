@@ -21,7 +21,9 @@
   <div tal:repeat="brain batch" tal:omit-tag="">
     <div tal:omit-tag="" tal:define="obj brain/getObject">
       <h1 tal:content="obj/Title">
-        Title
+        <a tal:attributes="name obj/getId">
+          Title
+        </a>
       </h1>
       
       <div class="newsitemDetails">       
