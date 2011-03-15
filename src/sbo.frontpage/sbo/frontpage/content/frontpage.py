@@ -23,7 +23,7 @@ FrontpageSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=ReferenceBrowserWidget(
             label=_(u"Cover image"),
-            description=_(u"The image displayed initially on the front page")
+            description=_(u"The image displayed initially on the front page.")
         )
     ),
 
@@ -37,7 +37,7 @@ FrontpageSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         widget=ReferenceBrowserWidget(
             label=_(u"News folder"),
             description=_(
-                u"The folder containing the news items of the website"
+                u"The folder containing the news items of the website."
             )
         )
     ),
@@ -51,7 +51,7 @@ FrontpageSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         storage=atapi.AnnotationStorage(),
         widget=ReferenceBrowserWidget(
             label=_(u"Concerts folder"),
-            description=_(u"The folder containing the concerts of the website")
+            description=_(u"The folder containing the concerts of the website.")
         )
     )
 ))
