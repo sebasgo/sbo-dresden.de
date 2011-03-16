@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-15 12:46+0000\n"
+"POT-Creation-Date: 2011-03-16 17:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Cover image"
 msgstr ""
 
-#: ./browser/frontpage.pt:28
+#: ./browser/frontpage.pt:36
 msgid "Date:"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Frontpage"
 msgstr ""
 
-#: ./browser/frontpage.pt:36
+#: ./browser/frontpage.pt:44
 msgid "Location:"
 msgstr ""
 
@@ -61,6 +61,11 @@ msgstr ""
 #: ./content/frontpage.py:26
 #: ./interfaces/frontpage.py:13
 msgid "The image displayed initially on the front page."
+msgstr ""
+
+#. Default: "Currently there aren't any concerts scheduled."
+#: ./browser/frontpage.pt:19
+msgid "no_concerts_scheduled"
 msgstr ""
 
 #. Default: "Upcoming concerts"

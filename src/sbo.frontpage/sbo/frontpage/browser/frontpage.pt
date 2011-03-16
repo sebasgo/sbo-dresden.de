@@ -14,6 +14,13 @@
   <div class="concerts">
     <h2 i18n:translate="upcoming_concerts_caption">Upcoming concerts</h2>
     <dl>
+      
+      <tal:no-concerts tal:condition="not: view/concerts">
+        <dd i18n:translate="no_concerts_scheduled">
+          Currently there aren't any concerts scheduled.
+        </dd>
+      </tal:no-concerts>  
+    
       <tal:concert tal:repeat="concert view/concerts">
         <dt tal:content="concert/Title">
           Our annual concert
