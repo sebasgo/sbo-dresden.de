@@ -35,8 +35,15 @@ body.portaltype-frontpage #content-core .concerts dl dd
 
 body.portaltype-frontpage #content-core .concerts table
 {
-    margin: 4px 0 0;
+    margin: 8px 0 0;
     padding: 0;
+}
+
+body.portaltype-frontpage #content-core .concerts table th,
+body.portaltype-frontpage #content-core .concerts table td
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 body.portaltype-frontpage #content-core .concerts table th
@@ -47,8 +54,8 @@ body.portaltype-frontpage #content-core .concerts table th
 
 body.portaltype-frontpage #content-core .concerts table img
 {
-    width: 17px;
-    height: 17px;
+    width: 15px;
+    height: 15px;
 }
 
 
@@ -128,18 +135,18 @@ body.portaltype-frontpage #content-core .news a.navbutton
     position: absolute;
     width: 24px;
     height: 24px;
-    background-color: red;
     top: 168px;
-    display: none;
     border: 0;
 }
 
 body.portaltype-frontpage #content-core .news a.navbutton.previous
 {
     left: 10px;
+    background-image: url(++resource++sbo.frontpage.resources/previous.png);
 }
 
 body.portaltype-frontpage #content-core .news a.navbutton.next
 {
     right: 10px;
+    background-image: url(++resource++sbo.frontpage.resources/next.png);
 }
