@@ -1,0 +1,152 @@
+body.portaltype-frontpage #content-core .concerts
+{
+    float: right;
+    width: 250px;
+    height: 362px;
+    background-image: url(++resource++sbo.frontpage.resources/concerts-bg.png);
+    position: relative;
+}
+
+body.portaltype-frontpage #content-core .concerts h2
+{
+    background-image: url(++resource++sbo.frontpage.resources/concerts-top-bg.png);
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 5px 10px 0;
+}
+ 
+
+body.portaltype-frontpage #content-core .concerts dl
+{
+    margin: 0 10px;
+    height: 330px;
+    overflow-y: auto;
+}
+
+body.portaltype-frontpage #content-core .concerts dl dt
+{
+    margin: 4px 0 0;
+}
+
+body.portaltype-frontpage #content-core .concerts dl dd
+{
+    margin: 0;
+}
+
+body.portaltype-frontpage #content-core .concerts table
+{
+    margin: 8px 0 0;
+    padding: 0;
+}
+
+body.portaltype-frontpage #content-core .concerts table th,
+body.portaltype-frontpage #content-core .concerts table td
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+body.portaltype-frontpage #content-core .concerts table th
+{
+    padding-right: 3px;
+}
+
+
+body.portaltype-frontpage #content-core .concerts table img
+{
+    width: 15px;
+    height: 15px;
+}
+
+
+body.portaltype-frontpage #content-core .concerts .footer
+{
+    background-image: url(++resource++sbo.frontpage.resources/concerts-bottom-bg.png);
+    height: 4px;
+    width: 250px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+}
+
+body.portaltype-frontpage #content-core .news
+{
+    width: 480px;
+    height: 360px;
+    position: relative;
+    border: 1px solid #666;
+}
+
+body.portaltype-frontpage #content-core .news .pane
+{
+    width: 480px;
+    height: 360px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+
+body.portaltype-frontpage #content-core .news .pane.active
+{
+    display: block;
+}
+
+body.portaltype-frontpage #content-core .news .pane a,
+body.portaltype-frontpage #content-core .news .pane a:hover,
+body.portaltype-frontpage #content-core .news .pane a:active,
+body.portaltype-frontpage #content-core .news .pane a:visited
+{
+    display: block;    
+    border-bottom: 0;
+}
+
+body.portaltype-frontpage #content-core .news .pane img
+{
+    height: 360px;
+    width: 480px;
+}
+
+
+body.portaltype-frontpage #content-core .news em.title
+{
+    display: block;    
+    position: absolute;
+    width: 472px;
+    left: 0px;
+    bottom: 0px;
+    font-weight: bold;
+    font-style: normal;
+    padding: 3px 4px;
+    background-image: url(++resource++sbo.frontpage.resources/titlebg.png);
+    color: #fff;
+}
+
+body.portaltype-frontpage #content-core .news em.title .description
+{
+    display: block;    
+    font-weight: normal;
+}
+
+
+body.portaltype-frontpage #content-core .news a.navbutton
+{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 168px;
+    border: 0;
+}
+
+body.portaltype-frontpage #content-core .news a.navbutton.previous
+{
+    left: 10px;
+    background-image: url(++resource++sbo.frontpage.resources/previous.png);
+}
+
+body.portaltype-frontpage #content-core .news a.navbutton.next
+{
+    right: 10px;
+    background-image: url(++resource++sbo.frontpage.resources/next.png);
+}

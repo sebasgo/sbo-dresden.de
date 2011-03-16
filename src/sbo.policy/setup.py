@@ -29,9 +29,9 @@ setup(name='sbo.policy',
           'plone.app.iterate',
           'plone.app.caching',
           'collective.quickupload',
-          'Products.Collage',
           'sbo.inkstain',
           'sbo.theme',
+          'sbo.frontpage',
       ],
       entry_points="""
       # -*- Entry points: -*-

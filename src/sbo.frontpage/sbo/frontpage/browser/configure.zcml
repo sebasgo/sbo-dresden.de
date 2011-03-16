@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sbo.frontpage">
+
+  <include package="plone.app.contentmenu" />
+
+  <browser:page
+    for="..interfaces.IFrontpage"
+    name="view"
+    class=".views.FrontPageView"
+    permission="zope2.View"
+    layer=".interfaces.IFrontPageLayer"
+    />
+
+  <browser:resourceDirectory
+    name="sbo.frontpage.resources"
+    directory="resources"
+    layer=".interfaces.IFrontPageLayer"
+    />
+    
+</configure>

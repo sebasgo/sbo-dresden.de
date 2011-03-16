@@ -2,12 +2,12 @@
 <metadata>
   <version>1</version>
  <dependencies>
-  <dependency>profile-Products.Collage:default</dependency>
   <dependency>profile-plone.app.iterate:plone.app.iterate</dependency>
   <dependency>profile-plone.app.caching:default</dependency>
   <dependency>profile-plone.app.caching:with-caching-proxy-splitviews</dependency>
   <dependency>profile-collective.quickupload:default</dependency>
   <dependency>profile-sbo.theme:default</dependency>
   <dependency>profile-sbo.inkstain:default</dependency>
+  <dependency>profile-sbo.frontpage:default</dependency>
  </dependencies>
 </metadata>

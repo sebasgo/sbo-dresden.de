@@ -4,10 +4,10 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="sbo.policy">
 
-    <include package="Products.Collage" />
     <include package="plone.app.iterate" />
     <include package="sbo.inkstain" />
     <include package="sbo.theme" />
+    <include package="sbo.frontpage" />
 
     <five:registerPackage package="." initialize=".initialize" />
 

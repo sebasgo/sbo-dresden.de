@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="sbo.frontpage"
+  >
+<body>
+<metal:content-core fill-slot="content-core" tal:define="
+    toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+    ">
+  
+  <div class="concerts">
+    <h2 i18n:translate="upcoming_concerts_caption">Upcoming concerts</h2>
+    <dl>
+      
+      <tal:no-concerts tal:condition="not: view/concerts">
+        <dd i18n:translate="no_concerts_scheduled">
+          Currently there aren't any concerts scheduled.
+        </dd>
+      </tal:no-concerts>  
+    
+      <tal:concert tal:repeat="concert view/concerts">
+        <dt tal:content="concert/Title">
+          Our annual concert
+        </dt>
+        <dd>
+          <div tal:replace="concert/Description">
+            The biggest event in concert history!
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <img class="data" src="++resource++sbo.frontpage.resources/date.png" alt="Date:" i18n:attributes="alt" />
+                </th>
+                <td tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
+                  31.02.2013 15:30
+                </td>
+              </tr>
+              <tr tal:condition="concert/location">
+                <th>
+                  <img class="data" src="++resource++sbo.frontpage.resources/location.png" alt="Location:" i18n:attributes="alt" />
+                </th>
+                <td tal:content="concert/location">
+                  International space station
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+      </tal:concert>
+    </dl>
+    <div class="footer"><!-- --></div>
+  </div>
+  
+  <div class="news">
+    <p class="pane active" tal:define="img view/cover_image">
+      <img tal:replace="structure python:img.tag(scale='frontpage')" />
+      <em class="title">
+        <tal:title tal:replace="img/Title">Image title</tal:title>
+        <span class="description" tal:content="img/Description" tal:condition="img/Description">
+          Image description
+        </span>
+      </em>
+    </p>
+    <p class="pane" tal:repeat="item view/news">
+      <a tal:attributes="href python:view.news_target_url(item)">
+        <img tal:condition="item/getImage|nothing" tal:replace="structure python:item.tag(scale='frontpage')" />
+        <img tal:condition="not:item/getImage|nothing" src="++resource++sbo.frontpage.resources/placeholder.jpg" />
+        <em class="title">
+          <tal:title tal:replace="item/Title">Image title</tal:title>
+          <span class="description" tal:content="item/Description" tal:condition="item/Description">
+            Image description
+          </span>
+        </em>
+      </a>
+    </p>
+  </div>
+  
+</metal:content-core>
+</body>
+</html>
