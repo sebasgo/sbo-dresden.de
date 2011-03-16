@@ -13,35 +13,37 @@
   
   <div class="concerts">
     <h2 i18n:translate="upcoming_concerts_caption">Upcoming concerts</h2>
-    <dl tal:repeat="concert view/concerts">
-      <dt tal:content="concert/Title">
-        Our annual concert
-      </dt>
-      <dd>
-        <div tal:replace="concert/Description">
-          The biggest event in concert history!
-        </div>
-        <table>
-          <tbody>
-            <tr>
-              <th>
-                <img class="data" src="++resource++sbo.frontpage.resources/date.png" alt="Date:" i18n:attributes="alt" />
-              </th>
-              <td tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
-                31.02.2013 15:30
-              </td>
-            </tr>
-            <tr tal:condition="concert/location">
-              <th>
-                <img class="data" src="++resource++sbo.frontpage.resources/location.png" alt="Location:" i18n:attributes="alt" />
-              </th>
-              <td tal:content="concert/location">
-                International space station
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </dd>
+    <dl>
+      <tal:concert tal:repeat="concert view/concerts">
+        <dt tal:content="concert/Title">
+          Our annual concert
+        </dt>
+        <dd>
+          <div tal:replace="concert/Description">
+            The biggest event in concert history!
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <img class="data" src="++resource++sbo.frontpage.resources/date.png" alt="Date:" i18n:attributes="alt" />
+                </th>
+                <td tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
+                  31.02.2013 15:30
+                </td>
+              </tr>
+              <tr tal:condition="concert/location">
+                <th>
+                  <img class="data" src="++resource++sbo.frontpage.resources/location.png" alt="Location:" i18n:attributes="alt" />
+                </th>
+                <td tal:content="concert/location">
+                  International space station
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+      </tal:concert>
     </dl>
     <div class="footer"><!-- --></div>
   </div>
