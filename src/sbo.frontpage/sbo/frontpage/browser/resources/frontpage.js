@@ -40,10 +40,28 @@ jq(document).ready(function()
                     '<a href="#" class="navbutton ' + which + '"><!-- --></a>'
                 );
                 
-                newsBox.children("a." + which).click(function(event)
+                var button = newsBox.children("a." + which);
+                
+                button.css("opacity", 0);
+                
+                button.click(function(event)
                 {
                     event.preventDefault();
                     navigate(which == "next");
+                });
+                
+                button.mouseenter(function(event)
+                {
+                    button.animate({
+                        opacity: 0.8
+                    }, 250);
+                });
+                
+                button.mouseleave(function(event)
+                {
+                    button.animate({
+                        opacity: 0.5
+                    }, 250);
                 });
             };
             
@@ -52,7 +70,9 @@ jq(document).ready(function()
             
             newsBox.mouseenter(function()
             {
-                newsBox.children("a.navbutton").fadeIn(250);
+                newsBox.children("a.navbutton").show().animate({
+                    opacity: 0.5
+                }, 250);
             });
             
             newsBox.mouseleave(function()

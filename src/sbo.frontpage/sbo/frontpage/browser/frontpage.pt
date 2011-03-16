@@ -25,7 +25,7 @@
           <tbody>
             <tr>
               <th>
-                <img class="data" src="" alt="Date:" i18n:attributes="alt" />
+                <img class="data" src="++resource++sbo.frontpage.resources/date.png" alt="Date:" i18n:attributes="alt" />
               </th>
               <td tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
                 31.02.2013 15:30
@@ -33,7 +33,7 @@
             </tr>
             <tr tal:condition="concert/location">
               <th>
-                <img class="data" src="" alt="Location:" i18n:attributes="alt" />
+                <img class="data" src="++resource++sbo.frontpage.resources/location.png" alt="Location:" i18n:attributes="alt" />
               </th>
               <td tal:content="concert/location">
                 International space station
