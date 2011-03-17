@@ -100,6 +100,14 @@ jq(document).ready(function()
         });
     };
     
+    if ($.browser.msie)
+    {
+	if (parseInt($.browser.version, 10) < 7)
+	{
+	    return;
+	}
+    }
+    
     var tabbar = jq("#portal-globalnav");
     
     animateTabbar(tabbar);
