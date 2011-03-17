@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0nPOT-Creation-Date: 2010-11-25 13:20+0000\n"
-"POT-Creation-Date: 2011-03-17 16:45+0000\n"
+"POT-Creation-Date: 2011-03-17 21:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,9 @@ msgstr ""
 "<h5>Sie benutzen einen veralteten Browser</h5> Für eine besseres "
 "Webseitenerlebnis aktualisieren Sie bitte auf einen modernen Browser."
 
+msgid "Concerts"
+msgstr "Konzerte"
+
 #: ./browser/templates/footer.pt:1
 msgid ""
 "Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
@@ -34,9 +37,18 @@ msgstr ""
 msgid "Currently there aren't any concerts scheduled."
 msgstr "Zur Zeit sind keine Konzerte geplant."
 
+msgid "Displays concerts in this folder"
+msgstr "Zeigt die Konzerte in diesem Ordner an"
+
+msgid "Displays news items in this folder"
+msgstr "Zeigt die Neuigkeiten in diesem Ordner an"
+
 #: ./browser/templates/concerts.pt:37
 msgid "Event details"
 msgstr "Ereignisdetails"
+
+msgid "News"
+msgstr "Neuigkeiten"
 
 #. Default: "Next ${number} items"
 #: ./skins/sbo_theme_custom_templates/batch_macros.pt:44
