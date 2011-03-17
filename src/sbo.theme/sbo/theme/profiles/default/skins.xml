@@ -22,9 +22,6 @@
  <object name="sbo_theme_custom_templates"
     meta_type="Filesystem Directory View"
     directory="sbo.theme:skins/sbo_theme_custom_templates"/>
- <object name="sbo_theme_styles"
-    meta_type="Filesystem Directory View"
-    directory="sbo.theme:skins/sbo_theme_styles"/>
 
  <!-- A skin-path in this file corresponds to a Skin Selection in the
      'Properties' tab of the portal_skins tool, in the ZMI.
