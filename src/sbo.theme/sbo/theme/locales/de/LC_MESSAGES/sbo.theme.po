@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0nPOT-Creation-Date: 2010-11-25 13:20+0000\n"
-"POT-Creation-Date: 2011-03-17 14:05+0000\n"
+"POT-Creation-Date: 2011-03-17 16:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,11 @@ msgid ""
 msgstr ""
 "Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
 
-#: ./browser/templates/concerts.pt:28
+#: ./browser/templates/concerts.pt:25
+msgid "Currently there aren't any concerts scheduled."
+msgstr "Zur Zeit sind keine Konzerte geplant."
+
+#: ./browser/templates/concerts.pt:37
 msgid "Event details"
 msgstr "Ereignisdetails"
 
@@ -45,35 +49,35 @@ msgid "batch_previous_x_items"
 msgstr "Die vorherigen ${number} Einträge"
 
 #. Default: "${startdate} to ${enddate}"
-#: ./browser/templates/concerts.pt:50
+#: ./browser/templates/concerts.pt:59
 msgid "event_when_differentday"
 msgstr "${startdate} bis ${enddate}"
 
-#: ./browser/templates/concerts.pt:45
+#: ./browser/templates/concerts.pt:54
 msgid "event_when_differentday_optional_word_between_date_and_time"
 msgstr "um"
 
 #. Default: "${date} from ${starttime} to ${endtime}"
-#: ./browser/templates/concerts.pt:84
+#: ./browser/templates/concerts.pt:93
 msgid "event_when_sameday"
 msgstr "${date} von ${starttime} bis ${endtime}"
 
 #. Default: "iCal"
-#: ./browser/templates/concerts.pt:117
+#: ./browser/templates/concerts.pt:126
 msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "vCal"
-#: ./browser/templates/concerts.pt:112
+#: ./browser/templates/concerts.pt:121
 msgid "label_add_to_vcal"
 msgstr "vCal"
 
 #. Default: "Download this concert date in iCal format"
-#: ./browser/templates/concerts.pt:113
+#: ./browser/templates/concerts.pt:122
 msgid "title_add_to_ical"
 msgstr "Diesen Konzerttermin im iCal-Format herunterladen"
 
 #. Default: "Download this concert date in vCal format"
-#: ./browser/templates/concerts.pt:108
+#: ./browser/templates/concerts.pt:117
 msgid "title_add_to_vcal"
 msgstr "Diesen Konzerttermin im vCal-Format herunterladen"

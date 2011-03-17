@@ -18,6 +18,15 @@
     templateId template/getId;
     ">
     
+  <tal:no-concerts tal:condition="not: batch">
+    <h1 tal:content="view/context/Title">
+      Title
+    </h1>
+    <div i18n:translate="" class="documentDescription">
+      Currently there aren't any concerts scheduled.
+    </div>
+  </tal:no-concerts>
+  
   <div tal:repeat="brain batch" tal:omit-tag="">
     <div tal:omit-tag="" tal:define="obj brain/getObject">
       <h1 tal:content="obj/Title">
