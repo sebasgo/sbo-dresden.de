@@ -1,18 +1,38 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0n"
-"POT-Creation-Date: 2010-11-25 13:20+0000\n"
+"Project-Id-Version: 1.0nPOT-Creation-Date: 2010-11-25 13:20+0000\n"
+"POT-Creation-Date: 2011-03-17 14:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language-Code: de\n"
 "Language-Name: Deutsch\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sbo.theme\n"
+"X-Language: de_DE\n"
+"X-Source-Language: C\n"
+
+#: ./browser/templates/depracedbrowserwarning.pt:8
+msgid ""
+"<h5>You are using an outdated browser</h5> For a better experience using "
+"this site, please upgrade to a modern web browser."
+msgstr ""
+"<h5>Sie benutzen einen veralteten Browser</h5> Für eine besseres "
+"Webseitenerlebnis aktualisieren Sie bitte auf einen modernen Browser."
+
+#: ./browser/templates/footer.pt:1
+msgid ""
+"Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
+msgstr ""
+"Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
+
+#: ./browser/templates/concerts.pt:28
+msgid "Event details"
+msgstr "Ereignisdetails"
 
 #. Default: "Next ${number} items"
 #: ./skins/sbo_theme_custom_templates/batch_macros.pt:44
@@ -24,3 +44,36 @@ msgstr "Die nächsten ${number} Einträge"
 msgid "batch_previous_x_items"
 msgstr "Die vorherigen ${number} Einträge"
 
+#. Default: "${startdate} to ${enddate}"
+#: ./browser/templates/concerts.pt:50
+msgid "event_when_differentday"
+msgstr "${startdate} bis ${enddate}"
+
+#: ./browser/templates/concerts.pt:45
+msgid "event_when_differentday_optional_word_between_date_and_time"
+msgstr "um"
+
+#. Default: "${date} from ${starttime} to ${endtime}"
+#: ./browser/templates/concerts.pt:84
+msgid "event_when_sameday"
+msgstr "${date} von ${starttime} bis ${endtime}"
+
+#. Default: "iCal"
+#: ./browser/templates/concerts.pt:117
+msgid "label_add_to_ical"
+msgstr "iCal"
+
+#. Default: "vCal"
+#: ./browser/templates/concerts.pt:112
+msgid "label_add_to_vcal"
+msgstr "vCal"
+
+#. Default: "Download this concert date in iCal format"
+#: ./browser/templates/concerts.pt:113
+msgid "title_add_to_ical"
+msgstr "Diesen Konzerttermin im iCal-Format herunterladen"
+
+#. Default: "Download this concert date in vCal format"
+#: ./browser/templates/concerts.pt:108
+msgid "title_add_to_vcal"
+msgstr "Diesen Konzerttermin im vCal-Format herunterladen"
