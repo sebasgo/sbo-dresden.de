@@ -1,3 +1,11 @@
+from Products.CMFCore.utils import getToolByName
+
+
+def install_profile(context):
+    setup = getToolByName(context, 'portal_setup')
+    setup.runAllImportStepsFromProfile('profile-sbo.theme:default',
+                                       purge_old=False)
+
 def setupVarious(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.
@@ -9,3 +17,4 @@ def setupVarious(context):
         return
 
     # Add additional setup code here
+
