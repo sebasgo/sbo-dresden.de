@@ -17,7 +17,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 [*] custom news view
 [*] add anchors for individual news items and concerts
 [*] IE6.0 deprecation warning viewlet
-[ ] disable animations for ancient browsers
+[*] disable animations for ancient browsers
 [*] add 2011 to copyright line
 [ ] make personal tools/login button resize to its contents
 [*] i18n
