@@ -100,9 +100,9 @@ jq(document).ready(function()
     });
 };
 
-    if ($.browser.msie)
-    {	
-        if (parseInt($.browser.version, 10) < 7)
+    if (jq.browser.msie)
+    {
+        if (parseInt(jq.browser.version, 10) < 7)
         {
             return;
         }
