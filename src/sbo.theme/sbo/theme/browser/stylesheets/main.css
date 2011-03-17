@@ -254,3 +254,51 @@ dl.portalMessage dt
     padding: 0px 0.5em;
     -moz-border-radius: 0.5em;
 }
+
+
+#browser-box
+{
+    margin: 0px 15px 10px;    
+    border: 1px solid #F7941D;
+    background: #FEEFDA;
+    clear: both;
+    height: 85px;
+}
+
+
+#browser-box .text
+{
+    margin: 5px 10px;    
+    float: left;
+    width: 240px;
+    font-size: 12px;
+}
+
+#browser-box .text h5
+{
+    font-size: 14px;
+    line-height: 1em;
+}
+
+
+#browser-box .choices
+{
+    margin: 11px 0;    
+    float: left;    
+    background-color: #fff;
+    padding: 7px 0 7px 7px;
+}
+
+#browser-box .choices a
+{
+    display: block;
+    float: left;
+    padding-right: 7px;
+}
+
+#browser-box .choices a img
+{
+    width: 145px;
+    height: 50px;
+    border: 0;
+}

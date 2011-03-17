@@ -7,6 +7,7 @@
         <viewlet name="plone.skip_links" />
         <viewlet name="plone.logo" />
         <viewlet name="sbo.global_nav" />
+        <viewlet name="sbo.depracedbrowserwarning" />
     </order>
 
     <hidden manager="plone.portalheader" skinname="SBO Plone Theme">

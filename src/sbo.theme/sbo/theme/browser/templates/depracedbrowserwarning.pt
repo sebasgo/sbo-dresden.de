@@ -1,0 +1,19 @@
+<div tal:omit-tag="" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sbo.theme">
+  <div tal:replace="structure string:&lt;!--[if lt IE 7]&gt;"></div>
+  <div id="browser-box">
+    <div class="text" i18n:translate="">
+      <h5>You are using an outdated browser</h5>
+      For a better experience using this site, please upgrade to a modern web browser.
+    </div>
+    <div class="choices">
+      <a href="http://www.mozilla-europe.org/"><img src="++resource++sbo.theme.images/browser-icons/firefox.png"/></a>
+      <a href="http://windows.microsoft.com/de-DE/internet-explorer/products/ie/home"><img src="++resource++sbo.theme.images/browser-icons/ie.png"/></a>
+      <a href="http://www.google.com/chrome"><img src="++resource++sbo.theme.images/browser-icons/chrome.png"/></a>
+    </div>
+  </div>
+  <div tal:replace="structure string:&lt;![endif]--&gt;"></div>
+</div>

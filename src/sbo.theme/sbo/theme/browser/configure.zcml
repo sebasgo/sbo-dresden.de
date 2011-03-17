@@ -43,6 +43,13 @@
       permission="zope2.View"
       />
   <browser:viewlet
+      name="sbo.depracedbrowserwarning"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      layer=".interfaces.IThemeSpecific"
+      template="templates/depracedbrowserwarning.pt"
+      permission="zope2.View"
+      />
+  <browser:viewlet
       name="sbo.global_nav"
       manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
       layer=".interfaces.IThemeSpecific"
