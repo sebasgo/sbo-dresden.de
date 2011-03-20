@@ -28,4 +28,4 @@ Creation-Date: 2010-11-27T11:48:27.727368
 [*] view
 [*] i18n
 [*] register as dependency of sbo.policy
-[ ] placeholder image
+[*] placeholder image
