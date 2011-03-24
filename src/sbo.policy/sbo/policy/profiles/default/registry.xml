@@ -19,4 +19,12 @@
             <element>http://localhost:8888</element>
         </value>
     </record>
+    <record name="plone.app.caching.strongCaching.maxage">
+        <!-- set to one week -->
+        <value>604800</value>
+    </record>
+    <record name="plone.app.caching.strongCaching.plone.resource.maxage">
+        <!-- set to one week -->
+        <value>604800</value>
+    </record>
 </registry>
