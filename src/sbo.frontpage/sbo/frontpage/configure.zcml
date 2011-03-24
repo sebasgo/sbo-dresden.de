@@ -21,6 +21,16 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   
+  <genericsetup:upgradeStep
+    title="upgrade profile"
+    description="profile must be re-registered"
+    source="1000"
+    destination="1001"
+    sortkey="1"
+    profile="sbo.frontpage:default"
+    handler=".setuphandlers.install_profile"
+    />
+  
   <i18n:registerTranslations directory="locales" />
 
 </configure>

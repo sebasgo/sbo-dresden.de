@@ -5,10 +5,10 @@ Creation-Date: 2010-11-27T11:48:27.727368
 ====== Tasks v1.1.1 ======
 
 ===== sbo.profile =====
-[ ] extend cache duration for stable resources to one wekk
+[ ] extend cache duration for stable resources to one week
 
 ===== sbo.frontpage =====
-[ ] fix caching behaviour 
+[*] fix caching behaviour 
 
 ===== sbo.inkstain =====
 [ ] fix caching behaviour
