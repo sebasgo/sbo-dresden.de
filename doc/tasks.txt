@@ -2,31 +2,20 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2010-11-27T11:48:27.727368
 
-====== Tasks v1.1 ======
-
-===== general =====
-[*] pin plone 4.0.4
+====== Tasks v1.1.1 ======
 
 ===== sbo.profile =====
-[*] add prototype to required javascripts, fixes kss in MSIE
-
-===== sbo.theme =====
-[*] interactivity for global navigation using jquery
-[*] custom concert view
-[*] custom news view
-[*] add anchors for individual news items and concerts
-[*] IE6.0 deprecation warning viewlet
-[*] disable animations for ancient browsers
-[*] add 2011 to copyright line
-[*] i18n
+[ ] extend cache duration for stable resources to one wekk
 
 ===== sbo.frontpage =====
-[*] boilerplate
-[*] schema
-[*] view
-[*] i18n
-[*] register as dependency of sbo.policy
-[*] placeholder image
+[ ] fix caching behaviour 
+
+===== sbo.inkstain =====
+[ ] fix caching behaviour
+
+===== sbo.frontpage =====
+[ ] fix animation of arrow buttons in news box if accessed in quick succession
+[ ] fix dimensions of placehoder image in news box
 
 ====== Tasks v1.2 ======
 
