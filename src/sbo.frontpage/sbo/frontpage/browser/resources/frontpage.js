@@ -52,14 +52,14 @@ jq(document).ready(function()
                 
                 button.mouseenter(function(event)
                 {
-                    button.animate({
+                    button.stop().show().animate({
                         opacity: 0.8
                     }, 250);
                 });
                 
                 button.mouseleave(function(event)
                 {
-                    button.animate({
+                    button.stop().animate({
                         opacity: 0.5
                     }, 250);
                 });
@@ -70,14 +70,14 @@ jq(document).ready(function()
             
             newsBox.mouseenter(function()
             {
-                newsBox.children("a.navbutton").show().animate({
+                newsBox.children("a.navbutton").stop().show().animate({
                     opacity: 0.5
                 }, 250);
             });
             
             newsBox.mouseleave(function()
             {
-                newsBox.children("a.navbutton").fadeOut(250);
+                newsBox.children("a.navbutton").stop().fadeOut(250);
             });
         };
         
