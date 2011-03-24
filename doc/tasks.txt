@@ -15,7 +15,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 
 ===== sbo.frontpage =====
 [*] fix animation of arrow buttons in news box if accessed in quick succession
-[ ] fix dimensions of placehoder image in news box
+[*] fix dimensions of placehoder image in news box
 
 ====== Tasks v1.2 ======
 
