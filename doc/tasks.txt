@@ -2,25 +2,17 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2010-11-27T11:48:27.727368
 
-====== Tasks v1.1.1 ======
-
-===== sbo.profile =====
-[*] extend cache duration for stable resources to one week
-
-===== sbo.frontpage =====
-[*] fix caching behaviour 
+====== Tasks v1.1.2 ======
 
 ===== sbo.inkstain =====
-[*] fix caching behaviour
-
-===== sbo.frontpage =====
-[*] fix animation of arrow buttons in news box if accessed in quick succession
-[*] fix dimensions of placehoder image in news box
+[ ] trigger purging on post
+[ ] i18n fixes
 
 ====== Tasks v1.2 ======
 
 ===== general =====
 [ ] include PIL in buildout
+[ ] upgrade to Plone 4.2
 
 ===== sbo.theme =====
 [ ] make personal tools/login button resize to its contents
