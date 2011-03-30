@@ -1,11 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cache="http://namespaces.zope.org/cache"
     i18n_domain="sbo.inkstain">
 
-  <!-- configure your content components here -->
+  <include package="plone.caching" />
   
-  <!-- -*- extra stuff goes here -*- -->
   <class class=".guestbook.Guestbook">
     <require
         permission="zope2.View"
@@ -13,4 +13,13 @@
         />
   </class>
 
+ <cache:rulesetType
+     name="sbo.guestbook"
+     title="Guestbook resources"
+     description="Guestbook resources"
+     />
+ <cache:ruleset
+    ruleset="sbo.guestbook"
+    for=".guestbook.Guestbook"
+    />
 </configure>
