@@ -6,7 +6,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 
 ===== sbo.inkstain =====
 [*] prohibit caching
-[ ] i18n fixes
+[*] i18n fixes
 
 ====== Tasks v1.2 ======
 

@@ -6,13 +6,15 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language-Code: de\n"
 "Language-Name: Deutsch\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sbo.inkstain\n"
+"X-Language: de_DE\n"
+"X-Source-Language: C\n"
 
 #: ./profiles/default/types/Guestbook.xml
 msgid "A simple guestbook"
@@ -22,14 +24,15 @@ msgstr "Ein einfaches Gästebuch"
 msgid "Delete marked entries"
 msgstr "Lösche markierte Einträge"
 
-#: ./content/guestbook.py:27
-#: ./interfaces/guestbook.py:11
+#: ./content/guestbook.py:27 ./interfaces/guestbook.py:11
 msgid "Entries per page"
 msgstr "Einträge pro Seite"
 
 #: ./browser/writeentry.py:87
 msgid "Got a comment? Please submit it using the form below!"
-msgstr "Wollen Sie einen Kommentar los werden? Schreiben Sie uns ihn mit dem Formular unterhalb."
+msgstr ""
+"Wollen Sie einen Kommentar los werden? Schreiben Sie ihn uns mit dem "
+"Formular unterhalb."
 
 #: ./profiles/default/types/Guestbook.xml
 msgid "Guestbook"
@@ -51,8 +54,7 @@ msgstr "Nachricht"
 msgid "Please keep to 1,000 characters."
 msgstr "Nicht mehr als 1000 Zeichen."
 
-#: ./content/guestbook.py:28
-#: ./interfaces/guestbook.py:12
+#: ./content/guestbook.py:28 ./interfaces/guestbook.py:12
 msgid "Sets the number of entries which are shown on one page."
 msgstr "Legt fest, wie viele Einträge auf einer Seite angezeigt werden"
 
