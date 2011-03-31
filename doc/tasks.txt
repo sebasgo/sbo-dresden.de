@@ -5,7 +5,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 ====== Tasks v1.1.2 ======
 
 ===== sbo.inkstain =====
-[ ] trigger purging on post
+[*] prohibit caching
 [ ] i18n fixes
 
 ====== Tasks v1.2 ======
