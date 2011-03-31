@@ -44,6 +44,16 @@
     handler=".setuphandlers.install_profile"
     />
   
+  <genericsetup:upgradeStep
+    title="upgrade profile"
+    description="profile must be re-registered"
+    source="2"
+    destination="3"
+    sortkey="1"
+    profile="sbo.inkstain:default"
+    handler=".setuphandlers.install_profile"
+    />
+  
   <i18n:registerTranslations directory="locales" />
 
 </configure>

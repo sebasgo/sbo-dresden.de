@@ -1,0 +1,9 @@
+<registry>
+
+  <record name="plone.caching.interfaces.ICacheSettings.operationMapping">
+    <value purge="False">
+      <element key="sbo.guestbook">plone.app.caching.noCaching</element>
+    </value>
+  </record>
+
+</registry>
