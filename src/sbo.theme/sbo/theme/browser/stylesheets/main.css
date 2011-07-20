@@ -40,6 +40,11 @@ h6
 {
     width: 780px;
     margin: auto;
+}
+
+#visual-portal-wrapper #portal-top,
+#visual-portal-wrapper #portal-columns
+{
     background-color: #f0f1f2;
 }
 
