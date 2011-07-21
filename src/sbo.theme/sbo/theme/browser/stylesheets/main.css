@@ -307,3 +307,45 @@ dl.portalMessage dt
     height: 50px;
     border: 0;
 }
+
+#content div.gallery
+{
+    margin-top: 15px;
+}
+
+#content div.gallery a
+{
+    border-bottom: 0;
+}
+
+#content div.gallery img
+{
+    margin-left: 12px;
+    margin-bottom: 12px;
+}
+
+#content div.gallery img.newline
+{
+    margin-left: 0;
+}
+
+#content a.gallery
+{
+    border-bottom: 0;
+}
+
+#content a.gallery h6
+{
+    margin: 15px 0 5px;
+    text-decoration: underline;
+}
+
+#content a.gallery img
+{
+   margin-left: 12px;
+}
+
+#content a.gallery img.first
+{
+    margin-left: 0px;
+}
