@@ -39,3 +39,23 @@ class NewsView(BrowserView):
             sort_order='descending'
         )
         return results;
+
+class GalleryView(BrowserView):
+    
+    template = ViewPageTemplateFile('templates/gallery.pt')
+    
+    def __call__(self):
+        return self.template()
+
+    def sub_galleries(self):
+        context = aq_inner(self.context)
+        return context.values(self.context.meta_type)
+
+    def get_imgs_of(self, gallery, limit=None):
+        return gallery.getFolderContents(
+            {'portal_type': ('Image',)},
+            full_objects=True,
+            batch=(limit is not None),
+            b_size=limit
+        )
+        

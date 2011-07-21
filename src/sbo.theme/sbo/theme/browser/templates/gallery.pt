@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="sbo.theme"
+  >
+<body>
+<metal:content-core fill-slot="content-core" tal:define="
+    imgs python:view.get_imgs_of(context);
+    sub_galleries view/sub_galleries;
+    ">
+  <div class="gallery" tal:condition="imgs"
+    ><tal:img tal:repeat="img imgs"
+      ><a tal:attributes="href img/absolute_url"
+      ><img
+        tal:define="
+          scales img/@@images;
+          thumb python:scales.scale('image', width=98, height=98, direction='down');
+          index repeat/img/index
+          "
+        tal:attributes="
+          src thumb/url;
+          widht  thumb/width;
+          height thumb/height;
+          class python:index%7 == 0 and 'newline' or ''
+          "
+    ></a
+    ></tal:img
+  ></div>
+  
+  <h2 tal:condition="python: imgs and sub_galleries" i18n:translate="">
+    Subgalleries:
+  </h2>
+  
+  <tal:has-subgalleries tal:condition="sub_galleries">
+    <tal:gallery tal:repeat="gallery sub_galleries">
+      <a class="gallery" tal:attributes="href gallery/absolute_url">
+        <h6 tal:content="gallery/Title">The gallery title</h6
+        ><tal:thumb tal:repeat="img python:view.get_imgs_of(gallery, limit=7)"
+            ><img
+              tal:define="
+                scales img/@@images;
+                thumb python:scales.scale('image', width=98, height=98, direction='down');
+                firstrow repeat/img/start
+                "
+              tal:attributes="
+                src thumb/url;
+                width thumb/width;
+                height thumb/height;
+                class python:firstrow and 'first' or ''
+                "
+            ></tal:thumb
+      ></a>
+    </tal:gallery>
+  </tal:has-subgalleries>
+  
+</metal:content-core>
+</body>
+</html>
