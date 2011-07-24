@@ -8,12 +8,39 @@ jq(document).ready(function()
         var navigate = function(switchForward)
         {
             var currentPane = newsBox.children(".pane.active").get(0);
-            jq(currentPane).fadeOut(500, function()
-            {
-                jq(currentPane).removeClass("active");
-            });
             
-            nextPane = switchForward?
+            var hide = function()
+            {
+                jq(currentPane).hide(
+                    "slide",
+                    {
+                        direction: switchForward? "left": "right"
+                    },
+                    500, 
+                    function()
+                    {
+                        jq(currentPane).removeClass("active");
+                    }
+                );
+            }
+            
+            var show = function()
+            {
+            jq(nextPane).show(
+                "slide",
+                {
+                    direction: switchForward? "right": "left"
+                },
+                500, 
+                function()
+                {
+                    jq(nextPane).addClass("active");
+                }
+            );
+            }
+            
+            
+            var nextPane = switchForward?
                 jq(currentPane).next(".pane").get(0):
                 jq(currentPane).prev(".pane").get(0);
             
@@ -24,10 +51,16 @@ jq(document).ready(function()
                     newsBox.children(".pane").last().get(0);
             }
             
-            jq(nextPane).fadeIn(500, function()
+            if (switchForward)
             {
-                jq(nextPane).addClass("active");
-            });
+                show();
+                hide();
+            }
+            else
+            {
+                hide();
+                show();
+            }
             
             setupTimer();
         }
