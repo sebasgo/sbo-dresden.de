@@ -7,13 +7,21 @@
   i18n:domain="sbo.theme"
   >
 <body>
+
+<metal:javascript_head_slot fill-slot="javascript_head_slot">
+  <script type="text/javascript" src=""
+    tal:attributes="src string:${context/portal_url}/++resource++sbo.theme.javascripts/gallery.js"
+    >
+  </script>
+</metal:javascript_head_slot>
+
 <metal:content-core fill-slot="content-core" tal:define="
     imgs python:view.get_imgs_of(context);
     sub_galleries view/sub_galleries;
     ">
   <div class="gallery" tal:condition="imgs"
     ><tal:img tal:repeat="img imgs"
-      ><a tal:attributes="href img/absolute_url"
+      ><a tal:attributes="href img/absolute_url; title img/Title"
       ><img
         tal:define="
           scales img/@@images;
@@ -56,6 +64,12 @@
     </tal:gallery>
   </tal:has-subgalleries>
   
+  
 </metal:content-core>
 </body>
+
+<tal:comment replace="nothing">
+kate: space-indent on; indent-width 2; mixedindent off; indent-mode normal;
+</tal:comment>
+
 </html>
