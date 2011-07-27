@@ -372,3 +372,159 @@ dl.portalMessage dt
     height: 50px;
     border: 0;
 }
+
+#content div.gallery
+{
+    margin-top: 15px;
+}
+
+#content div.gallery a
+{
+    border-bottom: 0;
+}
+
+#content div.gallery img
+{
+    margin-left: 12px;
+    margin-bottom: 12px;
+}
+
+#content div.gallery img.newline
+{
+    margin-left: 0;
+}
+
+#content a.gallery
+{
+    border-bottom: 0;
+}
+
+#content a.gallery h6
+{
+    margin: 15px 0 5px;
+    text-decoration: underline;
+}
+
+#content a.gallery img
+{
+   margin-left: 12px;
+}
+
+#content a.gallery img.first
+{
+    margin-left: 0px;
+}
+
+#content .gallery_uploader
+{
+    margin-top: 20px;
+    background-color: #75AD0A;
+    padding: 3px 7px;
+    border: 0.25em solid #75AD0A;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    color: #fff;
+}
+
+#content .gallery_uploader ul
+{
+    margin: 0;
+    color: #000;
+}
+
+#slideshow
+{
+    position: absolute;
+    z-index: 5;
+    overflow: hidden;
+    display: none;
+}
+
+#slideshow .bg
+{
+    position: absolute;
+    background-color: #111;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+}
+
+#slideshow img
+{
+    border: 1px solid white;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: none;
+}
+
+#slideshow .controls
+{
+    position: absolute;
+    left: 0;
+    z-index: 2;
+}
+
+#slideshow .left,
+#slideshow .right
+{
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#slideshow .left
+{
+    left: 0;
+    background-image: url(++resource++sbo.theme.images/slideshow-previous.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+#slideshow .right
+{
+    background-image: url(++resource++sbo.theme.images/slideshow-next.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+#slideshow .bottombar,
+#slideshow .title
+{
+    position: absolute;
+    background-color: #333;
+    color: #ddd;
+    font-size: 14px;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+#slideshow .title
+{
+    padding: 2px 4px 3px;
+    line-height: 22px;
+    border-bottom: 1px solid #aaa;
+    font-weight: bold;
+}
+
+#slideshow .title .close_btn
+{
+    float: right;
+    background-image: url(++resource++sbo.theme.images/slideshow-close.png);
+    width: 22px;
+    height: 22px;
+}
+
+
+#slideshow .bottombar
+{
+    padding: 4px 4px;
+    border-top: 1px solid #aaa;
+}
+
+#slideshow .bottombar .img_index
+{
+    font-weight: bold;
+}
