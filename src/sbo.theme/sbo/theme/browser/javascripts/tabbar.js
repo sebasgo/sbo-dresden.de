@@ -8,6 +8,8 @@ jq(document).ready(function()
         var activeTab = selectedTab;
         var tabs = tabbar.children("li");
         var resetTimer = 0;
+        var activateTimer = 0;
+        var tabToActivate = null;
     
         tabs.removeClass("selected plain");
         tabbar.append('<div class="marker"></div>')
@@ -82,7 +84,21 @@ jq(document).ready(function()
 
         tabs.children("a").mouseover(function(event)
         {
-            goToTab(event.currentTarget.parentNode);
+            var tab = event.currentTarget.parentNode
+            
+            clearTimeout(activateTimer);
+            tabToActivate = tab;
+            
+            activateTimer = setTimeout(function()
+            {
+                if (tabToActivate == tab)
+                {
+                    goToTab(tab);
+                }
+            }, 300);
+        }).mouseout(function(event)
+        {
+            tabToActivate = null;
         });
     
         tabbar.mouseleave(function()
