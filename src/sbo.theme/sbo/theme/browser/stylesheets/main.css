@@ -425,6 +425,11 @@ dl.portalMessage dt
     color: #fff;
 }
 
+#content .gallery_uploader h4
+{
+    color: #fff;
+}
+
 #content .gallery_uploader ul
 {
     margin: 0;
