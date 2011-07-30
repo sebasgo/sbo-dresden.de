@@ -78,7 +78,7 @@ jq(document).ready(function()
         slideShow.elem.find('.img_index').text(
             (imgIndex + 1) + "/" + slideShow.imgUrls.length + ":"
         );
-        img.src = slideShow.imgUrls[imgIndex];
+        img.src = slideShow.imgUrls[imgIndex] + "/image_large";
     };
     
     var nextImg = function()
