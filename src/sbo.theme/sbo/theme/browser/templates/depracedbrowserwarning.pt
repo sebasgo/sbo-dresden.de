@@ -7,7 +7,7 @@
   <div id="browser-box">
     <div class="text" i18n:translate="">
       <h5>You are using an outdated browser</h5>
-      For a better experience using this site, please upgrade to a modern web browser.
+      For a better website experience please upgrade to a modern browser.
     </div>
     <div class="choices">
       <a href="http://www.mozilla-europe.org/"><img src="++resource++sbo.theme.images/browser-icons/firefox.png"/></a>

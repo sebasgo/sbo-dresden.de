@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0nPOT-Creation-Date: 2010-11-25 13:20+0000\n"
-"POT-Creation-Date: 2011-03-17 21:02+0000\n"
+"POT-Creation-Date: 2011-07-30 15:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,15 @@ msgstr ""
 "X-Source-Language: C\n"
 
 #: ./browser/templates/depracedbrowserwarning.pt:8
-msgid ""
-"<h5>You are using an outdated browser</h5> For a better experience using "
-"this site, please upgrade to a modern web browser."
-msgstr ""
-"<h5>Sie benutzen einen veralteten Browser</h5> Für eine besseres "
-"Webseitenerlebnis aktualisieren Sie bitte auf einen modernen Browser."
+msgid "<h5>You are using an outdated browser</h5> For a better website experience please upgrade to a modern browser."
+msgstr "<h5>Sie benutzen einen veralteten Browser</h5> Für eine besseres Webseitenerlebnis wechseln Sie bitte auf einen modernen Browser."
 
 msgid "Concerts"
 msgstr "Konzerte"
 
 #: ./browser/templates/footer.pt:1
-msgid ""
-"Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
-msgstr ""
-"Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
+msgid "Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
+msgstr "Copyright 2007, 2008, 2009, 2010, 2011 Sinfonisches Blasorchester Dresden"
 
 #: ./browser/templates/concerts.pt:25
 msgid "Currently there aren't any concerts scheduled."
@@ -43,12 +37,28 @@ msgstr "Zeigt die Konzerte in diesem Ordner an"
 msgid "Displays news items in this folder"
 msgstr "Zeigt die Neuigkeiten in diesem Ordner an"
 
+msgid "Displays the images in this folder in a gallery"
+msgstr "Zeigt die Bilder in diesem Ordner in einer Galerie an"
+
 #: ./browser/templates/concerts.pt:37
 msgid "Event details"
 msgstr "Ereignisdetails"
 
+msgid "Gallery"
+msgstr "Galerie"
+
+msgid "Installs the custom SBO Plone theme."
+msgstr "Installiert das angepasste SBO Plone Theme."
+
 msgid "News"
 msgstr "Neuigkeiten"
+
+msgid "SBO Plone Theme"
+msgstr "SBO Plone Theme"
+
+#: ./browser/templates/gallery.pt:41
+msgid "Subgalleries:"
+msgstr "Untergalerien:"
 
 #. Default: "Next ${number} items"
 #: ./skins/sbo_theme_custom_templates/batch_macros.pt:44
@@ -93,3 +103,4 @@ msgstr "Diesen Konzerttermin im iCal-Format herunterladen"
 #: ./browser/templates/concerts.pt:117
 msgid "title_add_to_vcal"
 msgstr "Diesen Konzerttermin im vCal-Format herunterladen"
+

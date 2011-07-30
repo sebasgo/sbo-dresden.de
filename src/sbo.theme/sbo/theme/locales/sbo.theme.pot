@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-17 21:02+0000\n"
+"POT-Creation-Date: 2011-07-30 15:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Domain: sbo.theme\n"
 
 #: ./browser/templates/depracedbrowserwarning.pt:8
-msgid "<h5>You are using an outdated browser</h5> For a better experience using this site, please upgrade to a modern web browser."
+msgid "<h5>You are using an outdated browser</h5> For a better website experience please upgrade to a modern browser."
 msgstr ""
 
 msgid "Concerts"
@@ -38,11 +38,27 @@ msgstr ""
 msgid "Displays news items in this folder"
 msgstr ""
 
+msgid "Displays the images in this folder in a gallery"
+msgstr ""
+
 #: ./browser/templates/concerts.pt:37
 msgid "Event details"
 msgstr ""
 
+msgid "Gallery"
+msgstr ""
+
+msgid "Installs the custom SBO Plone theme."
+msgstr ""
+
 msgid "News"
+msgstr ""
+
+msgid "SBO Plone Theme"
+msgstr ""
+
+#: ./browser/templates/gallery.pt:41
+msgid "Subgalleries:"
 msgstr ""
 
 #. Default: "Next ${number} items"

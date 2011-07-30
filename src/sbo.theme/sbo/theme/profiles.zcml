@@ -7,7 +7,7 @@
       name="default"
       title="SBO Plone Theme"
       directory="profiles/default"
-      description='Extension profile for the "SBO Plone Theme" Plone theme.'
+      description="Installs the custom SBO Plone theme."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

@@ -29,3 +29,15 @@ msgstr ""
 msgid "Displays news items in this folder"
 msgstr ""
 
+msgid "Gallery"
+msgstr ""
+
+msgid "Displays the images in this folder in a gallery"
+msgstr ""
+
+msgid "SBO Plone Theme"
+msgstr ""
+
+msgid "Installs the custom SBO Plone theme."
+msgstr ""
+
