@@ -55,29 +55,27 @@ div.cell {
   left: 100%;
 }
 
-/* Width classes. 
-   For a given cell width, the calculation is: width: (6.25*n)% */
-div.width-1  { width:  47px }
-div.width-2  { width:  95px }
-div.width-3  { width: 142px }
-div.width-4  { width: 190px }
-div.width-5  { width: 237px }
-div.width-6  { width: 284px }
-div.width-7  { width: 332px }
-div.width-8  { width: 379px }
-div.width-9  { width: 426px }
-div.width-10 { width: 474px }
-div.width-11 { width: 521px }
-div.width-12 { width: 569px }
-div.width-13 { width: 616px }
-div.width-14 { width: 663px }
-div.width-15 { width: 711px }
+/* Width classes. */
+div.width-1  { width:  37px }
+div.width-2  { width:  85px }
+div.width-3  { width: 133px }
+div.width-4  { width: 181px }
+div.width-5  { width: 229px }
+div.width-6  { width: 277px }
+div.width-7  { width: 325px }
+div.width-8  { width: 373px }
+div.width-9  { width: 421px }
+div.width-10 { width: 469px }
+div.width-11 { width: 517px }
+div.width-12 { width: 565px }
+div.width-13 { width: 613px }
+div.width-14 { width: 661px }
+div.width-15 { width: 709px }
 div.width-16 { width: 758px }
 
 
 /* Positioning classes, these are subtracting from a rightmost 
    position, which is why they seem the wrong way around */
-/* For a given position, the calculation is margin-left: -100 + (6.25*n) */
 div.position-0  { margin-left: -769px }
 div.position-1  { margin-left: -722px }
 div.position-2  { margin-left: -674px }
@@ -99,9 +97,9 @@ div.position-15 { margin-left:  -58px }
 
 /* Convenience classes — ¼, ½, ¾ widths and ¼, ½, ¾ positions. 
    Not strictly necessary. */
-div.width-1\3a 2 { width:    379px; } /* .width-1:2 */
-div.width-1\3a 4 { width:    190px; } /* .width-1:4 */
-div.width-3\3a 4 { width:    569px; } /* .width-3:4 */
+div.width-1\3a 2 { width:    373px; } /* .width-1:2 */
+div.width-1\3a 4 { width:    181px; } /* .width-1:4 */
+div.width-3\3a 4 { width:    565px; } /* .width-3:4 */
 div.width-full   { width:    758px; } 
 div.position-1\3a 4 {margin-left: -580px; } /* .position-1:4 */
 div.position-1\3a 2 {margin-left: -390px; } /* .position-1:2 */
