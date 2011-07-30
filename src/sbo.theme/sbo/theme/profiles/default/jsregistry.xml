@@ -28,4 +28,9 @@
     cacheable="True" compression="safe" cookable="True"
     enabled="True" expression=""  inline="False"/>
 
+<javascript
+    id="++resource++sbo.theme.javascripts/gallery.js"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression=""  inline="False"/>
+
 </object>
