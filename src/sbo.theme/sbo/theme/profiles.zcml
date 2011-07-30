@@ -29,4 +29,14 @@
     handler=".setuphandlers.install_profile"
     />
 
+<genericsetup:upgradeStep
+    title="upgrade profile"
+    description="profile must be re-registered"
+    source="1001"
+    destination="1002"
+    sortkey="1"
+    profile="sbo.theme:default"
+    handler=".setuphandlers.install_profile"
+    />
+
 </configure>
