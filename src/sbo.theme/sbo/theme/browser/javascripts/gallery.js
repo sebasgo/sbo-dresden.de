@@ -20,8 +20,8 @@ jq(document).ready(function()
         slideShow.elem.append('<div class="bg"></div>');
         slideShow.elem.append(
             '<div class="title">'
-            + '<span class="title_label"></span>'
             + '<a class="close_btn" href="#"></a>'
+            + '<span class="title_label"></span>'
             + '</div>'
         );
         slideShow.elem.append(
@@ -41,6 +41,8 @@ jq(document).ready(function()
         slideShow.elem.find('.title_label').text(
             jq('#content .documentFirstHeading').text()
         );
+        slideShow.elem.children('.bg').css('opacity', 0.9);
+        slideShow.elem.find('.controls').children('div').css('opacity', 0.0);
         
         slideShow.elem.find('.close_btn').click(function(event)
         {
@@ -163,13 +165,13 @@ jq(document).ready(function()
         });
         updateGeometry();
         jq(window).bind('scroll resize', updateGeometry);
-        jq(window).bind('keyup', handleKeyPress);
+        jq(document).bind('keyup', handleKeyPress);
     };
     
     var hide = function()
     {
         jq(window).unbind('scroll resize', updateGeometry);
-        jq(window).unbind('keyup', handleKeyPress);
+        jq(document).unbind('keyup', handleKeyPress);
         slideShow.elem.css({
             display: 'none'
         });
@@ -213,7 +215,14 @@ jq(document).ready(function()
         show();
         
         var imgUrl = jq(event.target.parentNode).attr('href');
-        var index = slideShow.imgUrls.indexOf(imgUrl);
+
+        for (var index = 0; index < slideShow.imgUrls.length; index++)
+        {
+            if (slideShow.imgUrls[index] == imgUrl)
+            {
+                break;
+            }
+        }
         
         loadImg(index);
     });
