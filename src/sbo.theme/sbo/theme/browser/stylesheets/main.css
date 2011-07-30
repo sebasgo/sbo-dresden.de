@@ -445,7 +445,6 @@ dl.portalMessage dt
     background-color: #111;
     top: 0;
     left: 0;
-    opacity: 0.9;
 }
 
 #slideshow img
@@ -469,7 +468,6 @@ dl.portalMessage dt
 {
     position: absolute;
     top: 0;
-    opacity: 0;
     cursor: pointer;
 }
 
