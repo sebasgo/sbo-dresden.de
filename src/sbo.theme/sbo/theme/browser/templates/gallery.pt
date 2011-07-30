@@ -108,7 +108,7 @@
 </metal:content-core>
 </body>
 
-<tal:comment replace="nothing">
+<tal:comment tal:replace="nothing">
 kate: space-indent on; indent-width 2; mixedindent off; indent-mode normal;
 </tal:comment>
 
