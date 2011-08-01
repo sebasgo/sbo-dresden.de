@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2010-12-01 22:35+0000\n"
+"POT-Creation-Date: 2011-08-01 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,23 +20,34 @@ msgstr ""
 msgid "A simple guestbook"
 msgstr "Ein einfaches Gästebuch"
 
-#: ./browser/guestbook.pt:61
+#. profile description
+msgid "A simple guestbook."
+msgstr "Ein einfaches Gästebuch."
+
+#: ./browser/guestbook.pt:62
 msgid "Delete marked entries"
 msgstr "Lösche markierte Einträge"
 
-#: ./content/guestbook.py:27 ./interfaces/guestbook.py:11
+#. menu item description for view method
+msgid "Displays the guestbook"
+msgstr "Zeigt das Gästebuch an"
+
+#: ./content/guestbook.py:24
+#: ./interfaces/guestbook.py:11
 msgid "Entries per page"
 msgstr "Einträge pro Seite"
 
 #: ./browser/writeentry.py:87
 msgid "Got a comment? Please submit it using the form below!"
-msgstr ""
-"Wollen Sie einen Kommentar los werden? Schreiben Sie ihn uns mit dem "
-"Formular unterhalb."
+msgstr "Wollen Sie einen Kommentar los werden? Schreiben Sie ihn uns mit dem Formular unterhalb."
 
 #: ./profiles/default/types/Guestbook.xml
 msgid "Guestbook"
 msgstr "Gästebuch"
+
+#. profile title
+msgid "Inkstain"
+msgstr "Inkstain"
 
 #: ./browser/writeentry.py:20
 msgid "Invalid email address"
@@ -54,11 +65,16 @@ msgstr "Nachricht"
 msgid "Please keep to 1,000 characters."
 msgstr "Nicht mehr als 1000 Zeichen."
 
-#: ./content/guestbook.py:28 ./interfaces/guestbook.py:12
+#: ./content/guestbook.py:25
+#: ./interfaces/guestbook.py:12
 msgid "Sets the number of entries which are shown on one page."
 msgstr "Legt fest, wie viele Einträge auf einer Seite angezeigt werden"
 
-#: ./browser/writeentry.py:126
+#: ./browser/writeentry.py:110
+msgid "Submit"
+msgstr "Abschicken"
+
+#: ./browser/writeentry.py:127
 msgid "Thank you for your guestbook entry!"
 msgstr "Danke für Ihren Gästebucheintrag"
 
@@ -90,14 +106,8 @@ msgstr "Ihre Homepage"
 msgid "Your name"
 msgstr "Ihr Name"
 
-#: ./browser/guestbook.pt:61
-msgid "delete_button"
-msgstr ""
-
 #. Default: "Write a guestbook entry"
 #: ./browser/formwrapper.pt:6
 msgid "write_entry_form_legend"
 msgstr "Schreibe einen Gästebucheintrag"
 
-msgid "Inkstain Guestbook"
-msgstr "Inkstain Gästebuch"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-12-01 22:35+0000\n"
+"POT-Creation-Date: 2011-08-01 13:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,19 @@ msgstr ""
 msgid "A simple guestbook"
 msgstr ""
 
-#: ./browser/guestbook.pt:61
+#. profile description
+msgid "A simple guestbook."
+msgstr ""
+
+#: ./browser/guestbook.pt:62
 msgid "Delete marked entries"
 msgstr ""
 
-#: ./content/guestbook.py:27
+#. menu item description for view method
+msgid "Displays the guestbook"
+msgstr ""
+
+#: ./content/guestbook.py:24
 #: ./interfaces/guestbook.py:11
 msgid "Entries per page"
 msgstr ""
@@ -36,6 +44,10 @@ msgstr ""
 
 #: ./profiles/default/types/Guestbook.xml
 msgid "Guestbook"
+msgstr ""
+
+#. profile title
+msgid "Inkstain"
 msgstr ""
 
 #: ./browser/writeentry.py:20
@@ -54,12 +66,16 @@ msgstr ""
 msgid "Please keep to 1,000 characters."
 msgstr ""
 
-#: ./content/guestbook.py:28
+#: ./content/guestbook.py:25
 #: ./interfaces/guestbook.py:12
 msgid "Sets the number of entries which are shown on one page."
 msgstr ""
 
-#: ./browser/writeentry.py:126
+#: ./browser/writeentry.py:110
+msgid "Submit"
+msgstr ""
+
+#: ./browser/writeentry.py:127
 msgid "Thank you for your guestbook entry!"
 msgstr ""
 
@@ -91,16 +107,8 @@ msgstr ""
 msgid "Your name"
 msgstr ""
 
-#: ./browser/guestbook.pt:61
-msgid "delete_button"
-msgstr ""
-
 #. Default: "Write a guestbook entry"
 #: ./browser/formwrapper.pt:6
 msgid "write_entry_form_legend"
 msgstr ""
-
-msgid "Inkstain Guestbook"
-msgstr "Inkstain Gästebuch"
-
 

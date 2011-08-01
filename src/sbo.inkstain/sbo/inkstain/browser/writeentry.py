@@ -101,12 +101,13 @@ class BaseForm(form.Form):
         """ Rewrite HTTP POST action.
 
         If the form is rendered embedded on the others pages we
-        make sure the form is posted through the same view always,
-        instead of making HTTP POST to the page where the form was rendered.
+        make sure the form is posted always through the same view,
+        instead of making a HTTP POST request to the page
+        where the form was rendered.
         """
         return self.context.absolute_url() + "/@@writeentry"
 
-    @button.buttonAndHandler(u'Send')
+    @button.buttonAndHandler(_(u'Submit'))
     def action_send(self, action):
         context = aq_inner(self.context)
         data, errors = self.extractData()

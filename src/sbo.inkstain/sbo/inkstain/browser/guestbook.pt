@@ -62,7 +62,6 @@
     <input type="submit" name="form.button.Delete" value="Delete marked entries"
         class="context destructive"
         tal:condition="view/canReviewGuestbook"
-        i18n:translate="delete_button"
         i18n:attributes="value"
         />
 
