@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="sbo.policy">
 
     <include package="plone.app.iterate" />
@@ -13,9 +14,9 @@
 
     <genericsetup:registerProfile
       name="default"
-      title="SBO Site Policy"
+      title="SBO site policy"
       directory="profiles/default"
-      description="Turns a default plone installation into the SBO site."
+      description="Sets the SBO specific settings up."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
@@ -39,4 +40,7 @@
       handler=".setuphandlers.install_profile"
       />
     
+  
+  <i18n:registerTranslations directory="locales" />
+
 </configure>
