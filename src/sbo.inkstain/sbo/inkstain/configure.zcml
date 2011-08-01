@@ -28,7 +28,7 @@
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
-      title="Inkstain Guestbook"
+      title="Inkstain"
       directory="profiles/default"
       description="A simple guestbook."
       provides="Products.GenericSetup.interfaces.EXTENSION"
