@@ -55,7 +55,7 @@ jq(document).ready(function()
         slideShow.imgIndex = 0;
     };
     
-    var loadImg = function(imgIndex)
+    var loadImg = function(imgIndex, callback)
     {
         var imgLoaded = function()
         {
@@ -67,6 +67,7 @@ jq(document).ready(function()
             jq(img).appendTo(slideShow.elem);
             alignImage();
             jq(img).fadeIn(500);
+            callback();
         }
         
         var img = document.createElement("img");
@@ -81,16 +82,36 @@ jq(document).ready(function()
         img.src = slideShow.imgUrls[imgIndex] + "/image_large";
     };
     
+    var preloadImg = function(imgIndex)
+    {
+        var preloader = document.createElement('img');
+        
+        jq(preloader).bind("load", function()
+        {
+            preloader = null;
+        });
+        
+        preloader.src = slideShow.imgUrls[imgIndex] + "/image_large";
+    };
+    
     var nextImg = function()
     {
         var imgCount = slideShow.imgUrls.length;
-        loadImg((slideShow.imgIndex + 1) % imgCount);
+        var index = slideShow.imgIndex;
+        loadImg((index + 1) % imgCount, function()
+        {
+            preloadImg((index + 2) % imgCount);
+        });
     };
     
     var previousImg = function()
     {
         var imgCount = slideShow.imgUrls.length;
-        loadImg((slideShow.imgIndex + imgCount - 1) % imgCount);
+        var index = slideShow.imgIndex;
+        loadImg((index + imgCount - 1) % imgCount, function()
+        {
+            preloadImg((index + imgCount - 2) % imgCount);
+        });
     };
     
     var updateGeometry = function()
@@ -215,8 +236,9 @@ jq(document).ready(function()
         show();
         
         var imgUrl = jq(event.target.parentNode).attr('href');
+        var imgCount = slideShow.imgUrls.length;
 
-        for (var index = 0; index < slideShow.imgUrls.length; index++)
+        for (var index = 0; index < imgCount; index++)
         {
             if (slideShow.imgUrls[index] == imgUrl)
             {
@@ -224,7 +246,11 @@ jq(document).ready(function()
             }
         }
         
-        loadImg(index);
+        loadImg(index, function()
+        {
+            preloadImg((index + 1) % imgCount);
+            preloadImg((index + imgCount - 1) % imgCount);
+        });
     });
     
 });

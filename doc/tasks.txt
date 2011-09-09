@@ -6,7 +6,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 
 ===== sbo.theme =====
 [ ] make personal tools/login button resize to its contents
-[ ] gallery: preload next image
+[*] gallery: preload next image
 [ ] gallery: summary after last image
 [ ] sitemap styling
 [ ] link hover color
