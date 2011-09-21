@@ -2,14 +2,18 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2010-11-27T11:48:27.727368
 
+====== 1.2.1 ======
+
+===== sbo.theme =====
+[*] gallery: preload next image
+[*] link hover color
+
 ====== Future ======
 
 ===== sbo.theme =====
 [ ] make personal tools/login button resize to its contents
-[*] gallery: preload next image
 [ ] gallery: summary after last image
 [ ] sitemap styling
-[ ] link hover color
 [ ] margins below/above headings
 [ ] news: better date labes
 [ ] news: better image labes
