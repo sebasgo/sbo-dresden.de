@@ -1,10 +1,4 @@
 <registry>
-    <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.private_key">
-        <value>6LeGar8SAAAAAM5Ut4n8au_247_HyTyCCNNmG-4W</value>
-    </record>
-    <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">
-        <value>6LeGar8SAAAAACFBOkx_puNvFAdNraakzHzJPLhr</value>
-    </record>
     <record name="plone.caching.interfaces.ICacheSettings.enabled">
         <value>True</value>
     </record>

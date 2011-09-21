@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_properties">
     <object name="site_properties">
-        <property name="default_language">de</property>
-        <property name="enable_livesearch">False</property>
-        <property name="enable_sitemap">True</property>
-        <property name="icon_visibility">authenticated</property>
         <property name="webstats_js"
         type="text">&lt;script type="text/javascript"&gt;
 

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 version = '1.1.2'
 
-setup(name='sbo.policy',
+setup(name='sbo.policy.general',
       version=version,
       description="SBO Site Policy",
       long_description="""\
@@ -18,16 +18,14 @@ setup(name='sbo.policy',
       keywords='',
       author='Sebastian Gottfried',
       author_email='sebastiangottfried@web.de',
-      url='http://svn.plone.org/svn/plone/plone.example',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['sbo'],
+      namespace_packages=['sbo', 'sbo.policy'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'setuptools',
           'plone.app.iterate',
-          'plone.app.caching',
           'collective.quickupload',
           'sbo.inkstain',
           'sbo.theme',

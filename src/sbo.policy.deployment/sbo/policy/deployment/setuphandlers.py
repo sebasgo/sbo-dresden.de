@@ -3,7 +3,7 @@ from Products.CMFCore.utils import getToolByName
 
 def install_profile(context):
     setup = getToolByName(context, 'portal_setup')
-    setup.runAllImportStepsFromProfile('profile-sbo.theme:default',
+    setup.runAllImportStepsFromProfile('profile-sbo.policy.deployment:default',
                                        purge_old=False)
 
 def setupVarious(context):
