@@ -540,3 +540,15 @@ dl.portalMessage dt
 {
     font-weight: bold;
 }
+
+#portal-sitemap > li
+{
+    padding: 0;
+}
+
+#portal-sitemap a:link,
+#portal-sitemap a:visited,
+#portal-sitemap a:hover
+{
+    border-bottom: 0;
+}

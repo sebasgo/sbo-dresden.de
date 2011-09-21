@@ -7,13 +7,13 @@ Creation-Date: 2010-11-27T11:48:27.727368
 ===== sbo.theme =====
 [*] gallery: preload next image
 [*] link hover color
+[*] sitemap styling
 
 ====== Future ======
 
 ===== sbo.theme =====
 [ ] make personal tools/login button resize to its contents
 [ ] gallery: summary after last image
-[ ] sitemap styling
 [ ] margins below/above headings
 [ ] news: better date labes
 [ ] news: better image labes
