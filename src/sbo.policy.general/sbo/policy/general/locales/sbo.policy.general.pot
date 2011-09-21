@@ -1,3 +1,6 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,11 +15,11 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: sbo.policy.general\n"
 
 msgid "SBO site policy"
-msgstr "SBO Seitenrichtlinie"
+msgstr ""
 
 msgid "Sets the SBO specific settings up."
-msgstr "Richtet die SBO spezifischen Einstellungen ein."
+msgstr ""
 
