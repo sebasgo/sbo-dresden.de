@@ -36,6 +36,17 @@ h6
     font-size: 14px;
 }
 
+#content a:link, dl.portlet a:link,
+#content a:visited, dl.portlet a:visited
+{
+    border-bottom: 0.1em solid #CCCCCC;
+    color: #2c5d92;
+}
+
+#content a:hover, dl.portlet a:hover {
+    color: #5898e0 !important;
+}
+
 #visual-portal-wrapper
 {
     width: 780px;
