@@ -8,6 +8,7 @@ Creation-Date: 2010-11-27T11:48:27.727368
 [*] gallery: preload next image
 [*] link hover color
 [*] sitemap styling
+[*] favicon
 
 ===== sbo.profile =====
 [*] split into two addons: one fore general use, one with settings meant only for production (caching, Google Analytics)
@@ -20,7 +21,6 @@ Creation-Date: 2010-11-27T11:48:27.727368
 [ ] margins below/above headings
 [ ] news: better date labes
 [ ] news: better image labes
-[ ] favicon
 
 ====== Far future ======
 
