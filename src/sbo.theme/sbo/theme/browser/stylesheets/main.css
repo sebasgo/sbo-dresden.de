@@ -11,19 +11,21 @@ h1
     font-size: 19px;
     line-height: 1em;
     border-bottom: 2px solid #001d3e;
-    margin-bottom: 5px;
+    margin: 15px 0 4px;
     clear: both;
 }
 
 h2
 {
     color: #001d3e;
+    margin: 8px 0 5px;
     font-size: 18px;
 }
 
 h3, h4
 {
     font-size: 17px;
+    margin: 8px 0 5px;
 }
 
 h5
