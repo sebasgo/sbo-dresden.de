@@ -1,4 +1,5 @@
 bin/
+etc/
 develop-eggs/
 downloads/
 fake-eggs/
