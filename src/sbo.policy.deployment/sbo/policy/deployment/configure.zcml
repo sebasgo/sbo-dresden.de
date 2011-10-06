@@ -20,4 +20,7 @@
   
   <i18n:registerTranslations directory="locales" />
 
+  <adapter factory=".purge.NewsItemPurgePaths" name="plone.content" />
+  <adapter factory=".purge.EventPurgePaths" name="plone.content" />
+
 </configure>
