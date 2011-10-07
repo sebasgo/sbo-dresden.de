@@ -1,7 +1,6 @@
 global
   log 127.0.0.1 local6
   maxconn  ${haproxy-conf:maxconn}
-  user     ${haproxy-conf:effective-user}
   daemon
   nbproc 1
 
