@@ -1,14 +1,18 @@
-from zope.interface import implements
-from zope.component import adapts, adapter
-
-from z3c.caching.interfaces import IPurgePaths
-
-from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFCore.utils import getToolByName
-from Products.ATContentTypes.interfaces import IATNewsItem, IATEvent
-
 from Acquisition import aq_parent
 
+from zope.interface import implements
+from zope.component import adapts, adapter
+from zope.event import notify
+
+from z3c.caching.interfaces import IPurgePaths
+from z3c.caching.purge import Purge
+
+from Products.CMFCore.interfaces import IContentish, ISiteRoot
+from Products.CMFCore.utils import getToolByName
+from Products.ATContentTypes.interfaces import IATNewsItem, IATEvent
+from Products.DCWorkflow.interfaces import IAfterTransitionEvent
+
+from plone.app.caching.utils import isPurged
     
 class NewsItemPurgePaths(object):
     """Additional paths to prune for news items
@@ -82,4 +86,8 @@ def getAggregationPurgePaths(context):
             yield container_prefix + '/'
             break
         container = parent
-    
+
+@adapter(IContentish, IAfterTransitionEvent)
+def purgeOnWorkflowTransition(object, event):
+    if isPurged(object):
+        notify(Purge(object))
