@@ -18,5 +18,5 @@ msgid "SBO site policy for production deployment"
 msgstr "SBO Seitenrichtlinie für die Produktivbereitstellung"
 
 msgid "Sets the SBO specific settings for production deployment up."
-msgstr "ichtet die SBO spezifischen Einstellungen für die Produktivbereitstellung ein."
+msgstr "Richtet die SBO spezifischen Einstellungen für die Produktivbereitstellung ein."
 
