@@ -8,6 +8,8 @@ parts/
 products/
 var/
 
+buildout.cfg
+
 .installed.cfg
 
 *~
