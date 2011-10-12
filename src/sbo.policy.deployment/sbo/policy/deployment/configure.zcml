@@ -25,4 +25,14 @@
   
   <subscriber handler=".purge.purgeOnWorkflowTransition" />
 
+  <genericsetup:upgradeStep
+    title="upgrade profile"
+    description="profile must be re-registered"
+    source="1"
+    destination="2"
+    sortkey="1"
+    profile="sbo.policy.deployment:default"
+    handler=".setuphandlers.install_profile"
+    />
+
 </configure>
