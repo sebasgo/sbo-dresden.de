@@ -15,15 +15,15 @@ from sbo.frontpage.config import PROJECTNAME
 FrontpageSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
 
     atapi.ReferenceField(
-        "coverImage",
+        "coverImages",
         required=True,
         relationship="isCoverImage",
         allowed_types=('Image',),
-        multiValued=False,
+        multiValued=True,
         storage=atapi.AnnotationStorage(),
         widget=ReferenceBrowserWidget(
-            label=_(u"Cover image"),
-            description=_(u"The image displayed initially on the front page.")
+            label=_(u"Cover images"),
+            description=_(u"The images displayed initially on the front page.")
         )
     ),
 
@@ -74,7 +74,7 @@ class Frontpage(base.ATCTContent):
 
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
-    cover_image = atapi.ATReferenceFieldProperty('coverImage')
+    cover_images = atapi.ATReferenceFieldProperty('coverImages')
     news_folder = atapi.ATReferenceFieldProperty('newsFolder')
     concerts_folder = atapi.ATReferenceFieldProperty('concertsFolder')
 

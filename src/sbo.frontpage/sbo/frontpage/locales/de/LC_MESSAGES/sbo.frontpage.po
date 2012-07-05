@@ -28,8 +28,8 @@ msgid "Concerts folder"
 msgstr "Konzerteordner"
 
 #: ./content/frontpage.py:25 ./interfaces/frontpage.py:12
-msgid "Cover image"
-msgstr "Titelbild"
+msgid "Cover images"
+msgstr "Titelbilder"
 
 #: ./browser/frontpage.pt:36
 msgid "Date:"
@@ -56,8 +56,8 @@ msgid "The folder containing the news items of the website."
 msgstr "Der Ordner, welcher die Neuigkeiten der Website enthält."
 
 #: ./content/frontpage.py:26 ./interfaces/frontpage.py:13
-msgid "The image displayed initially on the front page."
-msgstr "Das Bild, welches anfangs auf der Startseite angezeigt wird."
+msgid "The images displayed initially on the front page."
+msgstr "Die Bilder, welches anfangs auf der Startseite angezeigt wird."
 
 #. Default: "Currently there aren't any concerts scheduled."
 #: ./browser/frontpage.pt:19

@@ -56,7 +56,9 @@
   </div>
   
   <div class="news">
-    <p class="pane active" tal:define="img view/cover_image">
+    <p class="pane" tal:repeat="img view/cover_images"
+        tal:attributes="class python:repeat['img'].start and 'pane active' or 'pane'"
+        >
       <img tal:replace="structure python:img.tag(scale='frontpage')" />
       <em class="title">
         <tal:title tal:replace="img/Title">Image title</tal:title>

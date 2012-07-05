@@ -9,9 +9,9 @@ class FrontPageView(BrowserView):
     def __call__(self):
         return self.template()
     
-    def cover_image(self):
+    def cover_images(self):
         context = aq_inner(self.context)
-        return context.cover_image
+        return context.cover_images
     
     def concerts(self):
         context = aq_inner(self.context)
