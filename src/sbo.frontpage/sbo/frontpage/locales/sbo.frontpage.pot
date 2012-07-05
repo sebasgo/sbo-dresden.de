@@ -28,7 +28,7 @@ msgstr ""
 
 #: ./content/frontpage.py:25
 #: ./interfaces/frontpage.py:12
-msgid "Cover image"
+msgid "Cover images"
 msgstr ""
 
 #: ./browser/frontpage.pt:36
@@ -60,7 +60,7 @@ msgstr ""
 
 #: ./content/frontpage.py:26
 #: ./interfaces/frontpage.py:13
-msgid "The image displayed initially on the front page."
+msgid "The images displayed initially on the front page."
 msgstr ""
 
 #. Default: "Currently there aren't any concerts scheduled."
