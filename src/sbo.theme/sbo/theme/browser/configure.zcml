@@ -39,7 +39,7 @@
       name="sbo.footer"
       manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
       layer=".interfaces.IThemeSpecific"
-      template="templates/footer.pt"
+      class=".viewlets.FooterViewlet"
       permission="zope2.View"
       />
   <browser:viewlet
