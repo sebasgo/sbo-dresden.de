@@ -1,3 +1,5 @@
+from datetime import date
+
 from zope.interface import implements, alsoProvides
 from zope.component import getMultiAdapter
 from zope.viewlet.interfaces import IViewlet
@@ -49,6 +51,15 @@ class ViewletBase(BrowserView):
     def index(self):
         raise NotImplementedError(
             '`index` method must be implemented by subclass.')
+
+class FooterViewlet(ViewletBase):
+    index = ViewPageTemplateFile('templates/footer.pt')
+
+    def update(self):
+        pass
+
+    def year(self):
+        return date.today().year
 
 class GlobalNavViewlet(ViewletBase):
     index = ViewPageTemplateFile('templates/global_nav.pt')
