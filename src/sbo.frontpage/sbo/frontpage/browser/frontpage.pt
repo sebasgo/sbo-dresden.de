@@ -26,6 +26,9 @@
           Our annual concert
         </dt>
         <dd>
+          <div class="attendees" tal:content="python:' '.join(concert.attendees)">
+            SBO
+          </div>
           <div tal:replace="concert/Description">
             The biggest event in concert history!
           </div>
