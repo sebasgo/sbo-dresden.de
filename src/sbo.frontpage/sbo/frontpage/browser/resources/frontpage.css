@@ -33,6 +33,13 @@ body.portaltype-frontpage #content-core .concerts dl dd
     margin: 0;
 }
 
+body.portaltype-frontpage #content-core .concerts dl dd .attendees
+{
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 3px;
+}
+
 body.portaltype-frontpage #content-core .concerts table
 {
     margin: 8px 0 0;
@@ -48,7 +55,7 @@ body.portaltype-frontpage #content-core .concerts table td
 
 body.portaltype-frontpage #content-core .concerts table th
 {
-    padding-right: 3px;
+    padding-right: 5px;
 }
 
 
