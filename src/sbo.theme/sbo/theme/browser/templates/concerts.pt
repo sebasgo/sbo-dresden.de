@@ -104,6 +104,13 @@
                 </tal:sameday>
               </td>
             </tr>
+            <tr tal:condition="obj/getAttendees|nothing">
+              <td class="attendees">
+                <metal:field use-macro="python:obj.widget('attendees', mode='view')">
+                  Attendees
+                </metal:field>
+              </td>
+            </tr>
             <tr tal:condition="obj/location">
               <td class="location">
     
