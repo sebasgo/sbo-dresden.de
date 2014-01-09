@@ -4,11 +4,10 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="sbo.inkstain">
-    
+
   <five:registerPackage package="." initialize=".initialize" />
 
-  <include package="plone.app.z3cform" />
-  <include package="plone.formwidget.recaptcha" />
+  <includeDependencies package="." />
 
   <permission
      id="sbo.inkstain.ReviewGuestbook"
@@ -24,7 +23,7 @@
   <include package=".browser" />
   <include package=".content" />
   <include package=".portlets" />
-  
+
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
       name="default"
@@ -33,7 +32,7 @@
       description="A simple guestbook."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
+
   <genericsetup:upgradeStep
     title="upgrade profile"
     description="profile must be re-registered"
@@ -43,7 +42,7 @@
     profile="sbo.inkstain:default"
     handler=".setuphandlers.install_profile"
     />
-  
+
   <genericsetup:upgradeStep
     title="upgrade profile"
     description="profile must be re-registered"
@@ -53,7 +52,7 @@
     profile="sbo.inkstain:default"
     handler=".setuphandlers.install_profile"
     />
-  
+
   <i18n:registerTranslations directory="locales" />
 
 </configure>
