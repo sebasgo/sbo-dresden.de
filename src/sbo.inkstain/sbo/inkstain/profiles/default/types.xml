@@ -10,4 +10,5 @@
   <!-- -*- extra stuff goes here -*- -->
   <object name="Guestbook"
     meta_type="Factory-based Type Information with dynamic views" />
+  <object name="sbo.inkstain.guestbookentry" meta_type="Dexterity FTI" />
 </object>
