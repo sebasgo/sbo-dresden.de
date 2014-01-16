@@ -59,6 +59,7 @@ setup(name='sbo.inkstain',
           'plone.app.z3cform',
           'plone.formwidget.recaptcha',
           'plone.app.dexterity',
+          'plone.directives.form'
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
