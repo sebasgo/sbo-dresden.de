@@ -9,7 +9,7 @@
     i18n:translate="">A single guestbook entry</property>
   <property name="icon_expr">string:${portal_url}/document_icon.png</property>
   <property name="factory">sbo.inkstain.guestbookentry</property>
-  <property name="global_allow">True</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
