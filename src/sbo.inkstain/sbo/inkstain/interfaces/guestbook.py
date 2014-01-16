@@ -2,6 +2,8 @@ import re
 
 from zope.interface import Interface
 from zope import schema
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
 from sbo.inkstain import InkstainMessageFactory as _
 
 class IGuestbook(Interface):
@@ -29,12 +31,23 @@ def validate_homepage_url(value):
     return True
 
 
+moderation_states = SimpleVocabulary([
+    SimpleTerm(value=u'pending', title=_(u"Pending review")),
+    SimpleTerm(value=u'published', title=_(u"Published")),
+    SimpleTerm(value=u'spam', title=_(u"Spam")),
+])
+
 class IGuestbookEntry(Interface):
-    #date
-    name = schema.TextLine(
+    entry_date = schema.Datetime(
+        title=_(u"Date of the entry"),
+        required=True
+    )
+
+    author = schema.TextLine(
         title=_(u"Your name"),
         required=True
     )
+
     email_address = schema.ASCIILine(
         title=_(u"Your email address"),
         description=_(u"Won't be published."),
@@ -55,7 +68,12 @@ class IGuestbookEntry(Interface):
         required=True,
         max_length=1000
     )
+
     ip = schema.ASCIILine(
         title=_(u"The IP address the message is originating from.")
     )
-    #moderation_state
+    moderation_state = schema.Choice(
+        title=_("Moderation state"),
+        vocabulary=moderation_states,
+        required=True
+    )
