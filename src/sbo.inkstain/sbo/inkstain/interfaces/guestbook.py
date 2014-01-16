@@ -1,8 +1,11 @@
+import datetime
 import re
 
 from zope.interface import Interface
 from zope import schema
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
+from plone.directives import form
 
 from sbo.inkstain import InkstainMessageFactory as _
 
@@ -78,3 +81,7 @@ class IGuestbookEntry(Interface):
         vocabulary=moderation_states,
         required=True
     )
+
+@form.default_value(field=IGuestbookEntry['entry_date'])
+def entry_date_default_value(data):
+    return datetime.datetime.today()
