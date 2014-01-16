@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+    <index name="entry_date" meta_type="FieldIndex">
+        <indexed_attr value="entry_date"/>
+    </index>
+    <column value="entry_date"/>
+    <index name="moderation_state" meta_type="FieldIndex">
+        <indexed_attr value="moderation_state"/>
+    </index>
+    <column value="moderation_state"/>
+</object>
