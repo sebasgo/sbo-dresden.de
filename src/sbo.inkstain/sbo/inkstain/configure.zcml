@@ -15,6 +15,11 @@
      />
 
   <permission
+     id="sbo.inkstain.AddGuestbook"
+     title="sbo.inkstain: Add guestbook"
+     />
+
+  <permission
      id="sbo.inkstain.AddGuestbookEntry"
      title="sbo.inkstain: Add guestbook entry"
      />

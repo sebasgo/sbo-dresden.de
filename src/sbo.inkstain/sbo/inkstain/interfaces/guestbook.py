@@ -12,7 +12,8 @@ class IGuestbook(Interface):
     entries_per_page = schema.Int(
         title=_(u"Entries per page"),
         description=_(u"Sets the number of entries which are shown on one page."),
-        required=True
+        required=True,
+        default=15
     )
 
 check_email = re.compile(r"[a-zA-Z0-9._%-]+@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,4}").match
