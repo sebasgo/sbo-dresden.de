@@ -21,50 +21,70 @@
       />
 
   <form method="post" tal:attributes="action string:${context/absolute_url}">
-    <dl tal:repeat="entry batch" class="guestbook">
-      <dt>
-        <input type="checkbox"
-          name="messages:list"
-          tal:attributes="value entry/getId"
-          tal:condition="view/canReviewGuestbook"
-          />
-        <div tal:replace="entry/name">Avarage Joe</div>
-        <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
-          &mdash;
-          <a href="mailto:mail@avarage-joe.com"
-              tal:attributes="href string: mailto:${entry/email_address}"
-              tal:content="entry/email_address"
-              >
-            http://avarage-joe.com
-          </a>
+    <dl class="guestbook">
+      <div tal:omit-tag="" tal:repeat="brain batch">
+        <div tal:omit-tag="" tal:define="entry brain/getObject">
+          <dt tal:attributes="class entry/moderation_state">
+            <input type="checkbox"
+              name="messages:list"
+              tal:attributes="value entry/getId"
+              tal:condition="view/canReviewGuestbook"
+              />
+            <span class="spam_label"
+                tal:condition="python:entry.moderation_state == 'spam'"
+                i18n:translate="">Spam</span>
+            <span class="pending_label"
+                tal:condition="python:entry.moderation_state == 'pending'"
+                i18n:translate="">Pending Review</span>
+            <div tal:replace="entry/author">Avarage Joe</div>
+            <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
+              &mdash;
+              <a href="mailto:mail@avarage-joe.com"
+                  tal:attributes="href string: mailto:${entry/email_address}"
+                  tal:content="entry/email_address"
+                  >
+                http://avarage-joe.com
+              </a>
+            </div>
+            <div tal:omit-tag="" tal:condition="entry/homepage_address">
+              &mdash;
+              <a class="external-link" href="http://avarage-joe.com"
+                  tal:attributes="href entry/homepage_address"
+                  tal:content="entry/homepage_address"
+                  >
+                http://avarage-joe.com
+              </a>
+            </div>
+            &mdash;
+            <span class="entry_date"
+                tal:content="python:toLocalizedTime(entry.entry_date, long_format=1)"
+                >
+              20.10.2010 20:10
+            </span>
+          </dt>
+          <dd
+              tal:attributes="class string:message ${entry/moderation_state}"
+              tal:content="entry/message">
+            Great work here! Kudos to everyone!
+          </dd>
         </div>
-        <div tal:omit-tag="" tal:condition="entry/homepage_address">
-          &mdash;
-          <a class="external-link" href="http://avarage-joe.com"
-              tal:attributes="href entry/homepage_address"
-              tal:content="entry/homepage_address"
-              >
-            http://avarage-joe.com
-          </a>
-        </div>
-        &mdash;
-        <span class="date"
-            tal:content="python:toLocalizedTime(entry.date, long_format=1)"
-            >
-          20.10.2010 20:10
-        </span>
-      </dt>
-      <dd class="message" tal:content="entry/message">
-        Great work here! Kudos to everyone!
-      </dd>
+      </div>
     </dl>
-
-    <input type="submit" name="form.button.Delete" value="Delete marked entries"
-        class="context destructive"
-        tal:condition="view/canReviewGuestbook"
-        i18n:attributes="value"
-        />
-
+    <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
+      <span i18n:translate="">Marked entries: </span>
+      <input type="submit" name="form.button.Publish" value="Publish"
+          class="context"
+          i18n:attributes="value"
+          />
+      <input type="submit" name="form.button.Spam" value="Mark as Spam"
+          class="context"
+          i18n:attributes="value"
+          />
+      <input type="submit" name="form.button.Delete" value="Delete"
+          class="context destructive"
+          i18n:attributes="value"
+          />
+    </div>
   </form>
   <div metal:use-macro="context/batch_macros/macros/navigation" />
 
