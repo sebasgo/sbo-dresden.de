@@ -47,7 +47,8 @@ moderation_states = SimpleVocabulary([
 class IGuestbookEntry(Interface):
     entry_date = schema.Datetime(
         title=_(u"Date of the entry"),
-        required=True
+        required=True,
+        readonly=True
     )
 
     author = schema.TextLine(
