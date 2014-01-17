@@ -19,6 +19,9 @@ class IGuestbook(Interface):
         default=15
     )
 
+class NotAnEmailAddress(schema.ValidationError):
+    __doc__ = _(u"Invalid email address")
+
 check_email = re.compile(r"[a-zA-Z0-9._%-]+@([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,4}").match
 def validate_email(value):
     if not check_email(value):
