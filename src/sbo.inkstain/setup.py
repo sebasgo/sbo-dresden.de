@@ -57,7 +57,6 @@ setup(name='sbo.inkstain',
       install_requires=[
           'setuptools',
           'plone.app.z3cform',
-          'plone.formwidget.recaptcha',
           'plone.app.dexterity',
           'plone.directives.form'
       ],
