@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="sbo.inkstain"
+  >
+<body>
+<metal:content-core fill-slot="content-core" tal:define="
+    toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+    ">
+
+    <dl class="guestbook">
+      <dt tal:attributes="class context/moderation_state">
+        <span class="spam_label"
+            tal:condition="python:context.moderation_state == 'spam'"
+            i18n:translate="">Spam</span>
+        <span class="pending_label"
+            tal:condition="python:context.moderation_state == 'pending'"
+            i18n:translate="">Pending Review</span>
+        <div tal:replace="context/author">Avarage Joe</div>
+        <div tal:omit-tag="" tal:condition="view/canReviewGuestbook">
+          &mdash;
+          <a href="mailto:mail@avarage-joe.com"
+              tal:attributes="href string: mailto:${context/email_address}"
+              tal:content="context/email_address"
+              >
+            http://avarage-joe.com
+          </a>
+        </div>
+        <div tal:omit-tag="" tal:condition="context/homepage_address">
+          &mdash;
+          <a class="external-link" href="http://avarage-joe.com"
+              tal:attributes="href context/homepage_address"
+              tal:content="context/homepage_address"
+              >
+            http://avarage-joe.com
+          </a>
+        </div>
+        &mdash;
+        <span class="context_date"
+            tal:content="python:toLocalizedTime(context.entry_date, long_format=1)"
+            >
+          20.10.2010 20:10
+        </span>
+      </dt>
+      <dd
+          tal:attributes="class string:message ${context/moderation_state}"
+          tal:content="context/message">
+        Great work here! Kudos to everyone!
+      </dd>
+    </dl>
+
+</metal:content-core>
+</body>
+</html>

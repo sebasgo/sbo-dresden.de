@@ -22,6 +22,14 @@
     layer=".interfaces.IInkstainLayer"
     />
 
+  <browser:page
+    for="..interfaces.IGuestbookEntry"
+    name="view"
+    class=".guestbookentry.GuestbookEntryView"
+    permission="zope2.View"
+    layer=".interfaces.IInkstainLayer"
+    />
+
   <adapter
     for="..interfaces.IGuestbook"
     provides=".writeentry.IWriteEntryForm"
