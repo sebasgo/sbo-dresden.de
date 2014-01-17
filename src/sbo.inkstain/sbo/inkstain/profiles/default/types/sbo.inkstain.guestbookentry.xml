@@ -19,8 +19,7 @@
   <property name="klass">plone.dexterity.content.Item</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
-   </property>
+  </property>
 
   <!-- View information -->
   <property name="immediate_view">view</property>
