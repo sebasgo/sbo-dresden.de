@@ -15,6 +15,7 @@ dl.guestbook dt
     color: #001d3e;
     border-bottom: 1px solid #001d3e;
     margin-bottom: 5px;
+    padding-bottom: 2px;
 }
 
 dl.guestbook dt a
@@ -23,12 +24,41 @@ dl.guestbook dt a
     border: none !important;
 }
 
-dl.guestbook dt span.date
+dl.guestbook dt span.entry_date
 {
     font-weight: normal;
 }
 
+dl.guestbook span.pending_label,
+dl.guestbook span.spam_label
+{
+    color: white;
+    display: inline-block;
+    padding: 0 2px;
+}
+
+dl.guestbook span.pending_label
+{
+    background-color: #EBB92F;
+}
+
+dl.guestbook span.spam_label
+{
+    background-color: #ff0000;
+}
+
 dl.guestbook dd.message
 {
-    margin: 0 !important;
+    margin: 0 0 10px !important;
+}
+
+dl.guestbook dd.message.pending,
+dl.guestbook dd.message.spam
+{
+    color: #ccc;
+}
+
+dl.guestbook dd.message.spam
+{
+    text-decoration: line-through;
 }
