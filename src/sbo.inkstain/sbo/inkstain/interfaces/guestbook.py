@@ -78,7 +78,8 @@ class IGuestbookEntry(Interface):
     )
 
     ip = schema.ASCIILine(
-        title=_(u"The IP address the message is originating from.")
+        title=_(u"The IP address the message is originating from."),
+        readonly=True
     )
     moderation_state = schema.Choice(
         title=_("Moderation state"),
