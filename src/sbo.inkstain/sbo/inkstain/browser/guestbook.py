@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from zope.security import checkPermission
 
+from plone.dexterity.utils import createContentInContainer
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -77,4 +78,26 @@ class GuestbookView(BrowserView):
     def canReviewGuestbook(self):
         return checkPermission("sbo.inkstain.ReviewGuestbook", self.context)
 
+class GuestbookMigrationView(BrowserView):
+    def __call__(self):
+        old_path = self.request.form.get('old', "")
+        portal_url = getToolByName(self.context, "portal_url")
+        portal = portal_url.getPortalObject()
+        old_guestbook = portal.restrictedTraverse(old_path)
+        entries = old_guestbook.objectValues()
+        entries.sort(key=lambda entry: entry.date)
 
+        for entry in entries:
+            date = entry.date.asdatetime()
+            date = date.replace(tzinfo=None)
+            createContentInContainer(self.context, 'sbo.inkstain.guestbookentry',
+                entry_date=date,
+                author=entry.name,
+                email_address=entry.email_address,
+                homepage_address=entry.homepage_address,
+                message=entry.message,
+                moderation_state='published',
+                ip='unknown'
+            )
+        self.request.response.redirect(self.context.absolute_url())
+        return ''

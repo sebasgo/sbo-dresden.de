@@ -16,6 +16,14 @@
 
   <browser:page
     for="..interfaces.IGuestbook"
+    name="migrate"
+    class=".guestbook.GuestbookMigrationView"
+    permission="cmf.ManagePortal"
+    layer=".interfaces.IInkstainLayer"
+    />
+
+  <browser:page
+    for="..interfaces.IGuestbook"
     name="writeentry"
     class=".writeentry.WriteEntryForm"
     permission="sbo.inkstain.AddGuestbookEntry"
