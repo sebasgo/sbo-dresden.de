@@ -153,6 +153,7 @@ div.position-3\3a 4 {margin-left: -201px; } /* .position-3:4 */
 #portal-personaltools dt
 {
     background-image: url(++resource++sbo.theme.images/personaltools-bg.png);
+    display: block;
     width: 134px;
     height: 19px;
     padding: 2px 2px 0px 5px;
