@@ -28,6 +28,7 @@
               >
             http://avarage-joe.com
           </a>
+          <span tal:content="string: (${context/ip})" >::1</span>
         </div>
         <div tal:omit-tag="" tal:condition="context/homepage_address">
           &mdash;
