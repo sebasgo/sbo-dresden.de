@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '1.1.0'
+version = '2.0.0'
 
 long_description = (
     read('README.txt')
@@ -57,7 +57,8 @@ setup(name='sbo.inkstain',
       install_requires=[
           'setuptools',
           'plone.app.z3cform',
-          'plone.formwidget.recaptcha',
+          'plone.app.dexterity',
+          'plone.directives.form'
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
