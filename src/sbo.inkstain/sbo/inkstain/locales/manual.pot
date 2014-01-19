@@ -29,6 +29,9 @@ msgstr ""
 msgid "Guestbook"
 msgstr ""
 
+msgid "Guestbook Entry"
+msgstr ""
+
 #. menu item description for view method
 msgid "Displays the guestbook"
 msgstr ""

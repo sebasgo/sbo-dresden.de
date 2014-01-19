@@ -1,10 +1,12 @@
+# Sebastian Gottfried <sebastiangottfried@web.de>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2011-08-01 13:53+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: Sun Jan 19 12:54:34 2014\n"
+"PO-Revision-Date: 2014-01-19 12:55+0100\n"
+"Last-Translator: Sebastian Gottfried <sebastiangottfried@web.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,99 +17,189 @@ msgstr ""
 "Domain: sbo.inkstain\n"
 "X-Language: de_DE\n"
 "X-Source-Language: C\n"
+"X-Generator: Lokalize 1.5\n"
 
-#: ./profiles/default/types/Guestbook.xml
-msgid "A simple guestbook"
-msgstr "Ein einfaches Gästebuch"
+#. Default: "Write a guestbook entry"
+#: sbo.inkstain:/browser/formwrapper.pt:6
+msgid "write_entry_form_legend"
+msgstr "Schreibe einen Gästebucheintrag"
 
-#. profile description
-msgid "A simple guestbook."
-msgstr "Ein einfaches Gästebuch."
+#: sbo.inkstain:/browser/guestbook.pt:36
+#: sbo.inkstain:/browser/guestbookentry.pt:19
+msgid "Pending Review"
+msgstr "Wartet auf Moderation"
 
-#: ./browser/guestbook.pt:62
-msgid "Delete marked entries"
-msgstr "Lösche markierte Einträge"
+#: sbo.inkstain:/browser/guestbook.pt:75
+msgid "Marked entries:"
+msgstr "Markierte Einträge:"
 
-#. menu item description for view method
-msgid "Displays the guestbook"
-msgstr "Zeigt das Gästebuch an"
+#: sbo.inkstain:/browser/guestbook.pt:76
+msgid "Publish"
+msgstr "Veröffentlichen"
 
-#: ./content/guestbook.py:24
-#: ./interfaces/guestbook.py:11
+#: sbo.inkstain:/browser/guestbook.pt:80
+msgid "Mark as Spam"
+msgstr "Als Spam markieren"
+
+#: sbo.inkstain:/browser/guestbook.pt:84
+msgid "Delete"
+msgstr "Löschen"
+
+#: sbo.inkstain:/browser/guestbook.py:28
+msgid "The marked entries have been deleted."
+msgstr "Die markierten Einträge wurden gelöscht."
+
+#: sbo.inkstain:/browser/writeentry.py:105
+msgid ""
+"Thank you for your guestbook entry! It will be published after moderation."
+msgstr ""
+"Danke für Ihren Eintrag im Gästebuch. Er wird noch Moderation veröffentlicht."
+
+#: sbo.inkstain:/browser/writeentry.py:116
+msgid "New guestbook entry"
+msgstr "Neuer Gästebucheintrag"
+
+#: sbo.inkstain:/browser/writeentry.py:118
+msgid ""
+"Name: {name}\n"
+"Email: {mail}\n"
+"Homepage: {homepage}\n"
+"Moderation state: {moderation_state}\n"
+"IP: {ip}\n"
+"\n"
+"{text}"
+msgstr ""
+"Name: {name}\n"
+"Email: {mail}\n"
+"Homepage: {homepage}\n"
+"Moderationsstatus: {moderation_state}\n"
+"IP: {ip}\n"
+"\n"
+"{text}"
+
+#. Default: ""
+#: sbo.inkstain:/browser/writeentry.py:137
+msgid "Unable to send mail: ${exception}"
+msgstr "Fehler beim Senden der Mail: ${exception}"
+
+#: sbo.inkstain:/browser/writeentry.py:28
+#: sbo.inkstain:/interfaces/guestbook.py:55
+msgid "Your name"
+msgstr "Ihr Name"
+
+#: sbo.inkstain:/browser/writeentry.py:33
+#: sbo.inkstain:/interfaces/guestbook.py:60
+msgid "Your email address"
+msgstr "Ihre Email-Adresse"
+
+#: sbo.inkstain:/browser/writeentry.py:34
+#: sbo.inkstain:/interfaces/guestbook.py:61
+msgid "Won't be published."
+msgstr "Wird nicht veröffentlicht."
+
+#: sbo.inkstain:/browser/writeentry.py:40
+#: sbo.inkstain:/interfaces/guestbook.py:67
+msgid "Your homepage"
+msgstr "Ihre Homepage"
+
+#: sbo.inkstain:/browser/writeentry.py:41
+#: sbo.inkstain:/interfaces/guestbook.py:68
+msgid "You may leave the address of own homepage."
+msgstr "Sie können die Adresse Ihrer eigenen Homepage angeben."
+
+#: sbo.inkstain:/browser/writeentry.py:47
+#: sbo.inkstain:/interfaces/guestbook.py:74
+msgid "Message"
+msgstr "Nachricht"
+
+#: sbo.inkstain:/browser/writeentry.py:48
+#: sbo.inkstain:/interfaces/guestbook.py:75
+msgid "Please keep to 1,000 characters."
+msgstr "Nicht mehr als 1000 Zeichen."
+
+#: sbo.inkstain:/browser/writeentry.py:64
+msgid "Write a guestbook entry"
+msgstr "Schreibe einen Gästebucheintrag"
+
+#: sbo.inkstain:/browser/writeentry.py:65
+msgid "Got a comment? Please submit it using the form below!"
+msgstr ""
+"Wollen Sie einen Kommentar los werden? Schreiben Sie ihn uns mit dem "
+"Formular unterhalb."
+
+#: sbo.inkstain:/browser/writeentry.py:87
+msgid "Submit"
+msgstr "Abschicken"
+
+#: sbo.inkstain:/interfaces/guestbook.py:16
 msgid "Entries per page"
 msgstr "Einträge pro Seite"
 
-#: ./browser/writeentry.py:87
-msgid "Got a comment? Please submit it using the form below!"
-msgstr "Wollen Sie einen Kommentar los werden? Schreiben Sie ihn uns mit dem Formular unterhalb."
+#: sbo.inkstain:/interfaces/guestbook.py:17
+msgid "Sets the number of entries which are shown on one page."
+msgstr "Legt fest, wie viele Einträge auf einer Seite angezeigt werden"
 
-#: ./profiles/default/types/Guestbook.xml
-msgid "Guestbook"
-msgstr "Gästebuch"
+#: sbo.inkstain:/interfaces/guestbook.py:23
+msgid "Invalid email address"
+msgstr "Ungültige Email-Adresse"
+
+#: sbo.inkstain:/interfaces/guestbook.py:32
+msgid "Invalid homepage address"
+msgstr "Ungültige Homepage-Adresse"
+
+#: sbo.inkstain:/interfaces/guestbook.py:42
+msgid "Pending review"
+msgstr "Wartet auf Moderation"
+
+#: sbo.inkstain:/interfaces/guestbook.py:43
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: sbo.inkstain:/interfaces/guestbook.py:44
+#: sbo.inkstain:/browser/guestbook.pt:33
+#: sbo.inkstain:/browser/guestbookentry.pt:16
+msgid "Spam"
+msgstr "Spam"
+
+#: sbo.inkstain:/interfaces/guestbook.py:49
+msgid "Date of the entry"
+msgstr "Eintragsdatum"
+
+#: sbo.inkstain:/interfaces/guestbook.py:81
+msgid "The IP address the message is originating from."
+msgstr "Die IP, von dem der Eintrag stammt."
+
+#: sbo.inkstain:/interfaces/guestbook.py:85
+msgid "Moderation state"
+msgstr "Moderationsstatus"
 
 #. profile title
 msgid "Inkstain"
 msgstr "Inkstain"
 
-#: ./browser/writeentry.py:20
-msgid "Invalid email address"
-msgstr "Ungültige Email-Adresse"
+#. profile description
+msgid "A simple guestbook."
+msgstr "Ein einfaches Gästebuch."
 
-#: ./browser/writeentry.py:29
-msgid "Invalid homepage address"
-msgstr "Ungültige Homepage-Adresse"
+#. menu item title for view method
+msgid "Guestbook"
+msgstr "Gästebuch"
 
-#: ./browser/writeentry.py:61
-msgid "Message"
-msgstr "Nachricht"
+msgid "Guestbook Entry"
+msgstr "Gästebucheintrag"
 
-#: ./browser/writeentry.py:62
-msgid "Please keep to 1,000 characters."
-msgstr "Nicht mehr als 1000 Zeichen."
+#. menu item description for view method
+msgid "Displays the guestbook"
+msgstr "Zeigt das Gästebuch an"
 
-#: ./content/guestbook.py:25
-#: ./interfaces/guestbook.py:12
-msgid "Sets the number of entries which are shown on one page."
-msgstr "Legt fest, wie viele Einträge auf einer Seite angezeigt werden"
+#~ msgid "Guestbook entry"
+#~ msgstr "Gästebucheintrag"
 
-#: ./browser/writeentry.py:110
-msgid "Submit"
-msgstr "Abschicken"
+#~ msgid "A simple guestbook"
+#~ msgstr "Ein einfaches Gästebuch"
 
-#: ./browser/writeentry.py:127
-msgid "Thank you for your guestbook entry!"
-msgstr "Danke für Ihren Gästebucheintrag"
+#~ msgid "Delete marked entries"
+#~ msgstr "Lösche markierte Einträge"
 
-#: ./browser/guestbook.py:27
-msgid "The marked entries have been deleted."
-msgstr "Die markierten Einträge wurden gelöscht."
-
-#: ./browser/writeentry.py:48
-msgid "Won't be published."
-msgstr "Wird nicht veröffentlicht."
-
-#: ./browser/writeentry.py:86
-msgid "Write a guestbook entry"
-msgstr "Schreibe einen Gästebucheintrag"
-
-#: ./browser/writeentry.py:55
-msgid "You may leave the address of own homepage."
-msgstr "Sie können die Adresse Ihrer eigenen Homepage angeben."
-
-#: ./browser/writeentry.py:47
-msgid "Your email address"
-msgstr "Ihre Email-Adresse"
-
-#: ./browser/writeentry.py:54
-msgid "Your homepage"
-msgstr "Ihre Homepage"
-
-#: ./browser/writeentry.py:42
-msgid "Your name"
-msgstr "Ihr Name"
-
-#. Default: "Write a guestbook entry"
-#: ./browser/formwrapper.pt:6
-msgid "write_entry_form_legend"
-msgstr "Schreibe einen Gästebucheintrag"
-
+#~ msgid "Thank you for your guestbook entry!"
+#~ msgstr "Danke für Ihren Gästebucheintrag"
