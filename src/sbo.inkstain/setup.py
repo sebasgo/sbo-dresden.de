@@ -56,9 +56,10 @@ setup(name='sbo.inkstain',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.caching',
           'plone.app.z3cform',
           'plone.app.dexterity',
-          'plone.directives.form'
+          'plone.directives.form',
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
