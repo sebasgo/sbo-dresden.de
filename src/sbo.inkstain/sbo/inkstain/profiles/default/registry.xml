@@ -6,4 +6,23 @@
     </value>
   </record>
 
+  <record name="collective.z3cform.norobots.browser.interfaces.INorobotsWidgetSettings.questions" field="questions">
+    <value purge="True">
+      <element>Was ist 3 - 2?::1</element>
+      <element>Was ist 4 - 2?::2</element>
+      <element>Was ist 5 - 2?::3</element>
+      <element>Was ist 2 + 2?::4</element>
+      <element>Was ist 2 + 3?::5</element>
+      <element>Was ist 1 + 5?::6</element>
+      <element>Was ist 3 + 4?::7</element>
+      <element>Was ist 3 + 5?::8</element>
+      <element>Was ist 3 + 6?::9</element>
+      <element>Was ist 4 + 6?::10</element>
+      <element>Was ist 5 + 7?::12</element>
+      <element>Was ist 9 + 4?::13</element>
+      <element>Was ist 7 + 7?::14</element>
+      <element>Was ist 8 + 7?::15</element>
+    </value>
+  </record>
+
 </registry>

@@ -44,6 +44,9 @@
     provides=".writeentry.IWriteEntryForm"
     factory=".writeentry.Entry" />
 
+  <adapter
+    factory=".writeentry.NorobotsValidator" />
+
   <browser:resourceDirectory
     name="sbo.inkstain.stylesheets"
     directory="stylesheets"

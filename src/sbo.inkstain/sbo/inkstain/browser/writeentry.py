@@ -12,8 +12,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.interface import Interface
 from zope import schema
 from zope.component import getMultiAdapter
-from z3c.form import form, field, button
+from z3c.form import form, field, button, validator
 from ZODB.POSException import ConflictError
+
+from collective.z3cform.norobots.i18n import norobotsMessageFactory
+from collective.z3cform.norobots.widget import NorobotsFieldWidget
+from collective.z3cform.norobots.validator import NorobotsValidator
 
 from sbo.inkstain import InkstainMessageFactory as _
 from sbo.inkstain.interfaces.guestbook import moderation_states
@@ -50,16 +54,24 @@ class IWriteEntryForm(Interface):
         max_length=1000
     )
 
+    norobots = schema.TextLine(
+        title=norobotsMessageFactory(u"Are you a human ?"),
+        description=norobotsMessageFactory(u"In order to avoid spam, please answer the question below."),
+        required=True
+    )
+
 class Entry(object):
     name = u""
     email_address = u""
     homepage_address = u""
     message = u""
+    norobots = u""
     def __init__(self, context):
         self.context = context
 
 class BaseForm(form.Form):
     fields = field.Fields(IWriteEntryForm)
+    fields['norobots'].widgetFactory = NorobotsFieldWidget
 
     label = _(u"Write a guestbook entry")
     description = _(u"Got a comment? Please submit it using the form below!")
@@ -147,6 +159,8 @@ class InlineWriteEntryForm(FormWrapper):
      index = ViewPageTemplateFile("formwrapper.pt")
 
 WriteEntryForm = wrap_form(BaseForm)
+
+validator.WidgetValidatorDiscriminators(NorobotsValidator, field=IWriteEntryForm['norobots'])
 
 def get_ip(request):
     """  Extract the client IP address from the HTTP request in proxy compatible way.
