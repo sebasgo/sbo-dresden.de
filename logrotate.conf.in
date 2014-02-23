@@ -1,0 +1,28 @@
+daily
+missingok
+rotate 14
+compress
+delaycompress
+notifempty
+size 1k
+
+${buildout:directory}/var/log/instance1.log ${buildout:directory}/var/log/instance1-Z2.log {
+    sharedscripts
+    postrotate
+        /bin/kill -USR2 $(cat ${buildout:directory}/var/instance1.pid)
+    endscript
+}
+
+${buildout:directory}/var/log/instance2.log ${buildout:directory}/var/log/instance2-Z2.log {
+    sharedscripts
+    postrotate
+        /bin/kill -USR2 $(cat ${buildout:directory}/var/instance1.pid)
+    endscript
+}
+
+${buildout:directory}/var/log/nginx-error.log ${buildout:directory}/var/log/nginx-plone-access.log {
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 $(cat ${buildout:directory}/parts/nginx/nginx.pid)
+    endscript
+}
