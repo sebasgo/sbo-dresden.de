@@ -17,44 +17,10 @@
     getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
     templateId template/getId;
     ">
-    
+
   <div tal:repeat="brain batch" tal:omit-tag="">
     <div tal:omit-tag="" tal:define="obj brain/getObject">
-      <h1 tal:content="obj/Title">
-        <a tal:attributes="name obj/getId">
-          Title
-        </a>
-      </h1>
-      
-      <div class="newsitemDetails">       
-        <table class="vertical listing">
-          <tbody>
-            <tr>
-              <td class="date" tal:content="python:toLocalizedTime(obj.created())">
-                Date
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <div class="newsImageContainer" tal:condition="obj/getImage|nothing">
-        <img tal:replace="structure python: obj.tag(scale='mini', css_class='newsImage')" src="" alt="" />
-        <p class="discreet" tal:condition="obj/imageCaption|nothing">
-          <metal:field use-macro="python:obj.widget('imageCaption', mode='view')">
-          Image Caption
-          </metal:field>
-        </p>
-      </div>
-      
-      <div class="documentDescription" tal:condition="obj/Description | nothing" tal:content="obj/Description">
-        Description
-      </div>
-      
-      <metal:field use-macro="python:obj.widget('text', mode='view')">
-        Body text
-      </metal:field>
-      
+      <div tal:replace="structure obj/@@newsviewitem" />
     </div>
   </div>
 

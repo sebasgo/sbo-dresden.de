@@ -55,6 +55,14 @@ class NewsView(BrowserView):
         )
         return results;
 
+class NewsViewItem(BrowserView):
+
+    template = ViewPageTemplateFile('templates/news_item.pt')
+
+    def __call__(self):
+        return self.template()
+
+
 class GalleryView(BrowserView):
 
     template = ViewPageTemplateFile('templates/gallery.pt')

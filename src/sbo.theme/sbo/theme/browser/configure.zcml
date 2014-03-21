@@ -82,6 +82,14 @@
     />
 
   <browser:page
+    for="Products.ATContentTypes.interfaces.news.IATNewsItem"
+    name="newsviewitem"
+    class=".views.NewsViewItem"
+    permission="zope2.View"
+    layer=".interfaces.IThemeSpecific"
+    />
+
+  <browser:page
     for="Products.Archetypes.interfaces.base.IBaseFolder"
     name="galleryview"
     class=".views.GalleryView"

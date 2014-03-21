@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="sbo.theme"
+  tal:omit-tag=""
+>
+  <body tal:omit-tag="" tal:define="
+      site_properties context/portal_properties/site_properties;
+      toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+  ">
+
+    <h1 tal:content="context/Title">
+      <a tal:attributes="name context/getId">
+        Title
+      </a>
+    </h1>
+
+    <div class="newsitemDetails">
+      <table class="vertical listing">
+        <tbody>
+          <tr>
+            <td class="date" tal:content="python:toLocalizedTime(context.created())">
+              Date
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="newsImageContainer" tal:condition="context/getImage|nothing">
+      <img tal:replace="structure python: context.tag(scale='mini', css_class='newsImage')" src="" alt="" />
+      <p class="discreet" tal:condition="context/imageCaption|nothing">
+        <metal:field use-macro="python:context.widget('imageCaption', mode='view')">
+        Image Caption
+        </metal:field>
+      </p>
+    </div>
+
+    <div class="documentDescription" tal:condition="context/Description | nothing" tal:content="context/Description">
+      Description
+    </div>
+
+    <metal:field use-macro="python:context.widget('text', mode='view')">
+      Body text
+    </metal:field>
+
+  </body>
+</html>
