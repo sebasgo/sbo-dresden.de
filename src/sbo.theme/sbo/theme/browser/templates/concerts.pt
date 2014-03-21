@@ -12,12 +12,8 @@
     b_size  python:5; b_size context/entries_per_page | b_size;
     b_start python:0; b_start request/b_start | b_start;
     batch python:Batch(view.concerts(), b_size, int(b_start), orphan=1);
-    toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-    kssClassesView context/@@kss_field_decorator_view;
-    getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-    templateId template/getId;
-    ">
-    
+">
+
   <tal:no-concerts tal:condition="not: batch">
     <h1 tal:content="view/context/Title">
       Title
@@ -26,123 +22,10 @@
       Currently there aren't any concerts scheduled.
     </div>
   </tal:no-concerts>
-  
+
   <div tal:repeat="brain batch" tal:omit-tag="">
     <div tal:omit-tag="" tal:define="obj brain/getObject">
-      <h1 tal:content="obj/Title">
-        Title
-      </h1>
-      
-      <div class="eventDetails vcard">
-        <table class="vertical listing"
-            summary="Event details" i18n:attributes="summary">
-    
-          <tbody>
-            <tr>
-              <td>
-                <tal:differentday tal:condition="python:not obj.start().Date() == obj.end().Date()"
-                        i18n:translate="event_when_differentday">
-                  <abbr i18n:name="startdate"
-                    metal:define-macro="startdate-field-view"
-                    tal:define="kss_class python:getKssClasses('startDate',
-                          templateId=templateId, macro='startdate-field-view');"
-                    id="parent-fieldname-startDate"
-                    tal:attributes="class string:$kss_class dtstart;
-                            title python:obj.start().ISO8601()">
-                  <span metal:define-slot="inside" class="explain">
-                    <span tal:replace="python:toLocalizedTime(obj.start())">Start Date</span>
-                    <tal:word i18n:translate="event_when_differentday_optional_word_between_date_and_time" />
-                    <span tal:replace="python:toLocalizedTime(obj.start(), time_only=1)">Start Time</span>
-                  </span>
-                  </abbr>
-                  to
-                  <abbr i18n:name="enddate"
-                    metal:define-macro="enddate-field-view"
-                    tal:define="kss_class python:getKssClasses('endDate',
-                          templateId=templateId, macro='enddate-field-view');"
-                    id="parent-fieldname-endDate"
-                    tal:attributes="class string:$kss_class dtend;
-                            title python:obj.end().ISO8601()">
-                   <span metal:define-slot="inside" class="explain">
-                     <span tal:replace="python:toLocalizedTime(obj.end())">End Date</span>
-                     <tal:word i18n:translate="event_when_differentday_optional_word_between_date_and_time" />
-                     <span tal:replace="python:toLocalizedTime(obj.end(), time_only=1)">End Time</span>
-                  </span>
-                  </abbr>
-                </tal:differentday>
-    
-                <tal:sameday tal:condition="python:obj.start().Date() == obj.end().Date()"
-                       tal:define="ampm
-                       python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0"
-                       i18n:translate="event_when_sameday">
-                  <span tal:replace="python:toLocalizedTime(obj.start())"
-                    i18n:name="date">
-                    Start Date Time</span>
-                  from
-                  <abbr metal:define-macro="startdatesame-field-view"
-                    tal:define="kss_class python:getKssClasses('startDate',
-                          templateId=templateId, macro='startdatesame-field-view');"
-                    id="parent-fieldname-startDate"
-                    tal:attributes="class string:$kss_class dtstart;
-                            title python:obj.start().ISO8601()"
-                    i18n:name="starttime">
-                    <span metal:define-slot="inside"
-                        class="explain"
-                        tal:content="python:toLocalizedTime(obj.start(), time_only=1)">Start Time</span>
-                  </abbr> to
-                  <abbr metal:define-macro="enddatesame-field-view"
-                    tal:define="kss_class python:getKssClasses('endDate',
-                          templateId=templateId, macro='enddatesame-field-view');"
-                    id="parent-fieldname-endDate"
-                    tal:attributes="class string:$kss_class dtend;
-                            title python:obj.end().ISO8601()"
-                    i18n:name="endtime">
-                    <span metal:define-slot="inside"
-                        class="explain"
-                        tal:content="python:toLocalizedTime(obj.end(), time_only=1)">End Time</span>
-                  </abbr>
-                </tal:sameday>
-              </td>
-            </tr>
-            <tr tal:condition="obj/getAttendees|nothing">
-              <td class="attendees">
-                <metal:field use-macro="python:obj.widget('attendees', mode='view')">
-                  Attendees
-                </metal:field>
-              </td>
-            </tr>
-            <tr tal:condition="obj/location">
-              <td class="location">
-    
-                <metal:field use-macro="python:obj.widget('location', mode='view')">
-                Location
-                </metal:field>
-              </td>
-            </tr>
-            <tr>
-              <td tal:define="here_url obj/absolute_url;">
-                <a href="#"
-                 tal:attributes="href string:$here_url/vcs_view"
-                 title="Download this concert date in vCal format"
-                 i18n:attributes="title title_add_to_vcal;">
-                  <span i18n:translate="label_add_to_vcal">vCal</span></a>
-                <a href="#"
-                 tal:attributes="href string:$here_url/ics_view"
-                 title="Download this concert date in iCal format"
-                 i18n:attributes="title title_add_to_ical;">
-                  <span i18n:translate="label_add_to_ical">iCal</span></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <div class="documentDescription" tal:content="obj/Description">
-        Description
-      </div>
-      <metal:field use-macro="python:obj.widget('text', mode='view')">
-        Body text
-      </metal:field>
+      <div tal:replace="structure obj/@@concertsviewitem" />
     </div>
   </div>
 
