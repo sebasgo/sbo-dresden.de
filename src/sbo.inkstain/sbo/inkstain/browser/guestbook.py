@@ -34,6 +34,7 @@ class GuestbookView(BrowserView):
                 if context.hasObject(id):
                     message = context[id]
                     message.moderation_state = 'published'
+                    message.reindexObject(idxs=["moderation_state"])
             postback = False
 
         if form.get('form.button.Spam', False):
@@ -41,6 +42,7 @@ class GuestbookView(BrowserView):
                 if context.hasObject(id):
                     message = context[id]
                     message.moderation_state = 'spam'
+                    message.reindexObject(idxs=["moderation_state"])
             postback = False
 
         if postback:
