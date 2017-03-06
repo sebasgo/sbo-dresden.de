@@ -7,6 +7,7 @@ eggs/
 parts/
 products/
 var/
+.idea/
 
 buildout.cfg
 
@@ -17,3 +18,5 @@ buildout.cfg
 *.pyo
 *.egg-info
 *.egg
+*.swp
+
