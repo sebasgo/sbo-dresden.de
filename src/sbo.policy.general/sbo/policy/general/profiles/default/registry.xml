@@ -10,4 +10,14 @@
         <value>Europe/Berlin</value>
     </record>
 
+    <record name="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings.resourceBundlesForThemes">
+        <value purge="False">
+            <element key="SBO Plone Theme">
+                <element>jquery</element>
+                <element>default</element>
+                <element>deprecated</element>
+            </element>
+        </value>
+    </record>
+
 </registry>
