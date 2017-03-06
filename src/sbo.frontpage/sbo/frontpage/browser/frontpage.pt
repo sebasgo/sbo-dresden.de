@@ -38,7 +38,7 @@
                 <th>
                   <img class="data" src="++resource++sbo.frontpage.resources/date.png" alt="Date:" i18n:attributes="alt" />
                 </th>
-                <td tal:content="python:toLocalizedTime(concert.start(), long_format=1)">
+                <td tal:content="python:toLocalizedTime(concert.start, long_format=1)">
                   31.02.2013 15:30
                 </td>
               </tr>
@@ -62,21 +62,21 @@
     <p class="pane" tal:repeat="img view/cover_images"
         tal:attributes="class python:repeat['img'].start and 'pane active' or 'pane'"
         >
-      <img tal:replace="structure python:img.tag(scale='frontpage')" />
+      <img tal:replace="structure img/@@images/image/frontpage" />
       <em class="title">
-        <tal:title tal:replace="img/Title">Image title</tal:title>
-        <span class="description" tal:content="img/Description" tal:condition="img/Description">
+        <tal:title tal:replace="img/title">Image title</tal:title>
+        <span class="description" tal:content="img/description" tal:condition="img/description">
           Image description
         </span>
       </em>
     </p>
     <p class="pane" tal:repeat="item view/news">
       <a tal:attributes="href python:view.news_target_url(item)">
-        <img tal:condition="item/getImage|nothing" tal:replace="structure python:item.tag(scale='frontpage')" />
-        <img tal:condition="not:item/getImage|nothing" src="++resource++sbo.frontpage.resources/news-item-placeholder.png" />
+        <img tal:condition="item/image" tal:replace="structure item/@@images/image/frontpage" />
+        <img tal:condition="not: item/image" src="++resource++sbo.frontpage.resources/news-item-placeholder.png" />
         <em class="title">
-          <tal:title tal:replace="item/Title">Image title</tal:title>
-          <span class="description" tal:content="item/Description" tal:condition="item/Description">
+          <tal:title tal:replace="item/title">Image title</tal:title>
+          <span class="description" tal:content="item/description" tal:condition="item/description">
             Image description
           </span>
         </em>
