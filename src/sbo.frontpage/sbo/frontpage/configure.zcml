@@ -33,7 +33,37 @@
     profile="sbo.frontpage:default"
     handler=".setuphandlers.install_profile"
     />
-  
+
+  <genericsetup:upgradeStep
+    title="upgrade profile"
+    description="remove old type"
+    source="1001"
+    destination="1002"
+    sortkey="1"
+    profile="sbo.frontpage:default"
+    handler=".setuphandlers.remove_old_type"
+    />
+
+  <genericsetup:upgradeStep
+    title="upgrade profile"
+    description="profile must be re-registered"
+    source="1001"
+    destination="1002"
+    sortkey="2"
+    profile="sbo.frontpage:default"
+    handler=".setuphandlers.install_profile"
+    />
+
+  <genericsetup:upgradeStep
+    title="upgrade profile"
+    description="migrate existing content to Dexterity"
+    source="1001"
+    destination="1002"
+    sortkey="3"
+    profile="sbo.frontpage:default"
+    handler=".setuphandlers.migrate_to_dexterity"
+    />
+
   <i18n:registerTranslations directory="locales" />
 
 </configure>

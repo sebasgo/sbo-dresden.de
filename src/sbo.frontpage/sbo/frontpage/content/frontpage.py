@@ -48,6 +48,7 @@ FrontpageSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         relationship="isConcertsFolder",
         allowed_types=('Folder',),
         multiValued=False,
+        keepReferencesOnCopy=True,
         storage=atapi.AnnotationStorage(),
         widget=ReferenceBrowserWidget(
             label=_(u"Concerts folder"),
