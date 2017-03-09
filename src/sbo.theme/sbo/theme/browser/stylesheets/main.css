@@ -563,3 +563,12 @@ dl.portalMessage dt
 {
     border-bottom: 0;
 }
+
+/* plone.app.event fixes */
+.hCalendar-hidden {
+    display: none;
+}
+
+.event.summary .timezone {
+    display: none;
+}
