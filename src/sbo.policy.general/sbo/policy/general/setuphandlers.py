@@ -6,6 +6,14 @@ def install_profile(context):
     setup.runAllImportStepsFromProfile('profile-sbo.policy.general:default',
                                        purge_old=False)
 
+
+def migrate_content_to_dx(context):
+    plone_url = getToolByName(context, 'portal_url')
+    portal = plone_url.getPortalObject()
+    migrator = portal.restrictedTraverse('@@migrate_from_atct')
+    migrator(migrate=True)
+
+
 def setupVarious(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.

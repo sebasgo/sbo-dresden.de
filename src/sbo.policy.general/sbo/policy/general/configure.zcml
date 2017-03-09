@@ -20,6 +20,26 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+    <genericsetup:upgradeStep
+     title="upgrade profile"
+     description="profile must be re-registered"
+     source="1"
+     destination="2"
+     sortkey="1"
+     profile="sbo.policy.general:default"
+     handler=".setuphandlers.install_profile"
+     />
+
+    <genericsetup:upgradeStep
+     title="dx migration"
+     description="migrate content to Dexterity"
+     source="2"
+     destination="3"
+     sortkey="1"
+     profile="sbo.policy.general:default"
+     handler=".setuphandlers.migrate_content_to_dx"
+     />
+
   <i18n:registerTranslations directory="locales" />
 
 </configure>
