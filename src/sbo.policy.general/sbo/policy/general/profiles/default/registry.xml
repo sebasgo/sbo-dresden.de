@@ -1,12 +1,12 @@
 <registry>
 
-    <record name="plone.available_timezones">
+    <record name="plone.app.event.available_timezones">
         <value purge="True">
             <element>Europe/Berlin</element>
         </value>
     </record>
 
-    <record name="plone.portal_timezone">
+    <record name="plone.app.event.portal_timezone">
         <value>Europe/Berlin</value>
     </record>
 
