@@ -1,4 +1,8 @@
 from Products.CMFCore.utils import getToolByName
+from plone.app.contenttypes.migration.migration import EventMigrator
+from plone.event.interfaces import IEventAccessor
+from zope.event import notify
+from zope.lifecycleevent import ObjectModifiedEvent
 
 
 def install_profile(context):
@@ -10,8 +14,15 @@ def install_profile(context):
 def migrate_content_to_dx(context):
     plone_url = getToolByName(context, 'portal_url')
     portal = plone_url.getPortalObject()
+    EventMigrator.last_migrate_time_zone = _last_migrate_time_zone
     migrator = portal.restrictedTraverse('@@migrate_from_atct')
     migrator(migrate=True)
+
+
+def _last_migrate_time_zone(self):
+    acc = IEventAccessor(self.new)
+    acc.timezone = 'Europe/Berlin'
+    notify(ObjectModifiedEvent(self.new))
 
 
 def setupVarious(context):
