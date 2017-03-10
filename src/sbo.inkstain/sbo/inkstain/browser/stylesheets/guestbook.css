@@ -3,6 +3,11 @@ div.writeentryform
     float: right;
     width: 340px;
     background-color: #fff;
+    padding-right: 2em;
+}
+
+div.writeentryform .formControls {
+    margin: 0;
 }
 
 dl.guestbook
