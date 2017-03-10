@@ -79,7 +79,7 @@ jq(document).ready(function()
         slideShow.elem.find('.img_index').text(
             (imgIndex + 1) + "/" + slideShow.imgUrls.length + ":"
         );
-        img.src = slideShow.imgUrls[imgIndex] + "/image_large";
+        img.src = slideShow.imgUrls[imgIndex];
     };
     
     var preloadImg = function(imgIndex)
@@ -91,7 +91,7 @@ jq(document).ready(function()
             preloader = null;
         });
         
-        preloader.src = slideShow.imgUrls[imgIndex] + "/image_large";
+        preloader.src = slideShow.imgUrls[imgIndex];
     };
     
     var nextImg = function()

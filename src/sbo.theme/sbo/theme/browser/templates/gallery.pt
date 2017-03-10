@@ -14,7 +14,8 @@
     ">
   <div class="gallery" tal:condition="imgs"
     ><tal:img tal:repeat="img imgs"
-      ><a tal:attributes="href img/absolute_url; title img/Title"
+      ><a tal:attributes="href string:${img/absolute_url}/@@images/image/large;
+                          title img/Title"
       ><img
         tal:define="
           scales img/@@images;
