@@ -59,9 +59,6 @@
   
   <tal:uploader tal:condition="view/is_uploader_available">
     <script  type="text/javascript">
-        // workaround this MSIE bug :
-        // https://dev.plone.org/plone/ticket/10894
-        if (jQuery.browser.msie) jQuery("#settings").remove();
         var Browser = {};
         Browser.onUploadComplete = function() {
             window.location.reload();
