@@ -5,6 +5,11 @@ body
     font: 16px Verdana, FreeSans, sans-serif;
 }
 
+body.mce-content-body
+{
+    background-image: none;
+}
+
 h1
 {
     color: #001d3e;
