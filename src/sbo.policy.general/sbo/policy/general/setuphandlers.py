@@ -12,11 +12,23 @@ def install_profile(context):
 
 
 def migrate_content_to_dx(context):
+    types = [
+        'Collection',
+        'Document',
+        'Event',
+        'File',
+        'Folder',
+        'Image',
+        'Link',
+        'News Item',
+        'BlobFile',
+        'BlobImage',
+    ]
     plone_url = getToolByName(context, 'portal_url')
     portal = plone_url.getPortalObject()
     EventMigrator.last_migrate_time_zone = _last_migrate_time_zone
     migrator = portal.restrictedTraverse('@@migrate_from_atct')
-    migrator(migrate=True)
+    migrator(migrate=True, content_types=types)
 
 
 def _last_migrate_time_zone(self):
