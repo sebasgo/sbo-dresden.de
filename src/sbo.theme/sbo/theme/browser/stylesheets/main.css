@@ -5,6 +5,11 @@ body
     font: 16px Verdana, FreeSans, sans-serif;
 }
 
+body.mce-content-body
+{
+    background-image: none;
+}
+
 h1
 {
     color: #001d3e;
@@ -562,4 +567,13 @@ dl.portalMessage dt
 #portal-sitemap a:hover
 {
     border-bottom: 0;
+}
+
+/* plone.app.event fixes */
+.hCalendar-hidden {
+    display: none;
+}
+
+.event.summary .timezone {
+    display: none;
 }

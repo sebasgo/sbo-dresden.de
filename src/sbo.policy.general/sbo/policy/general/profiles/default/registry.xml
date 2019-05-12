@@ -1,0 +1,23 @@
+<registry>
+
+    <record name="plone.app.event.available_timezones">
+        <value purge="True">
+            <element>Europe/Berlin</element>
+        </value>
+    </record>
+
+    <record name="plone.app.event.portal_timezone">
+        <value>Europe/Berlin</value>
+    </record>
+
+    <record name="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings.resourceBundlesForThemes">
+        <value purge="False">
+            <element key="SBO Plone Theme">
+                <element>jquery</element>
+                <element>default</element>
+                <element>deprecated</element>
+            </element>
+        </value>
+    </record>
+
+</registry>

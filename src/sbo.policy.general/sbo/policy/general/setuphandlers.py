@@ -1,10 +1,41 @@
 from Products.CMFCore.utils import getToolByName
+from plone.app.contenttypes.migration.migration import EventMigrator
+from plone.event.interfaces import IEventAccessor
+from zope.event import notify
+from zope.lifecycleevent import ObjectModifiedEvent
 
 
 def install_profile(context):
     setup = getToolByName(context, 'portal_setup')
     setup.runAllImportStepsFromProfile('profile-sbo.policy.general:default',
                                        purge_old=False)
+
+
+def migrate_content_to_dx(context):
+    types = [
+        'Collection',
+        'Document',
+        'Event',
+        'File',
+        'Folder',
+        'Image',
+        'Link',
+        'News Item',
+        'BlobFile',
+        'BlobImage',
+    ]
+    plone_url = getToolByName(context, 'portal_url')
+    portal = plone_url.getPortalObject()
+    EventMigrator.last_migrate_time_zone = _last_migrate_time_zone
+    migrator = portal.restrictedTraverse('@@migrate_from_atct')
+    migrator(migrate=True, content_types=types)
+
+
+def _last_migrate_time_zone(self):
+    acc = IEventAccessor(self.new)
+    acc.timezone = 'Europe/Berlin'
+    notify(ObjectModifiedEvent(self.new))
+
 
 def setupVarious(context):
 

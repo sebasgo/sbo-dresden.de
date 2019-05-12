@@ -9,6 +9,8 @@
   <body tal:omit-tag="" tal:define="
       site_properties context/portal_properties/site_properties;
       toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+      scale_func context/@@images;
+      scaled_image python: getattr(context.aq_explicit, 'image', False) and scale_func.scale('image', scale='mini')
   ">
 
     <h1 tal:content="context/Title">
@@ -29,22 +31,24 @@
       </table>
     </div>
 
-    <div class="newsImageContainer" tal:condition="context/getImage|nothing">
-      <img tal:replace="structure python: context.tag(scale='mini', css_class='newsImage')" src="" alt="" />
-      <p class="discreet" tal:condition="context/imageCaption|nothing">
-        <metal:field use-macro="python:context.widget('imageCaption', mode='view')">
-        Image Caption
-        </metal:field>
-      </p>
+    <div class="newsImageContainer" tal:condition="python: scaled_image">
+      <a tal:define="here_url context/@@plone_context_state/object_url;
+                     large_image python: scale_func.scale('image', scale='large');"
+         tal:attributes="href large_image/url">
+        <img tal:replace="structure python: scaled_image.tag(css_class='newsImage')" />
+        <div tal:condition="context/image_caption|nothing"
+            tal:content="context/image_caption">
+        </div>
+      </a>
     </div>
 
-    <div class="documentDescription" tal:condition="context/Description | nothing" tal:content="context/Description">
+    <div class="documentDescription" tal:condition="context/description | nothing" tal:content="context/description">
       Description
     </div>
 
-    <metal:field use-macro="python:context.widget('text', mode='view')">
-      Body text
-    </metal:field>
+    <div id="parent-fieldname-text"
+         tal:condition="context/text"
+         tal:content="structure python:context.text.output_relative_to(view.context)" />
 
   </body>
 </html>

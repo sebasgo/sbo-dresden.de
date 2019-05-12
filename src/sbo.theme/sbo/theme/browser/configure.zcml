@@ -58,7 +58,7 @@
       />
 
   <browser:page
-    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    for="plone.app.contenttypes.interfaces.IFolder"
     name="concertsview"
     class=".views.ConcertsView"
     permission="zope2.View"
@@ -66,7 +66,7 @@
     />
 
   <browser:page
-    for="Products.ATContentTypes.interfaces.event.IATEvent"
+    for="plone.app.contenttypes.interfaces.IEvent"
     name="concertsviewitem"
     class=".views.ConcertsViewItem"
     permission="zope2.View"
@@ -74,7 +74,7 @@
     />
 
   <browser:page
-    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    for="plone.app.contenttypes.interfaces.IFolder"
     name="newsview"
     class=".views.NewsView"
     permission="zope2.View"
@@ -82,7 +82,7 @@
     />
 
   <browser:page
-    for="Products.ATContentTypes.interfaces.news.IATNewsItem"
+    for="plone.app.contenttypes.interfaces.INewsItem"
     name="newsviewitem"
     class=".views.NewsViewItem"
     permission="zope2.View"
@@ -90,7 +90,7 @@
     />
 
   <browser:page
-    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    for="plone.app.contenttypes.interfaces.IFolder"
     name="galleryview"
     class=".views.GalleryView"
     permission="zope2.View"
@@ -98,7 +98,7 @@
     />
 
   <browser:menuItem
-    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    for="plone.app.contenttypes.interfaces.IFolder"
     title="Concerts"
     action="@@concertsview"
     menu="plone_displayviews"
@@ -107,7 +107,7 @@
     />
 
   <browser:menuItem
-    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    for="plone.app.contenttypes.interfaces.IFolder"
     title="News"
     action="@@newsview"
     menu="plone_displayviews"
@@ -116,7 +116,7 @@
     />
 
   <browser:menuItem
-    for="Products.Archetypes.interfaces.base.IBaseFolder"
+    for="plone.app.contenttypes.interfaces.IFolder"
     title="Gallery"
     action="@@galleryview"
     menu="plone_displayviews"

@@ -5,8 +5,8 @@
   <default>
    <bound-workflow workflow_id="sbo_sitecontent_workflow"/>
   </default>
-  <type type_id="File" remove="remove" />
-  <type type_id="Image" remove="remove" />
+  <type type_id="File" />
+  <type type_id="Image" />
   <type type_id="Plone Site" />
  </bindings>
 </object>

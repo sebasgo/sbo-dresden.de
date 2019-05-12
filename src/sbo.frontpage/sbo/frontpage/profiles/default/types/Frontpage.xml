@@ -1,26 +1,43 @@
 <?xml version="1.0"?>
 <object name="Frontpage"
-   meta_type="Factory-based Type Information with dynamic views"
+   meta_type="Dexterity FTI"
    i18n:domain="sbo.frontpage" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <!-- Basic metadata -->
   <property name="title" i18n:translate="">Frontpage</property>
   <property name="description"
     i18n:translate="">A front page displaying latest news and upcoming concerts.</property>
-  <property name="content_meta_type">Frontpage</property>
-  <property name="content_icon">document_icon.gif</property>
-  <property name="product">sbo.frontpage</property>
+  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
   <property name="factory">addFrontpage</property>
-  <property name="immediate_view">atct_edit</property>
-  <property name="global_allow">True</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>
+  <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
+
+  <!-- schema and class used for content items -->
+  <property name="schema">sbo.frontpage.interfaces.IFrontpage</property>
+  <property name="klass">plone.dexterity.content.Item</property>
   <property name="default_view">view</property>
+  <property name="behaviors">
+    <element value="plone.app.content.interfaces.INameFromTitle" />
+    <element value="plone.app.dexterity.behaviors.metadata.IDublinCore" />
+  </property>
+
+  <!-- View information -->
+  <property name="immediate_view">view</property>
   <property name="view_methods">
     <element value="view" />
   </property>
+  <property name="default_view_fallback">False</property>
+  <property name="add_permission">sbo.frontpage.AddFrontpage</property>
+
+  <!-- Method aliases -->
   <alias from="(Default)" to="(dynamic view)" />
-  <alias from="edit" to="atct_edit" />
-  <alias from="sharing" to="@@sharing" />
   <alias from="view" to="(selected layout)" />
+  <alias from="edit" to="@@edit" />
+  <alias from="sharing" to="@@sharing" />
+
+  <!-- Actions -->
   <action title="View" action_id="view" category="object" condition_expr=""
     url_expr="string:${object_url}/" visible="True">
     <permission value="View" />

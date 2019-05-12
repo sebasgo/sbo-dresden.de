@@ -4,9 +4,9 @@
 
 <object name="portal_javascripts">
 
-  <!-- Enable kss for anonymous users -->
-  <javascript id="++resource++prototype.js" enabled="True" />
-  <javascript id="sarissa.js" expression="" authenticated="False" />
-  <javascript id="++resource++kukit.js" authenticated="False" />
+  <!-- Remove KSS scripts -->
+  <javascript id="++resource++prototype.js" remove="True" />
+  <javascript id="sarissa.js" remove="True" />
+  <javascript id="++resource++kukit.js" remove="True" />
 
 </object>
